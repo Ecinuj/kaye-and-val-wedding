@@ -431,9 +431,9 @@
           <div class="rounded-3xl frosted-card p-6 sm:p-8 rosegold-border shadow-soft space-y-5">
             <div class="flex items-start justify-between gap-4">
               <div>
-                <h3 class="font-serif text-2xl font-semibold text-sage-700">Attach Your MP4 Video File</h3>
+                <h3 class="font-serif text-2xl font-semibold text-sage-700">Our Official Wedding Video</h3>
                 <p class="text-sm text-sage-600 mt-1">
-                  Upload your Canva video to GitHub named <code class="text-xs bg-sage-100 px-1.5 py-0.5 rounded text-sage-800">invitation.mp4</code> to load automatically for all guests, or select a local video file below to preview right now.
+                  Automatically streaming <code class="text-xs bg-sage-100 px-1.5 py-0.5 rounded text-sage-800">Kaye and Val Wedding Invitation.mp4</code> from our wedding gallery. Tap play on the frame to watch with sound.
                 </p>
               </div>
               <span class="shrink-0 w-10 h-10 rounded-2xl bg-rosegold-50 text-rosegold-500 flex items-center justify-center">
@@ -443,64 +443,21 @@
               </span>
             </div>
 
-            <!-- File Upload Input -->
-            <div class="flex flex-col sm:flex-row gap-3">
-              <label class="flex-1 cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl rosegold-gradient text-white text-sm font-medium shadow-rosegold hover:opacity-95 transition-all">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <button
+                onclick="replayHostedVideo()"
+                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl rosegold-gradient text-white text-xs font-semibold uppercase tracking-wider shadow-rosegold hover:opacity-95 transition-all"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
                 </svg>
-                <span>Select Video File (.MP4 / .MOV)</span>
-                <input type="file" id="videoFileInput" accept="video/*" class="hidden" onchange="handleVideoUpload(event)" />
-              </label>
-            </div>
-
-            <!-- Optional Direct Video URL Input -->
-            <div class="pt-2 border-t border-sage-100">
-              <label for="videoUrlInput" class="block text-xs uppercase tracking-wider text-sage-500 font-semibold mb-1.5">
-                Or Paste Direct MP4 / Video Link
-              </label>
-              <div class="flex gap-2">
-                <input
-                  type="url"
-                  id="videoUrlInput"
-                  placeholder="https://example.com/kaye-val-invitation.mp4"
-                  class="flex-1 px-3.5 py-2 rounded-xl border border-sage-200 text-sm focus:outline-none focus:border-rosegold-400"
-                />
-                <button
-                  onclick="loadVideoFromUrl()"
-                  class="px-4 py-2 rounded-xl bg-sage-600 text-white text-xs font-semibold uppercase tracking-wider hover:bg-sage-700 transition-colors"
-                >
-                  Load
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Interactive Chapters matching the Video -->
-          <div class="rounded-3xl frosted-card p-6 sm:p-8 rosegold-border shadow-soft">
-            <h4 class="text-xs uppercase tracking-[0.2em] text-rosegold-500 font-semibold mb-4">
-              Jump to Invitation Chapter
-            </h4>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              <button onclick="goToSlide(0)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">01 • Intro</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Save The Date</span>
+                <span>Play / Restart Video</span>
               </button>
-              <button onclick="goToSlide(1)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">02 • Venues</span>
-                <span class="font-serif text-base font-semibold text-sage-700">When &amp; Where</span>
-              </button>
-              <button onclick="goToSlide(2)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">03 • Honor</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Entourage</span>
-              </button>
-              <button onclick="goToSlide(3)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">04 • Style</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Attire &amp; RSVP</span>
-              </button>
-              <button onclick="goToSlide(4)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all col-span-2 sm:col-span-2">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">05 • Blessings</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Gift Guide &amp; InstaPay</span>
+              <button
+                onclick="unloadCustomVideo()"
+                class="px-4 py-2.5 rounded-xl border border-sage-200 text-sage-700 hover:border-rosegold-400 text-xs font-semibold uppercase tracking-wider transition-colors"
+              >
+                Interactive Chapter View
               </button>
             </div>
           </div>
@@ -1007,14 +964,21 @@
               instaPay
             </div>
             <p class="font-serif text-lg font-semibold text-sage-700">Kaye &amp; Val Gift QR</p>
-            <p class="text-xs text-sage-500">Upload your InstaPay QR screenshot below so guests can scan directly.</p>
+            <p class="text-xs text-sage-500">Loading <code class="bg-white px-1 rounded">IMG_7522</code> from repository...</p>
           </div>
         </div>
 
-        <label class="cursor-pointer inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-sage-100 hover:bg-sage-200 text-sage-700 text-xs font-semibold uppercase tracking-wider transition-colors">
-          <span>Attach InstaPay QR Image</span>
-          <input type="file" accept="image/*" class="hidden" onchange="handleQrUpload(event)" />
-        </label>
+        <a
+          id="downloadQrBtn"
+          href="IMG_7522.JPG"
+          download="Kaye_and_Val_InstaPay_QR"
+          class="hidden inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl rosegold-gradient text-white text-xs font-semibold uppercase tracking-wider shadow-rosegold hover:opacity-95 transition-all"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          <span>Save QR Code to Phone</span>
+        </a>
       </div>
     </div>
   </section>
@@ -1026,16 +990,17 @@
     <p class="text-xs text-sage-300 mt-4">Thank you for sharing our special day!</p>
   </footer>
 
-  <!-- Floating Customize Couple Photos Button -->
+  <!-- Subtle Floating Slideshow Speed Button -->
   <button
     onclick="togglePhotoModal(true)"
-    class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 px-4 py-2.5 rounded-full sage-glass shadow-soft text-xs font-semibold text-sage-800 hover:border-rosegold-400 hover:text-rosegold-600 transition-all"
-    title="Customize Background Couple Photos"
+    class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full sage-glass shadow-soft text-xs font-medium text-sage-700 hover:border-rosegold-400 hover:text-rosegold-600 transition-all opacity-85 hover:opacity-100"
+    title="Slideshow Settings"
   >
     <svg class="w-4 h-4 text-rosegold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
     </svg>
-    <span>Customize Photos</span>
+    <span class="hidden sm:inline">Slideshow</span>
   </button>
 
   <!-- Toast Notification -->
@@ -1043,36 +1008,22 @@
     Notification message
   </div>
 
-  <!-- Background Couple Photos Customizer Modal -->
+  <!-- Background Slideshow Settings Modal -->
   <div id="photoModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 rosegold-border shadow-2xl space-y-5">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 rosegold-border shadow-2xl space-y-5">
       <div class="flex items-start justify-between gap-4 border-b border-sage-100 pb-4">
         <div>
-          <span class="text-[11px] uppercase tracking-widest text-rosegold-500 font-semibold">Fixed Full-Screen Slideshow</span>
-          <h3 class="font-serif text-2xl font-semibold text-sage-700">Bride &amp; Groom Background Photos</h3>
+          <span class="text-[11px] uppercase tracking-widest text-rosegold-500 font-semibold">Fixed Background Gallery</span>
+          <h3 class="font-serif text-2xl font-semibold text-sage-700">Couple Photo Slideshow</h3>
         </div>
         <button onclick="togglePhotoModal(false)" class="w-8 h-8 rounded-full bg-sage-100 text-sage-700 hover:bg-rosegold-500 hover:text-white flex items-center justify-center transition-colors">
           &#10005;
         </button>
       </div>
 
-      <div class="p-4 rounded-2xl bg-sage-50/90 text-xs text-sage-700 space-y-1.5">
-        <p class="font-semibold text-sage-800">How to show your photos automatically on GitHub Pages:</p>
-        <p>Upload up to 5 prenup photos to your <code class="bg-white px-1.5 py-0.5 rounded border border-sage-200">kaye-and-val-wedding</code> GitHub folder named exactly:</p>
-        <p class="font-mono text-[11px] text-rosegold-600 font-semibold">photo1.jpg, photo2.jpg, photo3.jpg, photo4.jpg, photo5.jpg</p>
-        <p class="text-sage-500">They will automatically cycle in the fixed background without moving when guests scroll!</p>
-      </div>
-
-      <!-- Preview Upload in Browser -->
-      <div class="space-y-2">
-        <label class="block text-xs uppercase tracking-wider font-semibold text-sage-700">
-          Or Test Multiple Photos Now (Instant Preview)
-        </label>
-        <label class="cursor-pointer flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl rosegold-gradient text-white text-xs font-semibold uppercase tracking-wider shadow-rosegold hover:opacity-95 transition-all">
-          <span>Select Couple Photos from Device</span>
-          <input type="file" accept="image/*" multiple class="hidden" onchange="handleCustomBgPhotos(event)" />
-        </label>
-      </div>
+      <p id="loadedPhotosStatus" class="text-xs text-sage-600 bg-sage-50 p-3.5 rounded-2xl border border-sage-200/70">
+        Automatically displaying couple photos (<code class="font-mono text-rosegold-600">photo1</code> – <code class="font-mono text-rosegold-600">photo5</code>) in a fixed full-screen frame.
+      </p>
 
       <!-- Slide Speed Selector -->
       <div class="space-y-1.5">
@@ -1085,15 +1036,12 @@
           class="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-800 bg-champagne/40 focus:outline-none focus:border-rosegold-400"
         >
           <option value="3000">Every 3 Seconds</option>
-          <option value="4500" selected>Every 4.5 Seconds (Recommended)</option>
+          <option value="4500" selected>Every 4.5 Seconds (Default)</option>
           <option value="6000">Every 6 Seconds</option>
         </select>
       </div>
 
-      <div class="flex justify-between items-center pt-2 border-t border-sage-100">
-        <button onclick="resetBgPhotosToDefault()" class="text-xs text-sage-500 hover:text-rosegold-600 underline">
-          Use GitHub Files (photo1–5.jpg)
-        </button>
+      <div class="flex justify-end pt-2 border-t border-sage-100">
         <button onclick="togglePhotoModal(false)" class="px-5 py-2 rounded-xl bg-sage-600 text-white text-xs font-semibold uppercase tracking-wider hover:bg-sage-700">
           Done
         </button>
@@ -1164,20 +1112,15 @@
   <script>
     // ==========================================
     // 0. FIXED FULL-SCREEN COUPLE PHOTO SLIDESHOW
+    // Automatically probes photo1..photo5 across all extensions (.jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, extensionless)
     // ==========================================
     const fallbackCoupleArt = [
-      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g1" cx="25%" cy="30%" r="75%"><stop offset="0%" stop-color="#D2DDD0"/><stop offset="55%" stop-color="#8FA693"/><stop offset="100%" stop-color="#4A5D4E"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g1)"/><circle cx="1220" cy="240" r="340" fill="#F0D5D1" fill-opacity="0.32"/><text x="50%" y="48%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="8">KAYE &amp; VAL</text><text x="50%" y="55%" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#FAF7F5" fill-opacity="0.4">Upload photo1.jpg – photo5.jpg to showcase your prenup gallery</text></svg>`),
-      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g2" cx="75%" cy="35%" r="75%"><stop offset="0%" stop-color="#F8ECEA"/><stop offset="50%" stop-color="#E2B4AE"/><stop offset="100%" stop-color="#B76E79"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g2)"/><circle cx="380" cy="650" r="380" fill="#D2DDD0" fill-opacity="0.35"/><text x="50%" y="48%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.5" letter-spacing="8">12 • 09 • 2026</text><text x="50%" y="55%" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#FAF7F5" fill-opacity="0.45">Basilica of Our Lady of Peñafrancia</text></svg>`),
-      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6C8771"/><stop offset="50%" stop-color="#B2C4B0"/><stop offset="100%" stop-color="#CE8E87"/></linearGradient></defs><rect width="1600" height="900" fill="url(#g3)"/><text x="50%" y="50%" text-anchor="middle" font-family="Georgia, serif" font-size="58" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="10">FOREVER BEGINS</text></svg>`)
+      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g1" cx="25%" cy="30%" r="75%"><stop offset="0%" stop-color="#D2DDD0"/><stop offset="55%" stop-color="#8FA693"/><stop offset="100%" stop-color="#4A5D4E"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g1)"/><circle cx="1220" cy="240" r="340" fill="#F0D5D1" fill-opacity="0.32"/><text x="50%" y="50%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="8">KAYE &amp; VAL</text></svg>`),
+      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g2" cx="75%" cy="35%" r="75%"><stop offset="0%" stop-color="#F8ECEA"/><stop offset="50%" stop-color="#E2B4AE"/><stop offset="100%" stop-color="#B76E79"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g2)"/><circle cx="380" cy="650" r="380" fill="#D2DDD0" fill-opacity="0.35"/><text x="50%" y="50%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.5" letter-spacing="8">12 • 09 • 2026</text></svg>`)
     ];
 
-    const githubPhotoCandidates = [
-      'photo1.jpg',
-      'photo2.jpg',
-      'photo3.jpg',
-      'photo4.jpg',
-      'photo5.jpg'
-    ];
+    const photoBases = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5'];
+    const photoExts = ['.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG', '.webp', '.WEBP', ''];
 
     let activeBgPhotos = [...fallbackCoupleArt];
     let bgSlideIndex = 0;
@@ -1185,31 +1128,39 @@
     let bgSlideIntervalMs = 4500;
     let bgSlideTimer = null;
 
-    function preloadGitHubCouplePhotos() {
-      const loaded = [];
-      let checked = 0;
-
-      githubPhotoCandidates.forEach((src) => {
-        const img = new Image();
-        img.onload = () => {
-          loaded.push(src);
-          checked++;
-          if (checked === githubPhotoCandidates.length && loaded.length > 0) {
-            activeBgPhotos = loaded;
-            bgSlideIndex = 0;
-            applyBgSlide(0);
+    function probeFirstMatchingImage(candidates) {
+      return new Promise((resolve) => {
+        let idx = 0;
+        function tryNext() {
+          if (idx >= candidates.length) {
+            resolve(null);
+            return;
           }
-        };
-        img.onerror = () => {
-          checked++;
-          if (checked === githubPhotoCandidates.length && loaded.length > 0) {
-            activeBgPhotos = loaded;
-            bgSlideIndex = 0;
-            applyBgSlide(0);
-          }
-        };
-        img.src = src;
+          const src = candidates[idx++];
+          const img = new Image();
+          img.onload = () => resolve(src);
+          img.onerror = () => tryNext();
+          img.src = src;
+        }
+        tryNext();
       });
+    }
+
+    async function preloadGitHubCouplePhotos() {
+      const results = await Promise.all(
+        photoBases.map(base => probeFirstMatchingImage(photoExts.map(ext => base + ext)))
+      );
+      const found = results.filter(Boolean);
+      if (found.length > 0) {
+        activeBgPhotos = found;
+        bgSlideIndex = 0;
+        applyBgSlide(0);
+        startBgSlideshow();
+        const statusEl = document.getElementById('loadedPhotosStatus');
+        if (statusEl) {
+          statusEl.textContent = `Showing ${found.length} couple photo(s) from your repository (${found.join(', ')}) in a fixed full-screen frame.`;
+        }
+      }
     }
 
     function applyBgSlide(index) {
@@ -1238,27 +1189,10 @@
       bgSlideTimer = setInterval(advanceBgSlide, bgSlideIntervalMs);
     }
 
-    function handleCustomBgPhotos(event) {
-      const files = Array.from(event.target.files || []);
-      if (!files.length) return;
-      activeBgPhotos = files.map(file => URL.createObjectURL(file));
-      bgSlideIndex = 0;
-      applyBgSlide(0);
-      startBgSlideshow();
-      showToast(`Loaded ${files.length} couple photo(s) into background!`);
-    }
-
     function updateBgSlideSpeed(ms) {
       bgSlideIntervalMs = parseInt(ms, 10) || 4500;
       startBgSlideshow();
-      showToast(`Background speed updated to ${bgSlideIntervalMs / 1000}s`);
-    }
-
-    function resetBgPhotosToDefault() {
-      activeBgPhotos = [...fallbackCoupleArt];
-      preloadGitHubCouplePhotos();
-      startBgSlideshow();
-      showToast('Reverted to GitHub photo1.jpg–photo5.jpg');
+      showToast(`Slideshow speed set to ${bgSlideIntervalMs / 1000}s`);
     }
 
     function togglePhotoModal(show) {
@@ -1377,53 +1311,11 @@
     }
 
     function prevSlide() {
-      renderSlide(currentSlide - 1);
-    }
+    let hostedVideoUrl = '';
 
-    function goToSlide(idx) {
-      unloadCustomVideo();
-      renderSlide(idx);
-    }
-
-    function startAutoplay() {
+    function activateVideoPlayer(src, autoPlay = false) {
       stopAutoplay();
-      autoplayTimer = setInterval(nextSlide, 4200);
-      isPlaying = true;
-      document.getElementById('playPauseBtn').textContent = 'Pause Story';
-    }
-
-    function stopAutoplay() {
-      if (autoplayTimer) clearInterval(autoplayTimer);
-      isPlaying = false;
-      document.getElementById('playPauseBtn').textContent = 'Play Story';
-    }
-
-    function toggleAutoplay() {
-      if (isPlaying) stopAutoplay();
-      else startAutoplay();
-    }
-
-    // Handle local MP4 file upload
-    function handleVideoUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      activateVideoPlayer(url);
-      showToast('Video invitation attached!');
-    }
-
-    function loadVideoFromUrl() {
-      const url = document.getElementById('videoUrlInput').value.trim();
-      if (!url) {
-        showToast('Please paste a valid MP4 video link first.');
-        return;
-      }
-      activateVideoPlayer(url);
-      showToast('Video URL loaded!');
-    }
-
-    function activateVideoPlayer(src) {
-      stopAutoplay();
+      hostedVideoUrl = src;
       const videoEl = document.getElementById('attachedVideoPlayer');
       const storyboardEl = document.getElementById('storyboardView');
       const backBtn = document.getElementById('backToStoryboardBtn');
@@ -1432,7 +1324,18 @@
       videoEl.classList.remove('hidden');
       storyboardEl.classList.add('hidden');
       backBtn.classList.remove('hidden');
-      videoEl.play().catch(() => {});
+      if (autoPlay) {
+        videoEl.play().catch(() => {});
+      }
+    }
+
+    function replayHostedVideo() {
+      const videoEl = document.getElementById('attachedVideoPlayer');
+      if (hostedVideoUrl) {
+        activateVideoPlayer(hostedVideoUrl, true);
+        videoEl.currentTime = 0;
+        videoEl.play().catch(() => {});
+      }
     }
 
     function unloadCustomVideo() {
@@ -1450,229 +1353,59 @@
     renderSlide(0);
     startAutoplay();
 
-    // Auto-detect invitation.mp4 if uploaded to the same GitHub folder
-    (function checkDefaultVideo() {
-      const defaultVideoPath = 'invitation.mp4';
-      fetch(defaultVideoPath, { method: 'HEAD' })
-        .then(res => {
+    // Auto-load Kaye and Val Wedding Invitation.mp4 (and fallback names) from repository root
+    (async function autoLoadHostedVideo() {
+      const videoCandidates = [
+        'Kaye%20and%20Val%20Wedding%20Invitation.mp4',
+        'Kaye and Val Wedding Invitation.mp4',
+        'Kaye%20and%20Val%20Wedding%20Invitation.MP4',
+        'invitation.mp4',
+        'invitation.MP4'
+      ];
+      for (const candidate of videoCandidates) {
+        try {
+          const res = await fetch(candidate, { method: 'HEAD' });
           if (res.ok) {
-            const videoEl = document.getElementById('attachedVideoPlayer');
-            const storyboardEl = document.getElementById('storyboardView');
-            const backBtn = document.getElementById('backToStoryboardBtn');
-            stopAutoplay();
-            videoEl.src = defaultVideoPath;
-            videoEl.classList.remove('hidden');
-            storyboardEl.classList.add('hidden');
-            backBtn.classList.remove('hidden');
+            activateVideoPlayer(candidate, false);
+            break;
           }
-        })
-        .catch(() => {});
+        } catch (e) {}
+      }
+    })();
+
+    // Auto-load IMG_7522 QR Code across common image extensions
+    (async function autoLoadQrCode() {
+      const qrCandidates = [
+        'IMG_7522.JPG',
+        'IMG_7522.jpg',
+        'IMG_7522.PNG',
+        'IMG_7522.png',
+        'IMG_7522.JPEG',
+        'IMG_7522.jpeg',
+        'IMG_7522.WEBP',
+        'IMG_7522.webp',
+        'IMG_7522'
+      ];
+      const matchedQr = await probeFirstMatchingImage(qrCandidates);
+      if (matchedQr) {
+        const img = document.getElementById('qrPreviewImg');
+        const placeholder = document.getElementById('qrPlaceholder');
+        const downloadBtn = document.getElementById('downloadQrBtn');
+
+        img.src = matchedQr;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+
+        if (downloadBtn) {
+          downloadBtn.href = matchedQr;
+          downloadBtn.classList.remove('hidden');
+        }
+      }
     })();
 
     // ==========================================
-    // 3. ENTOURAGE FILTER TABS
+    // 5. CANVA MODAL & UTILITIES
     // ==========================================
-    function filterEntourage(category) {
-      document.querySelectorAll('.entourage-tab').forEach(btn => {
-        if (btn.dataset.tab === category) {
-          btn.classList.add('bg-sage-600', 'text-white');
-          btn.classList.remove('bg-white', 'text-sage-700');
-        } else {
-          btn.classList.remove('bg-sage-600', 'text-white');
-          btn.classList.add('bg-white', 'text-sage-700');
-        }
-      });
-
-      document.querySelectorAll('.entourage-group').forEach(group => {
-        if (category === 'all' || group.dataset.group === category) {
-          group.classList.remove('hidden');
-        } else {
-          group.classList.add('hidden');
-        }
-      });
-    }
-
-    // ==========================================
-    // 4. RSVP & SEAT RESERVATION SYSTEM
-    // ==========================================
-    const STORAGE_KEY = 'kaye_val_wedding_rsvps_v1';
-    let lastSubmittedMessage = '';
-
-    function toggleSeatFields(isAttending) {
-      const wrapper = document.getElementById('seatReservationWrapper');
-      if (isAttending) {
-        wrapper.classList.remove('hidden');
-      } else {
-        wrapper.classList.add('hidden');
-      }
-    }
-
-    function renderAdditionalGuests() {
-      const count = parseInt(document.getElementById('seatCount').value, 10);
-      const container = document.getElementById('additionalGuestsContainer');
-      container.innerHTML = '';
-
-      for (let i = 2; i <= count; i++) {
-        const div = document.createElement('div');
-        div.innerHTML = `
-          <input
-            type="text"
-            class="extra-guest-input w-full px-4 py-2.5 rounded-xl border border-sage-200 text-sm focus:outline-none focus:border-rosegold-400 bg-white"
-            placeholder="Companion Guest #${i} Full Name"
-          />
-        `;
-        container.appendChild(div);
-      }
-    }
-
-    function getSavedRsvps() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) return JSON.parse(raw);
-      } catch (e) {}
-      return [
-        {
-          id: 1,
-          name: 'Cunanan & Baranuelo Family',
-          attending: 'Yes',
-          seats: 4,
-          companions: ['Alma P. Cunanan', 'Romualdo P. Baranuelo', 'Emily B. Baranuelo'],
-          message: 'Excited for December 9!'
-        }
-      ];
-    }
-
-    function saveRsvps(list) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-      } catch (e) {}
-      renderGuestDashboard();
-    }
-
-    function submitRsvp(event) {
-      event.preventDefault();
-      const name = document.getElementById('guestName').value.trim();
-      const attending = document.querySelector('input[name="attending"]:checked').value;
-      const seats = attending === 'Yes' ? parseInt(document.getElementById('seatCount').value, 10) : 0;
-      const companions = Array.from(document.querySelectorAll('.extra-guest-input'))
-        .map(inp => inp.value.trim())
-        .filter(Boolean);
-      const message = document.getElementById('guestMessage').value.trim();
-
-      const list = getSavedRsvps();
-      list.unshift({
-        id: Date.now(),
-        name,
-        attending,
-        seats,
-        companions,
-        message
-      });
-      saveRsvps(list);
-
-      // Prepare Messenger text
-      if (attending === 'Yes') {
-        const compText = companions.length ? ` (with ${companions.join(', ')})` : '';
-        lastSubmittedMessage = `Hi Kaye & Val! RSVP Confirmation:\nName: ${name}${compText}\nAttending: YES\nSeats Reserved: ${seats}\nMessage: ${message || 'Congratulations!'}`;
-        document.getElementById('rsvpSummaryText').textContent =
-          `We have reserved ${seats} seat(s) for ${name}${compText}.`;
-      } else {
-        lastSubmittedMessage = `Hi Kaye & Val! RSVP Response:\nName: ${name}\nAttending: Regretfully Declines\nMessage: ${message || 'Sending warm wishes!'}`;
-        document.getElementById('rsvpSummaryText').textContent =
-          `Thank you for letting us know, ${name}. You will be missed!`;
-      }
-
-      document.getElementById('rsvpSuccessBox').classList.remove('hidden');
-      document.getElementById('rsvpForm').reset();
-      toggleSeatFields(true);
-      renderAdditionalGuests();
-      showToast('Seat reservation saved!');
-    }
-
-    function renderGuestDashboard() {
-      const list = getSavedRsvps();
-      const container = document.getElementById('guestListContainer');
-      const totalSeats = list.reduce((sum, item) => sum + (item.attending === 'Yes' ? item.seats : 0), 0);
-
-      document.getElementById('totalSeatsBadge').textContent = totalSeats;
-
-      if (list.length === 0) {
-        container.innerHTML = '<p class="text-xs text-sage-400 text-center py-6">No RSVPs recorded yet.</p>';
-        return;
-      }
-
-      container.innerHTML = list.map(item => `
-        <div class="p-3 rounded-2xl bg-sage-50/80 border border-sage-200/70 flex items-start justify-between gap-3">
-          <div>
-            <p class="font-serif text-base font-semibold text-sage-800">${item.name}</p>
-            ${item.companions && item.companions.length ? `<p class="text-[11px] text-sage-500">+ ${item.companions.join(', ')}</p>` : ''}
-            ${item.message ? `<p class="text-xs italic text-sage-600 mt-1">"${item.message}"</p>` : ''}
-          </div>
-          <span class="shrink-0 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider ${
-            item.attending === 'Yes'
-              ? 'bg-sage-600 text-white'
-              : 'bg-rosegold-100 text-rosegold-600'
-          }">
-            ${item.attending === 'Yes' ? `${item.seats} Seat${item.seats > 1 ? 's' : ''}` : 'Declined'}
-          </span>
-        </div>
-      `).join('');
-    }
-
-    function copyMessengerRsvp() {
-      if (!lastSubmittedMessage) return;
-      copyTextToClipboard(lastSubmittedMessage);
-      showToast('RSVP copied! Paste it in Facebook Messenger.');
-    }
-
-    function exportRsvpCsv() {
-      const list = getSavedRsvps();
-      const rows = [['Primary Guest', 'Attending', 'Reserved Seats', 'Additional Guests', 'Message']];
-      list.forEach(r => {
-        rows.push([
-          `"${r.name.replace(/"/g, '""')}"`,
-          r.attending,
-          r.seats,
-          `"${(r.companions || []).join('; ').replace(/"/g, '""')}"`,
-          `"${(r.message || '').replace(/"/g, '""')}"`
-        ]);
-      });
-      const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(',')).join('\n');
-      const link = document.createElement('a');
-      link.setAttribute('href', encodeURI(csvContent));
-      link.setAttribute('download', 'Kaye_and_Val_RSVP_Seats.csv');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      showToast('CSV Guest List downloaded!');
-    }
-
-    function clearRsvpData() {
-      localStorage.removeItem(STORAGE_KEY);
-      renderGuestDashboard();
-      showToast('Demo RSVP list reset.');
-    }
-
-    renderAdditionalGuests();
-    renderGuestDashboard();
-
-    // ==========================================
-    // 5. QR UPLOAD, CANVA MODAL & UTILITIES
-    // ==========================================
-    function handleQrUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const img = document.getElementById('qrPreviewImg');
-        img.src = e.target.result;
-        img.classList.remove('hidden');
-        document.getElementById('qrPlaceholder').classList.add('hidden');
-        showToast('InstaPay QR code attached!');
-      };
-      reader.readAsDataURL(file);
-    }
-
     function toggleCanvaModal(show) {
       const modal = document.getElementById('canvaModal');
       if (show) modal.classList.remove('hidden');
