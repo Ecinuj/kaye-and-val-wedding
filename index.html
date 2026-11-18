@@ -61,6 +61,71 @@
       overflow-x: hidden;
     }
 
+    /* Fixed Full-Viewport Couple Photo Background (Never moves or resizes on scroll) */
+    #fixed-bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .bg-slide-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      will-change: opacity;
+    }
+
+    .bg-slide-layer.active {
+      opacity: 1;
+    }
+
+    /* Fixed Translucent Sage & Ivory Frosted Veil for Crisp Readability */
+    #fixed-bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(250, 247, 245, 0.78) 0%,
+        rgba(245, 247, 244, 0.72) 50%,
+        rgba(250, 247, 245, 0.80) 100%
+      );
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+
+    /* Translucent Section Panels so Fixed Photos Glow Through While Scrolling */
+    .frosted-section {
+      background: rgba(245, 247, 244, 0.68);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .frosted-card {
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
     .rosegold-gradient {
       background: linear-gradient(135deg, #D9A29C 0%, #B76E79 50%, #9E5863 100%);
     }
@@ -119,6 +184,14 @@
   </style>
 </head>
 <body class="antialiased selection:bg-rosegold-200 selection:text-sage-800">
+
+  <!-- Fixed Full-Screen Couple Photo Slideshow Container -->
+  <div id="fixed-bg-slideshow" aria-hidden="true">
+    <div id="bg-layer-0" class="bg-slide-layer active"></div>
+    <div id="bg-layer-1" class="bg-slide-layer"></div>
+  </div>
+  <!-- Fixed Translucent Sage & Champagne Overlay -->
+  <div id="fixed-bg-overlay" aria-hidden="true"></div>
 
   <!-- Decorative Top Botanical Corner SVGs -->
   <div class="fixed top-0 left-0 w-40 sm:w-64 pointer-events-none z-0 opacity-35">
@@ -267,7 +340,7 @@
   </section>
 
   <!-- 2. ATTACHED VIDEO INVITATION SECTION -->
-  <section id="video-invite" class="py-16 sm:py-24 px-4 sm:px-6 bg-sage-50/90 border-y border-sage-200/70 reveal">
+  <section id="video-invite" class="py-16 sm:py-24 px-4 sm:px-6 frosted-section border-y border-sage-200/70 reveal">
     <div class="max-w-5xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">Official Save The Date</span>
@@ -355,12 +428,12 @@
 
         <!-- Right Column: Chapter Navigation & Attach Video File Controls -->
         <div class="lg:col-span-7 space-y-6">
-          <div class="rounded-3xl bg-white p-6 sm:p-8 rosegold-border shadow-soft space-y-5">
+          <div class="rounded-3xl frosted-card p-6 sm:p-8 rosegold-border shadow-soft space-y-5">
             <div class="flex items-start justify-between gap-4">
               <div>
                 <h3 class="font-serif text-2xl font-semibold text-sage-700">Attach Your MP4 Video File</h3>
                 <p class="text-sm text-sage-600 mt-1">
-                  Have your Canva video file (<code class="text-xs bg-sage-100 px-1.5 py-0.5 rounded text-sage-800">video_1.mp4</code>) on your phone or laptop? Load it directly into the frame to play it with sound, or paste a Canva/YouTube share link.
+                  Upload your Canva video to GitHub named <code class="text-xs bg-sage-100 px-1.5 py-0.5 rounded text-sage-800">invitation.mp4</code> to load automatically for all guests, or select a local video file below to preview right now.
                 </p>
               </div>
               <span class="shrink-0 w-10 h-10 rounded-2xl bg-rosegold-50 text-rosegold-500 flex items-center justify-center">
@@ -404,7 +477,7 @@
           </div>
 
           <!-- Interactive Chapters matching the Video -->
-          <div class="rounded-3xl bg-white p-6 sm:p-8 rosegold-border shadow-soft">
+          <div class="rounded-3xl frosted-card p-6 sm:p-8 rosegold-border shadow-soft">
             <h4 class="text-xs uppercase tracking-[0.2em] text-rosegold-500 font-semibold mb-4">
               Jump to Invitation Chapter
             </h4>
@@ -448,7 +521,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Ceremony Card -->
-        <div class="rounded-3xl bg-white p-8 sm:p-10 rosegold-border shadow-soft text-center flex flex-col justify-between relative overflow-hidden">
+        <div class="rounded-3xl frosted-card p-8 sm:p-10 rosegold-border shadow-soft text-center flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 inset-x-0 h-1.5 rosegold-gradient"></div>
           <div>
             <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-sage-100 text-sage-600 flex items-center justify-center">
@@ -484,7 +557,7 @@
         </div>
 
         <!-- Reception Card -->
-        <div class="rounded-3xl bg-white p-8 sm:p-10 rosegold-border shadow-soft text-center flex flex-col justify-between relative overflow-hidden">
+        <div class="rounded-3xl frosted-card p-8 sm:p-10 rosegold-border shadow-soft text-center flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 inset-x-0 h-1.5 bg-sage-500"></div>
           <div>
             <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-rosegold-50 text-rosegold-500 flex items-center justify-center">
@@ -523,7 +596,7 @@
   </section>
 
   <!-- 4. WEDDING ENTOURAGE & PRINCIPAL SPONSORS -->
-  <section id="entourage" class="py-16 sm:py-24 px-4 sm:px-6 bg-sage-50/90 border-y border-sage-200/70 reveal">
+  <section id="entourage" class="py-16 sm:py-24 px-4 sm:px-6 frosted-section border-y border-sage-200/70 reveal">
     <div class="max-w-5xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-10">
         <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">With Love &amp; Gratitude</span>
@@ -557,7 +630,7 @@
       <!-- Entourage Grid -->
       <div class="space-y-8">
         <!-- Parents & Lead Honor -->
-        <div data-group="parents" class="entourage-group rounded-3xl bg-white p-6 sm:p-10 rosegold-border shadow-soft">
+        <div data-group="parents" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
             <div class="space-y-2">
               <p class="font-script text-2xl text-rosegold-500">Parents of the Bride</p>
@@ -591,7 +664,7 @@
         </div>
 
         <!-- Principal Sponsors -->
-        <div data-group="principal" class="entourage-group rounded-3xl bg-white p-6 sm:p-10 rosegold-border shadow-soft text-center">
+        <div data-group="principal" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft text-center">
           <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Principal Sponsors</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 max-w-3xl mx-auto">
             <div class="p-3 rounded-2xl bg-sage-50/70">
@@ -622,7 +695,7 @@
         </div>
 
         <!-- Secondary Sponsors -->
-        <div data-group="secondary" class="entourage-group rounded-3xl bg-white p-6 sm:p-10 rosegold-border shadow-soft text-center">
+        <div data-group="secondary" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft text-center">
           <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Secondary Sponsors</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
@@ -645,7 +718,7 @@
         </div>
 
         <!-- Groomsmen, Bridesmaids, Bearers & Flower Girls -->
-        <div data-group="party" class="entourage-group rounded-3xl bg-white p-6 sm:p-10 rosegold-border shadow-soft text-center space-y-8">
+        <div data-group="party" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft text-center space-y-8">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 class="font-script text-3xl text-rosegold-500 mb-3">Groomsmen</h4>
@@ -754,7 +827,7 @@
   </section>
 
   <!-- 6. INTERACTIVE RSVP & SEAT RESERVATION SYSTEM -->
-  <section id="rsvp" class="py-16 sm:py-24 px-4 sm:px-6 bg-sage-50/95 border-y border-sage-200/70 reveal">
+  <section id="rsvp" class="py-16 sm:py-24 px-4 sm:px-6 frosted-section border-y border-sage-200/70 reveal">
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-xl mx-auto mb-10">
         <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">Will You Join Us?</span>
@@ -768,7 +841,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <!-- RSVP Form -->
-        <div class="lg:col-span-7 rounded-3xl bg-white p-6 sm:p-9 rosegold-border shadow-soft">
+        <div class="lg:col-span-7 rounded-3xl frosted-card p-6 sm:p-9 rosegold-border shadow-soft">
           <form id="rsvpForm" onsubmit="submitRsvp(event)" class="space-y-5">
             <div>
               <label for="guestName" class="block text-xs uppercase tracking-wider font-semibold text-sage-700 mb-1.5">
@@ -872,7 +945,7 @@
 
         <!-- Live Seat Tracker & Guest List Dashboard -->
         <div class="lg:col-span-5 space-y-5">
-          <div class="rounded-3xl bg-white p-6 sm:p-7 rosegold-border shadow-soft">
+          <div class="rounded-3xl frosted-card p-6 sm:p-7 rosegold-border shadow-soft">
             <div class="flex items-center justify-between mb-4">
               <div>
                 <p class="text-[11px] uppercase tracking-widest text-rosegold-500 font-semibold">Live Guest Tracker</p>
@@ -922,7 +995,7 @@
         Should you wish to give us something more, a monetary gift would be sincerely appreciated as we continue building our future together. For monetary gifts, kindly scan the QR code below.
       </p>
 
-      <div class="max-w-xs mx-auto rounded-3xl bg-white p-6 rosegold-border shadow-soft space-y-4">
+      <div class="max-w-xs mx-auto rounded-3xl frosted-card p-6 rosegold-border shadow-soft space-y-4">
         <div class="relative aspect-square w-full rounded-2xl bg-sage-50 border border-dashed border-rosegold-300 flex flex-col items-center justify-center overflow-hidden p-4">
           <img
             id="qrPreviewImg"
@@ -947,15 +1020,85 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-12 px-4 text-center bg-sage-700 text-sage-100">
+  <footer class="py-12 px-4 text-center bg-sage-700/95 backdrop-blur-md text-sage-100">
     <p class="font-script text-4xl text-rosegold-200 mb-2">Kaye &amp; Val</p>
     <p class="font-serif text-base tracking-widest uppercase">December 09, 2026 • Naga City, Camarines Sur</p>
     <p class="text-xs text-sage-300 mt-4">Thank you for sharing our special day!</p>
   </footer>
 
+  <!-- Floating Customize Couple Photos Button -->
+  <button
+    onclick="togglePhotoModal(true)"
+    class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 px-4 py-2.5 rounded-full sage-glass shadow-soft text-xs font-semibold text-sage-800 hover:border-rosegold-400 hover:text-rosegold-600 transition-all"
+    title="Customize Background Couple Photos"
+  >
+    <svg class="w-4 h-4 text-rosegold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+    </svg>
+    <span>Customize Photos</span>
+  </button>
+
   <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full bg-sage-800 text-white text-xs font-medium shadow-xl opacity-0 pointer-events-none transition-all duration-300">
     Notification message
+  </div>
+
+  <!-- Background Couple Photos Customizer Modal -->
+  <div id="photoModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 rosegold-border shadow-2xl space-y-5">
+      <div class="flex items-start justify-between gap-4 border-b border-sage-100 pb-4">
+        <div>
+          <span class="text-[11px] uppercase tracking-widest text-rosegold-500 font-semibold">Fixed Full-Screen Slideshow</span>
+          <h3 class="font-serif text-2xl font-semibold text-sage-700">Bride &amp; Groom Background Photos</h3>
+        </div>
+        <button onclick="togglePhotoModal(false)" class="w-8 h-8 rounded-full bg-sage-100 text-sage-700 hover:bg-rosegold-500 hover:text-white flex items-center justify-center transition-colors">
+          &#10005;
+        </button>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-sage-50/90 text-xs text-sage-700 space-y-1.5">
+        <p class="font-semibold text-sage-800">How to show your photos automatically on GitHub Pages:</p>
+        <p>Upload up to 5 prenup photos to your <code class="bg-white px-1.5 py-0.5 rounded border border-sage-200">kaye-and-val-wedding</code> GitHub folder named exactly:</p>
+        <p class="font-mono text-[11px] text-rosegold-600 font-semibold">photo1.jpg, photo2.jpg, photo3.jpg, photo4.jpg, photo5.jpg</p>
+        <p class="text-sage-500">They will automatically cycle in the fixed background without moving when guests scroll!</p>
+      </div>
+
+      <!-- Preview Upload in Browser -->
+      <div class="space-y-2">
+        <label class="block text-xs uppercase tracking-wider font-semibold text-sage-700">
+          Or Test Multiple Photos Now (Instant Preview)
+        </label>
+        <label class="cursor-pointer flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl rosegold-gradient text-white text-xs font-semibold uppercase tracking-wider shadow-rosegold hover:opacity-95 transition-all">
+          <span>Select Couple Photos from Device</span>
+          <input type="file" accept="image/*" multiple class="hidden" onchange="handleCustomBgPhotos(event)" />
+        </label>
+      </div>
+
+      <!-- Slide Speed Selector -->
+      <div class="space-y-1.5">
+        <label for="slideSpeedSelect" class="block text-xs uppercase tracking-wider font-semibold text-sage-700">
+          Photo Change Interval
+        </label>
+        <select
+          id="slideSpeedSelect"
+          onchange="updateBgSlideSpeed(this.value)"
+          class="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-800 bg-champagne/40 focus:outline-none focus:border-rosegold-400"
+        >
+          <option value="3000">Every 3 Seconds</option>
+          <option value="4500" selected>Every 4.5 Seconds (Recommended)</option>
+          <option value="6000">Every 6 Seconds</option>
+        </select>
+      </div>
+
+      <div class="flex justify-between items-center pt-2 border-t border-sage-100">
+        <button onclick="resetBgPhotosToDefault()" class="text-xs text-sage-500 hover:text-rosegold-600 underline">
+          Use GitHub Files (photo1–5.jpg)
+        </button>
+        <button onclick="togglePhotoModal(false)" class="px-5 py-2 rounded-xl bg-sage-600 text-white text-xs font-semibold uppercase tracking-wider hover:bg-sage-700">
+          Done
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- 8. CANVA EDIT & INTEGRATION MODAL -->
@@ -1019,6 +1162,114 @@
   </div>
 
   <script>
+    // ==========================================
+    // 0. FIXED FULL-SCREEN COUPLE PHOTO SLIDESHOW
+    // ==========================================
+    const fallbackCoupleArt = [
+      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g1" cx="25%" cy="30%" r="75%"><stop offset="0%" stop-color="#D2DDD0"/><stop offset="55%" stop-color="#8FA693"/><stop offset="100%" stop-color="#4A5D4E"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g1)"/><circle cx="1220" cy="240" r="340" fill="#F0D5D1" fill-opacity="0.32"/><text x="50%" y="48%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="8">KAYE &amp; VAL</text><text x="50%" y="55%" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#FAF7F5" fill-opacity="0.4">Upload photo1.jpg – photo5.jpg to showcase your prenup gallery</text></svg>`),
+      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g2" cx="75%" cy="35%" r="75%"><stop offset="0%" stop-color="#F8ECEA"/><stop offset="50%" stop-color="#E2B4AE"/><stop offset="100%" stop-color="#B76E79"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g2)"/><circle cx="380" cy="650" r="380" fill="#D2DDD0" fill-opacity="0.35"/><text x="50%" y="48%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.5" letter-spacing="8">12 • 09 • 2026</text><text x="50%" y="55%" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#FAF7F5" fill-opacity="0.45">Basilica of Our Lady of Peñafrancia</text></svg>`),
+      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6C8771"/><stop offset="50%" stop-color="#B2C4B0"/><stop offset="100%" stop-color="#CE8E87"/></linearGradient></defs><rect width="1600" height="900" fill="url(#g3)"/><text x="50%" y="50%" text-anchor="middle" font-family="Georgia, serif" font-size="58" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="10">FOREVER BEGINS</text></svg>`)
+    ];
+
+    const githubPhotoCandidates = [
+      'photo1.jpg',
+      'photo2.jpg',
+      'photo3.jpg',
+      'photo4.jpg',
+      'photo5.jpg'
+    ];
+
+    let activeBgPhotos = [...fallbackCoupleArt];
+    let bgSlideIndex = 0;
+    let activeLayer = 0;
+    let bgSlideIntervalMs = 4500;
+    let bgSlideTimer = null;
+
+    function preloadGitHubCouplePhotos() {
+      const loaded = [];
+      let checked = 0;
+
+      githubPhotoCandidates.forEach((src) => {
+        const img = new Image();
+        img.onload = () => {
+          loaded.push(src);
+          checked++;
+          if (checked === githubPhotoCandidates.length && loaded.length > 0) {
+            activeBgPhotos = loaded;
+            bgSlideIndex = 0;
+            applyBgSlide(0);
+          }
+        };
+        img.onerror = () => {
+          checked++;
+          if (checked === githubPhotoCandidates.length && loaded.length > 0) {
+            activeBgPhotos = loaded;
+            bgSlideIndex = 0;
+            applyBgSlide(0);
+          }
+        };
+        img.src = src;
+      });
+    }
+
+    function applyBgSlide(index) {
+      if (!activeBgPhotos.length) return;
+      const nextLayer = activeLayer === 0 ? 1 : 0;
+      const currentEl = document.getElementById(`bg-layer-${activeLayer}`);
+      const nextEl = document.getElementById(`bg-layer-${nextLayer}`);
+
+      nextEl.style.backgroundImage = `url("${activeBgPhotos[index]}")`;
+      nextEl.classList.add('active');
+      currentEl.classList.remove('active');
+      activeLayer = nextLayer;
+    }
+
+    function advanceBgSlide() {
+      if (activeBgPhotos.length <= 1) return;
+      bgSlideIndex = (bgSlideIndex + 1) % activeBgPhotos.length;
+      applyBgSlide(bgSlideIndex);
+    }
+
+    function startBgSlideshow() {
+      if (bgSlideTimer) clearInterval(bgSlideTimer);
+      const firstEl = document.getElementById('bg-layer-0');
+      firstEl.style.backgroundImage = `url("${activeBgPhotos[0]}")`;
+      firstEl.classList.add('active');
+      bgSlideTimer = setInterval(advanceBgSlide, bgSlideIntervalMs);
+    }
+
+    function handleCustomBgPhotos(event) {
+      const files = Array.from(event.target.files || []);
+      if (!files.length) return;
+      activeBgPhotos = files.map(file => URL.createObjectURL(file));
+      bgSlideIndex = 0;
+      applyBgSlide(0);
+      startBgSlideshow();
+      showToast(`Loaded ${files.length} couple photo(s) into background!`);
+    }
+
+    function updateBgSlideSpeed(ms) {
+      bgSlideIntervalMs = parseInt(ms, 10) || 4500;
+      startBgSlideshow();
+      showToast(`Background speed updated to ${bgSlideIntervalMs / 1000}s`);
+    }
+
+    function resetBgPhotosToDefault() {
+      activeBgPhotos = [...fallbackCoupleArt];
+      preloadGitHubCouplePhotos();
+      startBgSlideshow();
+      showToast('Reverted to GitHub photo1.jpg–photo5.jpg');
+    }
+
+    function togglePhotoModal(show) {
+      const modal = document.getElementById('photoModal');
+      if (show) modal.classList.remove('hidden');
+      else modal.classList.add('hidden');
+    }
+
+    startBgSlideshow();
+    preloadGitHubCouplePhotos();
+
     // ==========================================
     // 1. LIVE COUNTDOWN TIMER (Dec 09, 2026 2:00 PM PHT)
     // ==========================================
@@ -1198,6 +1449,25 @@
 
     renderSlide(0);
     startAutoplay();
+
+    // Auto-detect invitation.mp4 if uploaded to the same GitHub folder
+    (function checkDefaultVideo() {
+      const defaultVideoPath = 'invitation.mp4';
+      fetch(defaultVideoPath, { method: 'HEAD' })
+        .then(res => {
+          if (res.ok) {
+            const videoEl = document.getElementById('attachedVideoPlayer');
+            const storyboardEl = document.getElementById('storyboardView');
+            const backBtn = document.getElementById('backToStoryboardBtn');
+            stopAutoplay();
+            videoEl.src = defaultVideoPath;
+            videoEl.classList.remove('hidden');
+            storyboardEl.classList.add('hidden');
+            backBtn.classList.remove('hidden');
+          }
+        })
+        .catch(() => {});
+    })();
 
     // ==========================================
     // 3. ENTOURAGE FILTER TABS
