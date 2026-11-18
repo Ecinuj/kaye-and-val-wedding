@@ -238,17 +238,6 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2">
-        <button
-          onclick="toggleCanvaModal(true)"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-sage-100 text-sage-700 hover:bg-sage-200 border border-sage-300/70 transition-all"
-          title="View Canva Color Codes, Fonts & Embedding Guide"
-        >
-          <svg class="w-3.5 h-3.5 text-rosegold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-          </svg>
-          <span class="hidden sm:inline">Edit in Canva</span>
-          <span class="sm:hidden">Canva</span>
-        </button>
         <a
           href="#rsvp"
           class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white rosegold-gradient shadow-rosegold hover:opacity-95 transition-all"
@@ -371,6 +360,19 @@
                 title="Kaye & Val Wedding Video Invitation"
               ></iframe>
 
+              <!-- Direct Open Fallback Banner inside Video Box (in case Google Drive permissions block embed) -->
+              <div class="absolute bottom-3 inset-x-3 z-30 flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-black/75 backdrop-blur-sm text-white text-[10px]">
+                <span class="truncate text-sage-200">Video not playing?</span>
+                <a
+                  href="https://drive.google.com/file/d/17FkL5flekBguphc6RkpvhSg-C7SU19Xs/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 font-semibold text-rosegold-300 hover:text-white underline"
+                >
+                  Open on Drive &rarr;
+                </a>
+              </div>
+
               <!-- Real HTML5 Video Element (Uses object-contain so full video is never cropped) -->
               <video
                 id="attachedVideoPlayer"
@@ -475,6 +477,14 @@
               <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
               </svg>
+            </a>
+            <a
+              href="https://drive.google.com/drive/folders/1xcqE8P1WQfSjtF4H5VES3AUTPqL7EokG?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 rosegold-border text-[11px] font-semibold text-sage-700 hover:bg-sage-50 shadow-sm transition-all"
+            >
+              <span>Media Folder</span>
             </a>
           </div>
         </div>
@@ -1012,7 +1022,7 @@
         <div class="relative aspect-square w-full rounded-2xl bg-sage-50 border border-dashed border-rosegold-300 flex flex-col items-center justify-center overflow-hidden p-4">
           <img
             id="qrPreviewImg"
-            src="https://lh3.googleusercontent.com/d/1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM=w1000"
+            src="https://drive.google.com/thumbnail?id=1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM&sz=w1000"
             data-fallback-step="0"
             onerror="handleQrImgError(this)"
             alt="InstaPay QR Code"
@@ -1040,11 +1050,6 @@
             </svg>
             <span>View / Save QR Code</span>
           </a>
-
-          <label class="cursor-pointer inline-flex items-center justify-center gap-2 w-full py-2 px-4 rounded-xl bg-sage-100 hover:bg-sage-200 text-sage-700 text-[11px] font-semibold uppercase tracking-wider transition-colors">
-            <span>Attach InstaPay QR Image</span>
-            <input type="file" accept="image/*" class="hidden" onchange="handleQrUpload(event)" />
-          </label>
         </div>
       </div>
     </div>
@@ -1057,143 +1062,16 @@
     <p class="text-xs text-sage-300 mt-4">Thank you for sharing our special day!</p>
   </footer>
 
-  <!-- Floating Customize Couple Photos Button -->
-  <button
-    onclick="togglePhotoModal(true)"
-    class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 px-4 py-2.5 rounded-full sage-glass shadow-soft text-xs font-semibold text-sage-800 hover:border-rosegold-400 hover:text-rosegold-600 transition-all"
-    title="Customize Background Couple Photos"
-  >
-    <svg class="w-4 h-4 text-rosegold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-    </svg>
-    <span>Customize Photos</span>
-  </button>
-
   <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full bg-sage-800 text-white text-xs font-medium shadow-xl opacity-0 pointer-events-none transition-all duration-300">
     Notification message
-  </div>
-
-  <!-- Background Couple Photos Customizer Modal -->
-  <div id="photoModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 rosegold-border shadow-2xl space-y-5">
-      <div class="flex items-start justify-between gap-4 border-b border-sage-100 pb-4">
-        <div>
-          <span class="text-[11px] uppercase tracking-widest text-rosegold-500 font-semibold">Fixed Full-Screen Slideshow</span>
-          <h3 class="font-serif text-2xl font-semibold text-sage-700">Bride &amp; Groom Background Photos</h3>
-        </div>
-        <button onclick="togglePhotoModal(false)" class="w-8 h-8 rounded-full bg-sage-100 text-sage-700 hover:bg-rosegold-500 hover:text-white flex items-center justify-center transition-colors">
-          &#10005;
-        </button>
-      </div>
-
-      <div class="p-4 rounded-2xl bg-sage-50/90 text-xs text-sage-700 space-y-1.5">
-        <p class="font-semibold text-sage-800">Connected to your Google Drive prenup gallery:</p>
-        <p>Your 5 couple photos (<span class="font-mono text-[11px] text-rosegold-600 font-semibold">photo1.jpeg – photo5.jpeg</span>) are loaded automatically and cycle smoothly in the fixed background without moving when guests scroll.</p>
-      </div>
-
-      <!-- Preview Upload in Browser -->
-      <div class="space-y-2">
-        <label class="block text-xs uppercase tracking-wider font-semibold text-sage-700">
-          Or Test Multiple Photos Now (Instant Preview)
-        </label>
-        <label class="cursor-pointer flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl rosegold-gradient text-white text-xs font-semibold uppercase tracking-wider shadow-rosegold hover:opacity-95 transition-all">
-          <span>Select Couple Photos from Device</span>
-          <input type="file" accept="image/*" multiple class="hidden" onchange="handleCustomBgPhotos(event)" />
-        </label>
-      </div>
-
-      <!-- Slide Speed Selector -->
-      <div class="space-y-1.5">
-        <label for="slideSpeedSelect" class="block text-xs uppercase tracking-wider font-semibold text-sage-700">
-          Photo Change Interval
-        </label>
-        <select
-          id="slideSpeedSelect"
-          onchange="updateBgSlideSpeed(this.value)"
-          class="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-800 bg-champagne/40 focus:outline-none focus:border-rosegold-400"
-        >
-          <option value="3000">Every 3 Seconds</option>
-          <option value="4500" selected>Every 4.5 Seconds (Recommended)</option>
-          <option value="6000">Every 6 Seconds</option>
-        </select>
-      </div>
-
-      <div class="flex justify-between items-center pt-2 border-t border-sage-100">
-        <button onclick="resetBgPhotosToDefault()" class="text-xs text-sage-500 hover:text-rosegold-600 underline">
-          Use Google Drive Photos (photo1–5.jpeg)
-        </button>
-        <button onclick="togglePhotoModal(false)" class="px-5 py-2 rounded-xl bg-sage-600 text-white text-xs font-semibold uppercase tracking-wider hover:bg-sage-700">
-          Done
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 8. CANVA EDIT & INTEGRATION MODAL -->
-  <div id="canvaModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 rosegold-border shadow-2xl space-y-6">
-      <div class="flex items-start justify-between gap-4 border-b border-sage-100 pb-4">
-        <div>
-          <span class="text-[11px] uppercase tracking-widest text-rosegold-500 font-semibold">Canva Design Kit</span>
-          <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-sage-700">How to Edit &amp; Embed in Canva</h3>
-        </div>
-        <button onclick="toggleCanvaModal(false)" class="w-8 h-8 rounded-full bg-sage-100 text-sage-700 hover:bg-rosegold-500 hover:text-white flex items-center justify-center transition-colors">
-          &#10005;
-        </button>
-      </div>
-
-      <!-- Brand Palette Hex Codes -->
-      <div>
-        <h4 class="text-xs uppercase tracking-wider font-semibold text-sage-700 mb-3">1. Copy Exact Sage Green &amp; Rose Gold Hex Codes</h4>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-          <button onclick="copyHex('#4A5D4E')" class="p-2.5 rounded-xl border border-sage-200 text-left hover:border-rosegold-400">
-            <div class="w-full h-7 rounded-lg mb-1.5" style="background:#4A5D4E;"></div>
-            <p class="text-xs font-semibold text-sage-800">Deep Sage</p>
-            <p class="text-[11px] text-sage-500">#4A5D4E (Copy)</p>
-          </button>
-          <button onclick="copyHex('#8FA693')" class="p-2.5 rounded-xl border border-sage-200 text-left hover:border-rosegold-400">
-            <div class="w-full h-7 rounded-lg mb-1.5" style="background:#8FA693;"></div>
-            <p class="text-xs font-semibold text-sage-800">Soft Sage</p>
-            <p class="text-[11px] text-sage-500">#8FA693 (Copy)</p>
-          </button>
-          <button onclick="copyHex('#B76E79')" class="p-2.5 rounded-xl border border-sage-200 text-left hover:border-rosegold-400">
-            <div class="w-full h-7 rounded-lg mb-1.5" style="background:#B76E79;"></div>
-            <p class="text-xs font-semibold text-sage-800">Rose Gold</p>
-            <p class="text-[11px] text-sage-500">#B76E79 (Copy)</p>
-          </button>
-          <button onclick="copyHex('#FAF7F5')" class="p-2.5 rounded-xl border border-sage-200 text-left hover:border-rosegold-400">
-            <div class="w-full h-7 rounded-lg mb-1.5 border border-sage-200" style="background:#FAF7F5;"></div>
-            <p class="text-xs font-semibold text-sage-800">Champagne</p>
-            <p class="text-[11px] text-sage-500">#FAF7F5 (Copy)</p>
-          </button>
-        </div>
-      </div>
-
-      <!-- Typography Pairing -->
-      <div class="p-4 rounded-2xl bg-sage-50/80 space-y-1.5">
-        <h4 class="text-xs uppercase tracking-wider font-semibold text-sage-700">2. Canva Font Pairings</h4>
-        <p class="text-xs text-sage-600"><strong>Script Accent:</strong> Pinyon Script or Great Vibes (available free in Canva)</p>
-        <p class="text-xs text-sage-600"><strong>Serif Headings:</strong> Cormorant Garamond (available free in Canva)</p>
-        <p class="text-xs text-sage-600"><strong>Body Text:</strong> Plus Jakarta Sans or Montserrat</p>
-      </div>
-
-      <!-- Step-by-step Canva Website Guide -->
-      <div class="space-y-2 text-xs sm:text-sm text-sage-600">
-        <h4 class="text-xs uppercase tracking-wider font-semibold text-sage-700">3. Using This Site With Canva Websites</h4>
-        <ol class="list-decimal list-inside space-y-1.5">
-          <li><strong>Host this HTML file free:</strong> Upload this single <code class="bg-sage-100 px-1 rounded">index.html</code> file to <strong>Netlify Drop</strong>, <strong>Vercel</strong>, or <strong>GitHub Pages</strong> to get a live URL.</li>
-          <li><strong>Embed inside Canva:</strong> In Canva, open your <em>Wedding Website</em> template, go to <strong>Apps &rarr; Embed</strong>, and paste your live URL so guests can use the interactive Seat Reservation RSVP &amp; Video Player right inside Canva!</li>
-          <li><strong>Attach your Video Invitation:</strong> In Canva, drag your <code class="bg-sage-100 px-1 rounded">video_1.mp4</code> directly onto your page, or upload it in the Video Invitation section of this site.</li>
-        </ol>
-      </div>
-    </div>
   </div>
 
   <script>
     // ==========================================
     // 0. FIXED FULL-SCREEN COUPLE PHOTO SLIDESHOW (GOOGLE DRIVE EMBEDDED)
     // ==========================================
+    const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/folders/1xcqE8P1WQfSjtF4H5VES3AUTPqL7EokG?usp=sharing';
     const drivePhotoIds = [
       '1uzOUnIjHZ-s6f1xgOqrsQ1nLzZSBSO8n', // photo1.jpeg
       '1srxT7GLwDRFpC-1Hz5kvS16cpgK2l0Tr', // photo2.jpeg
@@ -1208,7 +1086,7 @@
       "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6C8771"/><stop offset="50%" stop-color="#B2C4B0"/><stop offset="100%" stop-color="#CE8E87"/></linearGradient></defs><rect width="1600" height="900" fill="url(#g3)"/><text x="50%" y="50%" text-anchor="middle" font-family="Georgia, serif" font-size="58" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="10">FOREVER BEGINS</text></svg>`)
     ];
 
-    let activeBgPhotos = drivePhotoIds.map(id => `https://lh3.googleusercontent.com/d/${id}=w1920`);
+    let activeBgPhotos = drivePhotoIds.map(id => `https://drive.google.com/thumbnail?id=${id}&sz=w1920`);
     let bgSlideIndex = 0;
     let activeLayer = 0;
     let bgSlideIntervalMs = 4500;
@@ -1216,8 +1094,8 @@
 
     function resolveDriveImageUrl(id) {
       const candidates = [
-        `https://lh3.googleusercontent.com/d/${id}=w1920`,
         `https://drive.google.com/thumbnail?id=${id}&sz=w1920`,
+        `https://lh3.googleusercontent.com/d/${id}=w1920`,
         `https://drive.google.com/uc?export=view&id=${id}`
       ];
       return new Promise((resolve) => {
@@ -1743,7 +1621,7 @@
       const step = parseInt(img.dataset.fallbackStep || '0', 10);
       const qrId = '1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM';
       const fallbacks = [
-        `https://drive.google.com/thumbnail?id=${qrId}&sz=w1000`,
+        `https://lh3.googleusercontent.com/d/${qrId}=w1000`,
         `https://drive.google.com/uc?export=view&id=${qrId}`
       ];
       if (step < fallbacks.length) {
