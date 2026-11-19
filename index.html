@@ -1,1429 +1,1138 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <title>Kaye & Val — December 09, 2026 | Wedding Invitation</title>
+<!-- Google Fonts: Cormorant Garamond, Great Vibes & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          },
           colors: {
             sage: {
-              50: '#F5F7F4',
-              100: '#E8EDE6',
-              200: '#D2DDD0',
-              300: '#B2C4B0',
-              400: '#8FA693',
-              500: '#6C8771',
-              600: '#4A5D4E',
-              700: '#39483C',
-              800: '#2A352C',
+              50: '#F4F7F1',
+              100: '#E5ECE0',
+              200: '#DCE4D2',
+              light: '#DCE4D2',
+              DEFAULT: '#A3B18A',
+              600: '#66785F',
+              700: '#4F5F49',
+              800: '#334133',
+              dark: '#66785F',
             },
             rosegold: {
-              50: '#FDF8F7',
-              100: '#F8ECEA',
-              200: '#F0D5D1',
-              300: '#E2B4AE',
-              400: '#CE8E87',
+              50: '#FDF7F6',
+              200: '#EED6CE',
+              400: '#C8848E',
               500: '#B76E79',
-              600: '#9E5863',
-              700: '#7E444E',
+              light: '#E8C7B8',
+              DEFAULT: '#B76E79',
             },
-            champagne: '#FAF7F5',
-            charcoal: '#2C332E',
-          },
-          fontFamily: {
-            script: ['"Pinyon Script"', 'cursive'],
-            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          boxShadow: {
-            'soft': '0 10px 40px -10px rgba(74, 93, 78, 0.12)',
-            'rosegold': '0 10px 30px -8px rgba(183, 110, 121, 0.25)',
+            champagne: '#F5EAE2',
+            cream: '#FAF8F2',
+            charcoal: '#334133',
           }
-        },
-      },
-    };
+        }
+      }
+    }
   </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    html, body {
-      background-color: #2A352C;
-      color: #2C332E;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      max-width: 100%;
+    /* Truly Stationary While Scrolling:
+       No transform: translateZ(0) on #fixed-bg-slideshow and no overflow-x: hidden on body
+       so mobile and desktop browsers lock the image container firmly to the viewport */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAF8F2;
+      color: #334133;
     }
 
-    /* True Stationary Full-Viewport Couple Photo Background (Locked while scrolling) */
     #fixed-bg-slideshow {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100svh;
+      width: 100%;
+      height: 100%;
       z-index: 0;
-      overflow: hidden;
       pointer-events: none;
     }
 
-    .bg-slide-layer {
+    .bg-slide {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
+      object-fit: cover;
+      object-position: center;
       opacity: 0;
-      transition: opacity 1.8s ease-in-out, transform 8s ease-out;
-      transform: scale(1);
+      transform: scale(1.0);
+      transition: opacity 1.5s ease-in-out, transform 6s ease-out;
     }
 
-    @media (max-width: 768px) {
-      .bg-slide-layer {
-        background-size: cover;
-        background-position: center 12%;
-        transform: scale(1);
-      }
-      .bg-slide-layer.active {
-        transform: scale(1);
-      }
-    }
-
-    .bg-slide-layer.active {
+    .bg-slide.active {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1.07);
     }
 
-    /* Light Atmospheric Veil so the Couple Photos Remain Crisp & Visible */
-    #fixed-bg-overlay {
-      position: fixed;
+    /* Subtle readability veil without heavy white frost or full-screen blur */
+    .bg-readability-tint {
+      position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
       background: linear-gradient(
-        180deg,
-        rgba(250, 247, 245, 0.52) 0%,
-        rgba(245, 247, 244, 0.34) 45%,
-        rgba(250, 247, 245, 0.58) 100%
+        to bottom,
+        rgba(250, 248, 242, 0.32) 0%,
+        rgba(250, 248, 242, 0.22) 50%,
+        rgba(250, 248, 242, 0.38) 100%
       );
     }
 
-    /* Ensure all scrollable sections float cleanly above the stationary background */
-    header, section, footer {
+    /* Main scrolling content wrapper above the fixed slideshow */
+    #main-content {
       position: relative;
       z-index: 10;
     }
 
-    /* Translucent Section Panels so Fixed Photos Flow Clearly Behind Content */
-    .frosted-section {
-      background: rgba(245, 247, 244, 0.52);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+    /* Translucent editorial cards so photos shine through crisply */
+    .glass-card {
+      background-color: rgba(250, 248, 242, 0.86);
+      border: 1px solid rgba(163, 177, 138, 0.35);
+      box-shadow: 0 12px 35px -10px rgba(51, 65, 51, 0.14);
     }
 
-    .frosted-card {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .rosegold-gradient {
-      background: linear-gradient(135deg, #D9A29C 0%, #B76E79 50%, #9E5863 100%);
-    }
-
-    .rosegold-text-gradient {
-      background: linear-gradient(135deg, #C9857E 0%, #B76E79 55%, #8D4954 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .glass-card-white {
+      background-color: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(163, 177, 138, 0.3);
+      box-shadow: 0 10px 30px -8px rgba(51, 65, 51, 0.12);
     }
 
     .rosegold-border {
       border: 1px solid rgba(183, 110, 121, 0.35);
     }
 
-    .sage-glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(183, 110, 121, 0.22);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Wax Seal Styling inspired by the video opening */
-    .wax-seal {
-      background: radial-gradient(circle at 30% 30%, #D47A84, #B76E79 60%, #8C4752 100%);
-      box-shadow:
-        0 8px 20px rgba(140, 71, 82, 0.35),
-        inset 0 2px 5px rgba(255, 255, 255, 0.4),
-        inset 0 -3px 6px rgba(80, 30, 38, 0.45);
-    }
-
-    /* Subtle fade-up animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #F5F7F4;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #B2C4B0;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #B76E79;
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
     }
   </style>
 </head>
-<body class="antialiased selection:bg-rosegold-200 selection:text-sage-800">
+<body class="font-sans selection:bg-sage-light selection:text-sage-dark">
 
-  <!-- Fixed Full-Screen Couple Photo Slideshow Container -->
+  <!-- ===================================================================== -->
+  <!-- TRULY STATIONARY FIXED BACKGROUND SLIDESHOW (5 PRENUP PHOTOS)         -->
+  <!-- ===================================================================== -->
   <div id="fixed-bg-slideshow" aria-hidden="true">
-    <div id="bg-layer-0" class="bg-slide-layer active"></div>
-    <div id="bg-layer-1" class="bg-slide-layer"></div>
-  </div>
-  <!-- Fixed Translucent Sage & Champagne Overlay -->
-  <div id="fixed-bg-overlay" aria-hidden="true"></div>
-
-  <!-- Decorative Top Botanical Corner SVGs -->
-  <div class="fixed top-0 left-0 w-40 sm:w-64 pointer-events-none z-0 opacity-35">
-    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M-10 10 C40 30, 80 70, 95 140" stroke="#6C8771" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M25 32 C55 25, 78 40, 82 58 C60 62, 38 50, 25 32 Z" fill="#8FA693" fill-opacity="0.5"/>
-      <path d="M52 60 C82 54, 105 70, 108 90 C84 93, 62 80, 52 60 Z" fill="#6C8771" fill-opacity="0.45"/>
-      <path d="M18 68 C42 82, 48 108, 36 125 C18 112, 10 88, 18 68 Z" fill="#B2C4B0" fill-opacity="0.6"/>
-      <circle cx="88" cy="42" r="5" fill="#CE8E87" fill-opacity="0.6"/>
-      <circle cx="112" cy="78" r="4" fill="#B76E79" fill-opacity="0.5"/>
-    </svg>
-  </div>
-  <div class="fixed bottom-0 right-0 w-40 sm:w-64 pointer-events-none z-0 opacity-35 rotate-180">
-    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M-10 10 C40 30, 80 70, 95 140" stroke="#6C8771" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M25 32 C55 25, 78 40, 82 58 C60 62, 38 50, 25 32 Z" fill="#8FA693" fill-opacity="0.5"/>
-      <path d="M52 60 C82 54, 105 70, 108 90 C84 93, 62 80, 52 60 Z" fill="#6C8771" fill-opacity="0.45"/>
-      <path d="M18 68 C42 82, 48 108, 36 125 C18 112, 10 88, 18 68 Z" fill="#B2C4B0" fill-opacity="0.6"/>
-      <circle cx="88" cy="42" r="5" fill="#CE8E87" fill-opacity="0.6"/>
-      <circle cx="112" cy="78" r="4" fill="#B76E79" fill-opacity="0.5"/>
-    </svg>
+    <img src="https://lh3.googleusercontent.com/d/1uzOUnIjHZ-s6f1xgOqrsQ1nLzZSBSO8n" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80';" alt="Prenup Photo 1" class="bg-slide active" />
+    <img src="https://lh3.googleusercontent.com/d/1d6hXR0UUxfm_guCo3uxT4Es_1z3w6FZc" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80';" alt="Prenup Photo 2" class="bg-slide" />
+    <img src="https://lh3.googleusercontent.com/d/19YVf1biwmi2WppIbTOXoeA6S4cBhisKc" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80';" alt="Prenup Photo 3" class="bg-slide" />
+    <img src="https://lh3.googleusercontent.com/d/1HfvyqIZdO1yydXFGAxa-GNQgzEaMtQzO" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1400&q=80';" alt="Prenup Photo 4" class="bg-slide" />
+    <img src="https://lh3.googleusercontent.com/d/18F0ZpEsoRFp_ajsDsHZ5jBGjmZVyY4GP" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80';" alt="Prenup Photo 5" class="bg-slide" />
+    <div class="bg-readability-tint"></div>
   </div>
 
-  <!-- Sticky Navigation Bar -->
-  <header class="sticky top-0 z-40 sage-glass border-b border-rosegold-200/60 transition-all">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-2.5 group">
-        <span class="w-9 h-9 rounded-full wax-seal flex items-center justify-center text-white font-serif text-sm font-semibold tracking-wider">
-          K&V
-        </span>
-        <span class="font-serif text-xl font-semibold text-sage-700 tracking-wide group-hover:text-rosegold-500 transition-colors">
-          Kaye <span class="font-script text-2xl text-rosegold-500">&amp;</span> Val
-        </span>
-      </a>
-
-      <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-6 text-xs uppercase tracking-[0.16em] font-medium text-sage-700">
-        <a href="#video-invite" class="hover:text-rosegold-500 transition-colors">Invitation</a>
-        <a href="#details" class="hover:text-rosegold-500 transition-colors">Details</a>
-        <a href="#entourage" class="hover:text-rosegold-500 transition-colors">Entourage</a>
-        <a href="#attire" class="hover:text-rosegold-500 transition-colors">Attire</a>
-        <a href="#rsvp" class="hover:text-rosegold-500 transition-colors">RSVP</a>
-        <a href="#gifts" class="hover:text-rosegold-500 transition-colors">Gifts</a>
-      </nav>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-2">
-        <a
-          href="#rsvp"
-          class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white rosegold-gradient shadow-rosegold hover:opacity-95 transition-all"
-        >
-          RSVP
-        </a>
-      </div>
+  <!-- ===================================================================== -->
+  <!-- 1. CINEMATIC FULL-SCREEN OPENING COVER SCREEN                         -->
+  <!-- ===================================================================== -->
+  <div id="opening-cover" class="fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000">
+    <div class="absolute inset-0 w-full h-full">
+      <img 
+        src="https://lh3.googleusercontent.com/d/1uzOUnIjHZ-s6f1xgOqrsQ1nLzZSBSO8n" 
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80';"
+        alt="Kaye & Val Prenup Cover" 
+        class="w-full h-full object-cover object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60"></div>
     </div>
-  </header>
 
-  <!-- 1. HERO SECTION -->
-  <section id="home" class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 px-4 sm:px-6 overflow-hidden">
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <!-- Wax Seal Emblem -->
-      <div class="mx-auto mb-6 w-20 h-24 rounded-full wax-seal flex flex-col items-center justify-center text-white border-2 border-rosegold-200/40 shadow-lg">
-        <!-- Rose Outline SVG -->
-        <svg class="w-10 h-10 text-rosegold-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.5 0 4.5 1.8 4.5 4.2 0 2.1-1.5 3.8-3.5 4.2m-1-8.4C9.5 3 7.5 4.8 7.5 7.2c0 2.1 1.5 3.8 3.5 4.2m1-8.4c1.2 1.2 1.2 3.2 0 4.4-1.2-1.2-1.2-3.2 0-4.4zm0 8.4V21m0-5c-2.5 0-4.5-1.5-5-3.5m5 5.5c2.5 0 4.5-1.5 5-3.5"/>
+    <div class="relative z-10 text-center px-6 max-w-2xl mx-auto flex flex-col items-center animate-fade-in text-white">
+      <div class="mb-4">
+        <svg class="w-12 h-12 text-rosegold-light mx-auto animate-pulse" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M50 90 Q 50 50 80 10" stroke-linecap="round" />
+          <path d="M50 75 Q 30 65 20 60 Q 30 55 50 75" fill="currentColor" fill-opacity="0.2" />
+          <path d="M55 60 Q 75 50 85 45 Q 75 40 55 60" fill="currentColor" fill-opacity="0.2" />
+          <path d="M52 42 Q 35 32 25 28 Q 35 24 52 42" fill="currentColor" fill-opacity="0.2" />
+          <path d="M63 30 Q 80 20 88 15 Q 78 12 63 30" fill="currentColor" fill-opacity="0.2" />
         </svg>
-        <span class="text-[10px] tracking-[0.22em] uppercase font-serif mt-0.5 text-rosegold-100">12•09•26</span>
       </div>
-
-      <p class="font-script text-3xl sm:text-4xl text-sage-600 mb-2">
-        We are getting married...
+      <p class="text-xs sm:text-sm tracking-[0.3em] uppercase text-rosegold-light font-light mb-2">
+        Together with their families
       </p>
-
-      <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-semibold text-sage-700 tracking-tight leading-none my-3">
-        Kaye <span class="font-script text-6xl sm:text-8xl md:text-9xl rosegold-text-gradient font-normal px-1">&amp;</span> Val
+      <h1 class="font-serif text-5xl md:text-7xl font-normal tracking-wide text-white mb-2 drop-shadow-md">
+        Kaye &amp; Val
       </h1>
-
-      <div class="flex items-center justify-center gap-3 my-6">
-        <span class="h-px w-12 sm:w-20 bg-rosegold-300"></span>
-        <span class="text-xs uppercase tracking-[0.28em] text-rosegold-600 font-semibold">Save The Date</span>
-        <span class="h-px w-12 sm:w-20 bg-rosegold-300"></span>
-      </div>
-
-      <!-- Full Names -->
-      <div class="space-y-1.5 mb-8">
-        <p class="font-serif text-xl sm:text-2xl font-semibold tracking-wide text-sage-800 uppercase">
-          Emily Claire B. Baranuelo
-        </p>
-        <p class="font-script text-2xl text-rosegold-500">and</p>
-        <p class="font-serif text-xl sm:text-2xl font-semibold tracking-wide text-sage-800 uppercase">
-          Val Celso P. Cunanan Jr.
-        </p>
-      </div>
-
-      <p class="max-w-xl mx-auto text-sm sm:text-base text-sage-600 italic font-serif text-lg mb-8">
-        "Together with their families, request the honor of your presence as they exchange vows of love and commitment."
+      <p class="font-serif italic text-xl md:text-2xl text-rosegold-light font-light mb-6">
+        Baranuelo – Cunanan Nuptials
       </p>
 
-      <!-- Date & Location Pill -->
-      <div class="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-6 px-6 py-4 rounded-2xl sage-glass shadow-soft mb-10">
-        <div class="text-center sm:text-right">
-          <p class="text-xs uppercase tracking-[0.2em] text-rosegold-500 font-semibold">Wednesday</p>
-          <p class="font-serif text-2xl font-bold text-sage-700">December 09, 2026</p>
-        </div>
-        <div class="hidden sm:block h-10 w-px bg-rosegold-200"></div>
-        <div class="text-center sm:text-left">
-          <p class="text-xs uppercase tracking-[0.2em] text-rosegold-500 font-semibold">At 2:00 PM</p>
-          <p class="font-serif text-lg font-medium text-sage-700">Naga City, Camarines Sur</p>
-        </div>
-      </div>
+      <div class="h-[1px] w-24 bg-rosegold/80 mb-6"></div>
 
-      <!-- Live Countdown Timer -->
-      <div class="max-w-lg mx-auto">
-        <p class="text-[11px] uppercase tracking-[0.25em] text-sage-500 mb-3 font-medium">Counting down to forever</p>
-        <div id="countdown" class="grid grid-cols-4 gap-2.5 sm:gap-4">
-          <div class="rounded-2xl bg-white/90 rosegold-border p-3 sm:p-4 shadow-sm">
-            <span id="cd-days" class="block font-serif text-2xl sm:text-4xl font-bold text-sage-700">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold-500 font-medium">Days</span>
-          </div>
-          <div class="rounded-2xl bg-white/90 rosegold-border p-3 sm:p-4 shadow-sm">
-            <span id="cd-hours" class="block font-serif text-2xl sm:text-4xl font-bold text-sage-700">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold-500 font-medium">Hours</span>
-          </div>
-          <div class="rounded-2xl bg-white/90 rosegold-border p-3 sm:p-4 shadow-sm">
-            <span id="cd-mins" class="block font-serif text-2xl sm:text-4xl font-bold text-sage-700">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold-500 font-medium">Mins</span>
-          </div>
-          <div class="rounded-2xl bg-white/90 rosegold-border p-3 sm:p-4 shadow-sm">
-            <span id="cd-secs" class="block font-serif text-2xl sm:text-4xl font-bold text-rosegold-500">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-sage-600 font-medium">Secs</span>
-          </div>
-        </div>
-      </div>
+      <p class="text-sm sm:text-base tracking-widest text-slate-200 uppercase mb-8 font-light">
+        Wednesday, December 9, 2026 &bull; Naga City
+      </p>
+
+      <button
+        id="open-invitation-btn"
+        class="group relative inline-flex items-center gap-3 px-8 py-4 bg-sage-dark/90 hover:bg-sage-dark text-white rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl border border-rosegold/50 hover:border-rosegold cursor-pointer"
+      >
+        <span class="font-serif tracking-wider text-lg">Open Invitation</span>
+        <i data-lucide="heart" class="w-5 h-5 text-rosegold-light group-hover:scale-125 transition-transform duration-300"></i>
+      </button>
     </div>
-  </section>
+  </div>
 
-  <!-- 2. ATTACHED VIDEO INVITATION SECTION -->
-  <section id="video-invite" class="py-16 sm:py-24 px-4 sm:px-6 frosted-section border-y border-sage-200/70 reveal">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">Official Save The Date</span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-3">
-          Our Video Invitation
-        </h2>
-        <p class="text-sm sm:text-base text-sage-600">
-          Watch our official wedding video invitation below, or explore our interactive chapter preview.
-        </p>
+  <!-- ===================================================================== -->
+  <!-- MAIN WEBSITE CONTENT (GLIDES OVER STATIONARY BACKGROUND)              -->
+  <!-- ===================================================================== -->
+  <div id="main-content" class="hidden">
+
+    <!-- STICKY NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 bg-cream/95 border-b border-sage/30 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <a href="#home" class="font-serif text-2xl font-semibold tracking-wide text-sage-dark flex items-center gap-2">
+          <span>Kaye &amp; Val</span>
+          <span class="text-xs text-rosegold font-sans font-normal tracking-widest hidden md:inline">| 12.09.26</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-6">
+          <a href="#home" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">Home</a>
+          <a href="#story" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">Our Story</a>
+          <a href="#video-invite" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">Invitation</a>
+          <a href="#details" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">Details</a>
+          <a href="#entourage" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">Entourage</a>
+          <a href="#dresscode" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">Dress Code</a>
+          <a href="#gifts" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">Gifts</a>
+          <a href="#rsvp" class="text-xs font-medium tracking-wider text-sage-dark hover:text-rosegold transition-colors uppercase">RSVP</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-sage-dark hover:bg-sage-light/40 transition-colors" aria-label="Toggle menu">
+          <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+        </button>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        <!-- Responsive Video Frame Player (Fits full video cleanly without cropping) -->
-        <div class="lg:col-span-7 flex flex-col items-center gap-3">
-          <div
-            id="videoFrameOuter"
-            class="relative w-full max-w-[380px] aspect-[9/16] max-h-[75vh] rounded-3xl p-2 bg-gradient-to-b from-rosegold-300 via-rosegold-400 to-sage-600 shadow-2xl transition-all duration-300"
-          >
-            <!-- Inner Screen -->
-            <div class="relative w-full h-full rounded-2xl bg-black overflow-hidden flex flex-col justify-between">
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden lg:hidden bg-cream border-b border-sage/30 px-6 py-6 shadow-xl">
+        <nav class="flex flex-col gap-3 text-center">
+          <a href="#home" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Home</a>
+          <a href="#story" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Our Story</a>
+          <a href="#video-invite" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Video &amp; Digital Invitation</a>
+          <a href="#details" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Wedding Details</a>
+          <a href="#entourage" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">The Entourage</a>
+          <a href="#dresscode" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Dress Code</a>
+          <a href="#gifts" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">A Note on Gifts</a>
+          <a href="#rsvp" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5">RSVP</a>
+        </nav>
+      </div>
+    </header>
 
-              <!-- Embedded Google Drive Video Invitation (Active by default, fits full frame cleanly) -->
-              <iframe
-                id="gdriveVideoFrame"
-                src="https://drive.google.com/file/d/1csMpCMKQCUm1jM3E6cyRpejze3H_518C/preview"
-                class="absolute inset-0 w-full h-full z-20 bg-black border-0"
-                allow="autoplay; fullscreen"
-                allowfullscreen
-                title="Kaye & Val Wedding Video Invitation"
-              ></iframe>
+    <main>
+      <!-- =================================================================== -->
+      <!-- 1. HERO SECTION                                                     -->
+      <!-- =================================================================== -->
+      <section id="home" class="scroll-mt-24 min-h-[92vh] flex items-center justify-center py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center px-6 py-12 glass-card rounded-3xl">
+          <span class="text-xs tracking-[0.35em] text-rosegold uppercase font-semibold">
+            Baranuelo – Cunanan Nuptials
+          </span>
+          
+          <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl text-sage-dark my-4 tracking-wide font-normal">
+            Kaye &amp; Val
+          </h1>
 
-              <!-- Direct Open Fallback Banner inside Video Box (in case Google Drive permissions block embed) -->
-              <div class="absolute bottom-3 inset-x-3 z-30 flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-black/75 backdrop-blur-sm text-white text-[10px]">
-                <span class="truncate text-sage-200">Video not playing?</span>
-                <a
-                  href="https://drive.google.com/file/d/1csMpCMKQCUm1jM3E6cyRpejze3H_518C/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="shrink-0 font-semibold text-rosegold-300 hover:text-white underline"
-                >
-                  Open on Drive &rarr;
-                </a>
-              </div>
-
-              <!-- Real HTML5 Video Element (Uses object-contain so full video is never cropped) -->
-              <video
-                id="attachedVideoPlayer"
-                class="hidden absolute inset-0 w-full h-full object-contain z-20 bg-black"
-                controls
-                playsinline
-              ></video>
-
-              <!-- Interactive Animated Storyboard Preview (Hidden by default while Drive video is active) -->
-              <div id="storyboardView" class="hidden relative w-full h-full flex flex-col justify-between p-5 text-center bg-gradient-to-b from-sage-100/95 via-champagne to-rosegold-50/95 transition-all duration-500">
-                <!-- Top Progress Bars (Instagram/Reels Style) -->
-                <div class="flex gap-1.5 z-10">
-                  <div class="h-1 flex-1 rounded-full bg-sage-200 overflow-hidden"><div id="prog-0" class="h-full bg-rosegold-500 w-full transition-all duration-300"></div></div>
-                  <div class="h-1 flex-1 rounded-full bg-sage-200 overflow-hidden"><div id="prog-1" class="h-full bg-rosegold-500 w-0 transition-all duration-300"></div></div>
-                  <div class="h-1 flex-1 rounded-full bg-sage-200 overflow-hidden"><div id="prog-2" class="h-full bg-rosegold-500 w-0 transition-all duration-300"></div></div>
-                  <div class="h-1 flex-1 rounded-full bg-sage-200 overflow-hidden"><div id="prog-3" class="h-full bg-rosegold-500 w-0 transition-all duration-300"></div></div>
-                  <div class="h-1 flex-1 rounded-full bg-sage-200 overflow-hidden"><div id="prog-4" class="h-full bg-rosegold-500 w-0 transition-all duration-300"></div></div>
-                </div>
-
-                <!-- Dynamic Slide Content -->
-                <div id="slideContent" class="my-auto py-3 px-2 space-y-3 transition-opacity duration-300">
-                  <!-- Populated via JS -->
-                </div>
-
-                <!-- Storyboard Controls -->
-                <div class="z-10 space-y-2.5">
-                  <div class="flex items-center justify-center gap-3">
-                    <button
-                      onclick="prevSlide()"
-                      class="w-9 h-9 rounded-full bg-white/90 text-sage-700 hover:bg-rosegold-500 hover:text-white flex items-center justify-center shadow-sm transition-colors"
-                      aria-label="Previous Slide"
-                    >
-                      &#8592;
-                    </button>
-                    <button
-                      id="playPauseBtn"
-                      onclick="toggleAutoplay()"
-                      class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white rosegold-gradient shadow-sm"
-                    >
-                      Pause Story
-                    </button>
-                    <button
-                      onclick="nextSlide()"
-                      class="w-9 h-9 rounded-full bg-white/90 text-sage-700 hover:bg-rosegold-500 hover:text-white flex items-center justify-center shadow-sm transition-colors"
-                      aria-label="Next Slide"
-                    >
-                      &#8594;
-                    </button>
-                  </div>
-                  <p class="text-[10px] uppercase tracking-widest text-sage-500">
-                    Interactive Invitation Preview
-                  </p>
-                </div>
-              </div>
-
-              <!-- Switch Back to Storyboard Button when Video is active -->
-              <button
-                id="backToStoryboardBtn"
-                onclick="unloadCustomVideo()"
-                class="absolute top-3 left-3 z-30 px-2.5 py-1 rounded-full bg-black/70 text-white text-[10px] uppercase tracking-wider hover:bg-rosegold-600 transition-colors"
-              >
-                Show Preview
-              </button>
-            </div>
+          <!-- Rose Gold Divider -->
+          <div class="flex items-center justify-center my-6 gap-3 opacity-90">
+            <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-rosegold"></div>
+            <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+            <i data-lucide="sparkles" class="w-4 h-4 text-rosegold"></i>
+            <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+            <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-rosegold"></div>
           </div>
 
-          <!-- Frame Fit / Aspect Ratio Switcher so Full Video Fits Without Cropping -->
-          <div class="flex flex-wrap items-center justify-center gap-2">
-            <div class="inline-flex items-center gap-1 p-1 rounded-full bg-white/90 rosegold-border shadow-sm">
-              <button
-                type="button"
-                onclick="setVideoAspect('portrait')"
-                data-aspect="portrait"
-                class="aspect-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-sage-600 text-white transition-all"
-              >
-                Vertical (9:16)
-              </button>
-              <button
-                type="button"
-                onclick="setVideoAspect('landscape')"
-                data-aspect="landscape"
-                class="aspect-btn px-3 py-1 rounded-full text-[11px] font-semibold text-sage-700 hover:bg-sage-100 transition-all"
-              >
-                Widescreen (16:9)
-              </button>
-              <button
-                type="button"
-                onclick="setVideoAspect('square')"
-                data-aspect="square"
-                class="aspect-btn px-3 py-1 rounded-full text-[11px] font-semibold text-sage-700 hover:bg-sage-100 transition-all"
-              >
-                Square (1:1)
-              </button>
+          <p class="font-serif italic text-lg sm:text-2xl text-slate-700 max-w-2xl mx-auto mb-8">
+            "Two hearts, one promise, and a lifetime of love."
+          </p>
+
+          <!-- Countdown Timer Display -->
+          <div class="my-8 py-6 px-4 bg-white/85 rounded-2xl border border-sage/30 max-w-2xl mx-auto shadow-inner">
+            <p class="text-xs uppercase tracking-widest text-sage-dark font-semibold mb-4">
+              Counting Down To Our Big Day &bull; December 9, 2026
+            </p>
+            <div id="countdown-grid" class="grid grid-cols-4 gap-2 sm:gap-6 text-center">
+              <div class="flex flex-col items-center">
+                <span id="cd-days" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Days</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <span id="cd-hours" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Hours</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <span id="cd-minutes" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Minutes</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <span id="cd-seconds" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Seconds</span>
+              </div>
             </div>
-            <a
-              href="https://drive.google.com/file/d/1csMpCMKQCUm1jM3E6cyRpejze3H_518C/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 rosegold-border text-[11px] font-semibold text-rosegold-600 hover:bg-rosegold-50 shadow-sm transition-all"
-            >
-              <span>Full Screen</span>
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-              </svg>
+            <p id="cd-past-msg" class="hidden font-serif text-2xl text-rosegold italic">Today, we begin our forever.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
+            <a href="#video-invite" class="px-6 py-3 bg-sage-dark hover:bg-[#52624c] text-white rounded-full text-sm font-medium tracking-wider uppercase shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+              <i data-lucide="play-circle" class="w-4 h-4 text-rosegold-light"></i> Watch Video Invitation
             </a>
-            <a
-              href="https://drive.google.com/drive/folders/1xcqE8P1WQfSjtF4H5VES3AUTPqL7EokG?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 rosegold-border text-[11px] font-semibold text-sage-700 hover:bg-sage-50 shadow-sm transition-all"
-            >
-              <span>Media Folder</span>
+            <a href="#rsvp" class="px-6 py-3 bg-rosegold hover:bg-[#a05a65] text-white rounded-full text-sm font-medium tracking-wider uppercase shadow-md hover:shadow-lg transition-all">
+              Confirm RSVP
             </a>
           </div>
         </div>
+      </section>
 
-        <!-- Right Column: Chapter Navigation & Attach Video File Controls -->
-        <div class="lg:col-span-5 space-y-6">
-          <!-- Interactive Chapters matching the Video -->
-          <div class="rounded-3xl frosted-card p-6 sm:p-8 rosegold-border shadow-soft">
-            <h4 class="text-xs uppercase tracking-[0.2em] text-rosegold-500 font-semibold mb-4">
-              Jump to Invitation Chapter
-            </h4>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              <button onclick="goToSlide(0)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">01 • Intro</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Save The Date</span>
-              </button>
-              <button onclick="goToSlide(1)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">02 • Venues</span>
-                <span class="font-serif text-base font-semibold text-sage-700">When &amp; Where</span>
-              </button>
-              <button onclick="goToSlide(2)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">03 • Honor</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Entourage</span>
-              </button>
-              <button onclick="goToSlide(3)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">04 • Style</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Attire &amp; RSVP</span>
-              </button>
-              <button onclick="goToSlide(4)" class="chapter-btn text-left p-3 rounded-xl border border-sage-200 hover:border-rosegold-400 hover:bg-rosegold-50/50 transition-all col-span-2 sm:col-span-2">
-                <span class="block text-[10px] uppercase tracking-wider text-rosegold-500 font-semibold">05 • Blessings</span>
-                <span class="font-serif text-base font-semibold text-sage-700">Gift Guide &amp; InstaPay</span>
-              </button>
-            </div>
-            <div class="mt-3 pt-3 border-t border-sage-100 flex justify-end">
-              <button
-                onclick="restoreDriveVideo()"
-                class="text-xs font-semibold text-rosegold-600 hover:text-rosegold-700 underline underline-offset-4"
-              >
-                Back to Official Video Invitation
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. CEREMONY & RECEPTION DETAILS -->
-  <section id="details" class="py-16 sm:py-24 px-4 sm:px-6 reveal">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center max-w-xl mx-auto mb-14">
-        <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">Wedding Venues</span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1">
-          Ceremony &amp; Reception
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Ceremony Card -->
-        <div class="rounded-3xl frosted-card p-8 sm:p-10 rosegold-border shadow-soft text-center flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 inset-x-0 h-1.5 rosegold-gradient"></div>
-          <div>
-            <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-sage-100 text-sage-600 flex items-center justify-center">
-              <!-- Church SVG Icon -->
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v4m-2-2h4M6 12l6-5 6 5v9H6v-9zm4 9v-5a2 2 0 114 0v5"/>
-              </svg>
-            </div>
-            <p class="text-xs uppercase tracking-[0.22em] text-rosegold-500 font-semibold mb-1">The Ceremony</p>
-            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-sage-700 mb-3">
-              Basilica of Our Lady of Peñafrancia
-            </h3>
-            <p class="text-sm text-sage-600 mb-4">
-              Naga City, Camarines Sur
-            </p>
-            <div class="inline-block px-4 py-1.5 rounded-full bg-sage-50 border border-sage-200 text-xs font-semibold text-sage-700 uppercase tracking-wider mb-6">
-              Wednesday • Dec 09, 2026 • 2:00 PM
+      <!-- =================================================================== -->
+      <!-- 2. OUR STORY SECTION                                                -->
+      <!-- =================================================================== -->
+      <section id="story" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
+          <div class="text-center mb-14">
+            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Our Journey</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">Our Love Story</h2>
+            <div class="flex items-center justify-center my-5 gap-3">
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
+              <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
             </div>
           </div>
 
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=Basilica+of+Our+Lady+of+Penafrancia+Naga+City+Camarines+Sur"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 w-full py-3 px-5 rounded-xl border border-sage-300 text-sage-700 hover:bg-sage-600 hover:text-white text-xs font-semibold uppercase tracking-widest transition-all"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            Open in Google Maps
-          </a>
-        </div>
-
-        <!-- Reception Card -->
-        <div class="rounded-3xl frosted-card p-8 sm:p-10 rosegold-border shadow-soft text-center flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 inset-x-0 h-1.5 bg-sage-500"></div>
-          <div>
-            <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-rosegold-50 text-rosegold-500 flex items-center justify-center">
-              <!-- Champagne Glasses SVG Icon -->
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8m-4-6v6m-4-17h8l-1 7a3 3 0 01-6 0L8 4z"/>
-              </svg>
-            </div>
-            <p class="text-xs uppercase tracking-[0.22em] text-rosegold-500 font-semibold mb-1">The Reception</p>
-            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-sage-700 mb-3">
-              Queen Rose Hall, Robertson Hotel
-            </h3>
-            <p class="text-sm text-sage-600 mb-4">
-              Naga City, Camarines Sur
-            </p>
-            <div class="inline-block px-4 py-1.5 rounded-full bg-rosegold-50 border border-rosegold-200 text-xs font-semibold text-rosegold-600 uppercase tracking-wider mb-6">
-              Reception to Follow Immediately
-            </div>
-          </div>
-
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=Robertson+Hotel+Naga+City+Camarines+Sur"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 w-full py-3 px-5 rounded-xl border border-rosegold-300 text-rosegold-600 hover:bg-rosegold-500 hover:text-white text-xs font-semibold uppercase tracking-widest transition-all"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            Open in Google Maps
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. WEDDING ENTOURAGE & PRINCIPAL SPONSORS -->
-  <section id="entourage" class="py-16 sm:py-24 px-4 sm:px-6 frosted-section border-y border-sage-200/70 reveal">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">With Love &amp; Gratitude</span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-3">
-          The Wedding Entourage
-        </h2>
-        <p class="text-sm text-sage-600">
-          Surrounded by our beloved parents, sponsors, and dearest friends who walk beside us on this sacred day.
-        </p>
-      </div>
-
-      <!-- Interactive Category Tabs -->
-      <div class="flex flex-wrap justify-center gap-2 mb-10">
-        <button onclick="filterEntourage('all')" data-tab="all" class="entourage-tab active px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-sage-600 text-white shadow-sm transition-all">
-          All Roles
-        </button>
-        <button onclick="filterEntourage('parents')" data-tab="parents" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all">
-          Parents &amp; Honor
-        </button>
-        <button onclick="filterEntourage('principal')" data-tab="principal" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all">
-          Principal Sponsors
-        </button>
-        <button onclick="filterEntourage('secondary')" data-tab="secondary" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all">
-          Secondary Sponsors
-        </button>
-        <button onclick="filterEntourage('party')" data-tab="party" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all">
-          Bridal Party &amp; Bearers
-        </button>
-      </div>
-
-      <!-- Entourage Grid -->
-      <div class="space-y-8">
-        <!-- Parents & Lead Honor -->
-        <div data-group="parents" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-            <div class="space-y-2">
-              <p class="font-script text-2xl text-rosegold-500">Parents of the Bride</p>
-              <p class="font-serif text-lg font-semibold text-sage-800">Romualdo P. Baranuelo</p>
-              <p class="font-serif text-lg font-semibold text-sage-800">Emily B. Baranuelo</p>
-            </div>
-            <div class="space-y-2">
-              <p class="font-script text-2xl text-rosegold-500">Parents of the Groom</p>
-              <p class="font-serif text-lg font-semibold text-sage-800">Alma P. Cunanan</p>
-              <p class="font-serif text-lg font-semibold text-sage-800">Val Celso V. Cunanan Sr. (+)</p>
-              <p class="font-serif text-lg font-semibold text-sage-800">Alejandro Peteza Jr.</p>
-            </div>
-          </div>
-
-          <div class="h-px bg-rosegold-200/60 my-8"></div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            <div>
-              <p class="font-script text-2xl text-rosegold-500">Bestman</p>
-              <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Christian John P. Cunanan</p>
-            </div>
-            <div>
-              <p class="font-script text-2xl text-rosegold-500">Maid of Honor</p>
-              <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Bendra C. Bañaga</p>
-            </div>
-            <div>
-              <p class="font-script text-2xl text-rosegold-500">Matron of Honor</p>
-              <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Florence Claire B. Ragos</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Principal Sponsors -->
-        <div data-group="principal" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft text-center">
-          <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Principal Sponsors</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 max-w-3xl mx-auto">
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Cesar Roberto B. Mariano</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Arleen L. Mariano</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Larry R. Barcinilla Sr.</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Rustica C. Peteza</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Martino A. Piloneo</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Amparo F. Piloneo</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Hon. Kgwd. Jorge Bejamen R. Favenir</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Ophelia Royo</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Ceazar Anthony P. Olaso</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Jeannilyn O. Olaso</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70 flex flex-col justify-center">
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Dra. Magnolia Corazon R. Favenir</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Ms. Ma. Lina V. Cunanan</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Secondary Sponsors -->
-        <div data-group="secondary" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft text-center">
-          <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Secondary Sponsors</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
-              <p class="font-script text-2xl text-rosegold-500">To light our path</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Marites C. De Vera &amp; Norlan E. Pamor</p>
-            </div>
-            <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
-              <p class="font-script text-2xl text-rosegold-500">To clothe us as one</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Jonna E. Alfonso &amp; Jonathan O. Vegas</p>
-            </div>
-            <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
-              <p class="font-script text-2xl text-rosegold-500">To bind us as one</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Ma. Theresa Raborar &amp; Ajerico C. Peteza</p>
-            </div>
-            <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
-              <p class="font-script text-2xl text-rosegold-500">To add color to our journey</p>
-              <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Michelle Cabrera &amp; Edison Cabrera</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Groomsmen, Bridesmaids, Bearers & Flower Girls -->
-        <div data-group="party" class="entourage-group rounded-3xl frosted-card p-6 sm:p-10 rosegold-border shadow-soft text-center space-y-8">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 class="font-script text-3xl text-rosegold-500 mb-3">Groomsmen</h4>
-              <ul class="space-y-1.5 font-serif text-lg font-semibold text-sage-800">
-                <li>Alex R. Palo</li>
-                <li>Andrei C. Peteza</li>
-                <li>Luke Andrei B. Badong</li>
-                <li>Scott Ebenezer B. Baranuelo</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-script text-3xl text-rosegold-500 mb-3">Bridesmaids</h4>
-              <ul class="space-y-1.5 font-serif text-lg font-semibold text-sage-800">
-                <li>Karen C. Raton</li>
-                <li>Madeline D. Rios</li>
-                <li>Vanessa M. Violeta</li>
-                <li>Amirose G. Recepcion</li>
-                <li>Gailene Mae B. Pilapil</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="h-px bg-rosegold-200/60"></div>
-
-          <!-- Bearers -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-script text-xl text-rosegold-500">Banner Bearer</p>
-              <p class="font-serif text-base font-semibold text-sage-800 mt-1">Coby Amir K. Hill</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-script text-xl text-rosegold-500">Ring Bearer</p>
-              <p class="font-serif text-base font-semibold text-sage-800 mt-1">Richard Luke O. Olaso</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-script text-xl text-rosegold-500">Coin Bearer</p>
-              <p class="font-serif text-base font-semibold text-sage-800 mt-1">Elijah Bennett B. Katindig</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-sage-50/70">
-              <p class="font-script text-xl text-rosegold-500">Bible Bearer</p>
-              <p class="font-serif text-base font-semibold text-sage-800 mt-1">Alexander Sheidrin L. Gozun</p>
-            </div>
-          </div>
-
-          <div class="h-px bg-rosegold-200/60"></div>
-
-          <!-- Little Bride & Flower Girls -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div class="p-4 rounded-2xl bg-rosegold-50/60 border border-rosegold-200/60">
-              <p class="font-script text-2xl text-rosegold-500">Little Bride</p>
-              <p class="font-serif text-xl font-semibold text-sage-800 mt-1">Valerie Claire B. Cunanan</p>
-            </div>
-            <div>
-              <p class="font-script text-2xl text-rosegold-500 mb-2">Flower Girls</p>
-              <ul class="space-y-1 font-serif text-lg font-semibold text-sage-800">
-                <li>Gabrielle Yna Louise C. Aspe</li>
-                <li>Xavielle Skye Ylise C. Aspe</li>
-                <li>Amara Mary Nathalie K. Hill</li>
-                <li>Aleila Calla Jae L. Gozun</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. WEDDING ATTIRE GUIDE -->
-  <section id="attire" class="py-16 sm:py-24 px-4 sm:px-6 reveal">
-    <div class="max-w-3xl mx-auto text-center">
-      <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">Dress Code</span>
-      <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-2">
-        Wedding Attire
-      </h2>
-      <p class="text-sm font-bold uppercase tracking-[0.2em] text-rosegold-600 mb-4">
-        Semi-Formal
-      </p>
-      <p class="font-serif italic text-xl text-sage-600 max-w-lg mx-auto mb-10">
-        "Inspired by natural tones and effortless elegance, we invite you to dress in the colors shown below."
-      </p>
-
-      <!-- Color Swatches Matching Video Palette -->
-      <div class="flex flex-wrap justify-center gap-5 sm:gap-8">
-        <div class="flex flex-col items-center gap-2">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-md border-4 border-white" style="background-color: #88B8B8;"></div>
-          <span class="text-xs font-medium text-sage-700">Misty Teal</span>
-          <span class="text-[10px] text-sage-400 uppercase">#88B8B8</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-md border-4 border-white" style="background-color: #B9D4CF;"></div>
-          <span class="text-xs font-medium text-sage-700">Soft Sage</span>
-          <span class="text-[10px] text-sage-400 uppercase">#B9D4CF</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-md border-4 border-white" style="background-color: #F3E7E4;"></div>
-          <span class="text-xs font-medium text-sage-700">Warm Champagne</span>
-          <span class="text-[10px] text-sage-400 uppercase">#F3E7E4</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-md border-4 border-white" style="background-color: #F5B8BE;"></div>
-          <span class="text-xs font-medium text-sage-700">Blush Rose</span>
-          <span class="text-[10px] text-sage-400 uppercase">#F5B8BE</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. INTERACTIVE RSVP & SEAT RESERVATION SYSTEM -->
-  <section id="rsvp" class="py-16 sm:py-24 px-4 sm:px-6 frosted-section border-y border-sage-200/70 reveal">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center max-w-xl mx-auto mb-10">
-        <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">Will You Join Us?</span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-3">
-          RSVP &amp; Seat Reservation
-        </h2>
-        <p class="text-sm sm:text-base text-sage-600">
-          Please let us know if you can join our celebration on or before <strong class="text-rosegold-600">December 1, 2026</strong>.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <!-- RSVP Form -->
-        <div class="lg:col-span-7 rounded-3xl frosted-card p-6 sm:p-9 rosegold-border shadow-soft">
-          <form id="rsvpForm" onsubmit="submitRsvp(event)" class="space-y-5">
-            <div>
-              <label for="guestName" class="block text-xs uppercase tracking-wider font-semibold text-sage-700 mb-1.5">
-                Primary Guest Full Name *
-              </label>
-              <input
-                type="text"
-                id="guestName"
-                required
-                placeholder="e.g., Juan Dela Cruz"
-                class="w-full px-4 py-3 rounded-xl border border-sage-200 text-sm focus:outline-none focus:border-rosegold-400 bg-champagne/40"
+          <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div class="relative group rounded-2xl overflow-hidden shadow-xl aspect-[4/5]">
+              <img 
+                src="https://lh3.googleusercontent.com/d/19YVf1biwmi2WppIbTOXoeA6S4cBhisKc" 
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80';"
+                alt="Kaye and Val Prenup Portrait" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
             </div>
 
-            <!-- Attendance Selection -->
-            <div>
-              <label class="block text-xs uppercase tracking-wider font-semibold text-sage-700 mb-1.5">
-                Will you attend? *
-              </label>
-              <div class="grid grid-cols-2 gap-3">
-                <label class="cursor-pointer">
-                  <input type="radio" name="attending" value="Yes" checked onchange="toggleSeatFields(true)" class="peer sr-only" />
-                  <div class="p-3 rounded-xl border border-sage-200 text-center text-sm font-medium text-sage-700 peer-checked:bg-sage-600 peer-checked:text-white peer-checked:border-sage-600 transition-all">
-                    Joyfully Accepts
-                  </div>
-                </label>
-                <label class="cursor-pointer">
-                  <input type="radio" name="attending" value="No" onchange="toggleSeatFields(false)" class="peer sr-only" />
-                  <div class="p-3 rounded-xl border border-sage-200 text-center text-sm font-medium text-sage-700 peer-checked:bg-rosegold-500 peer-checked:text-white peer-checked:border-rosegold-500 transition-all">
-                    Regretfully Declines
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <!-- Number of Reserved Seats -->
-            <div id="seatReservationWrapper" class="space-y-4 transition-all">
-              <div>
-                <label for="seatCount" class="block text-xs uppercase tracking-wider font-semibold text-sage-700 mb-1.5">
-                  Number of Seats Reserved *
-                </label>
-                <select
-                  id="seatCount"
-                  onchange="renderAdditionalGuests()"
-                  class="w-full px-4 py-3 rounded-xl border border-sage-200 text-sm focus:outline-none focus:border-rosegold-400 bg-champagne/40 font-medium text-sage-800"
-                >
-                  <option value="1">1 Seat (Solo Guest)</option>
-                  <option value="2" selected>2 Seats (Couple / +1 Guest)</option>
-                  <option value="3">3 Seats (Family / Group)</option>
-                  <option value="4">4 Seats (Family / Group)</option>
-                  <option value="5">5 Seats (Full Family Table)</option>
-                </select>
+            <div class="space-y-6 text-charcoal">
+              <div class="bg-white/90 p-8 rounded-2xl shadow-sm border border-sage/25">
+                <h3 class="font-serif text-2xl text-sage-dark mb-3">Where Our Story Began</h3>
+                <p class="text-slate-600 leading-relaxed font-light">
+                  Every love story is beautiful, but ours is our absolute favorite. From our quiet first conversations to realizing we had found a lifelong home in each other, every moment led us here.
+                </p>
               </div>
 
-              <!-- Dynamic Additional Guest Names -->
-              <div id="additionalGuestsContainer" class="space-y-2.5"></div>
+              <div class="bg-white/90 p-8 rounded-2xl shadow-sm border border-sage/25">
+                <h3 class="font-serif text-2xl text-sage-dark mb-3">The Next Chapter</h3>
+                <p class="text-slate-600 leading-relaxed font-light">
+                  As we prepare to exchange vows at the historic Basilica of Our Lady of Peñafrancia in Naga City, we look forward to a lifetime filled with shared adventures, boundless laughter, and unfailing support.
+                </p>
+              </div>
+              
+              <div class="p-6 bg-sage-light/60 rounded-2xl border border-sage/30 italic text-slate-800 font-serif text-lg">
+                "From this day forward, you shall not walk alone. My heart will be your shelter, and my arms will be your home."
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div>
-              <label for="guestMessage" class="block text-xs uppercase tracking-wider font-semibold text-sage-700 mb-1.5">
-                Message for Kaye &amp; Val (or Dietary Notes)
-              </label>
-              <textarea
-                id="guestMessage"
-                rows="3"
-                placeholder="Write your wishes for the couple..."
-                class="w-full px-4 py-3 rounded-xl border border-sage-200 text-sm focus:outline-none focus:border-rosegold-400 bg-champagne/40"
-              ></textarea>
-            </div>
+      <!-- =================================================================== -->
+      <!-- 2B. ATTACHED VIDEO INVITATION SECTION (9:16 PORTRAIT FRAME)         -->
+      <!-- =================================================================== -->
+      <section id="video-invite" class="scroll-mt-24 py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-[0.25em] text-rosegold font-semibold">Official Save The Date</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-dark mt-1 mb-3">
+              Our Video Invitation
+            </h2>
+            <p class="text-sm sm:text-base text-slate-700">
+              Watch our official wedding video invitation below, or read our formal invitation card.
+            </p>
+          </div>
 
-            <button
-              type="submit"
-              class="w-full py-3.5 px-6 rounded-xl rosegold-gradient text-white text-xs font-semibold uppercase tracking-[0.2em] shadow-rosegold hover:opacity-95 transition-all"
-            >
-              Confirm Seat Reservation
-            </button>
-          </form>
-
-          <!-- Confirmation Feedback Box (Hidden until submitted) -->
-          <div id="rsvpSuccessBox" class="hidden mt-6 p-5 rounded-2xl bg-sage-50 border border-sage-300 text-center space-y-3">
-            <p class="font-serif text-xl font-semibold text-sage-700">Thank you for your response!</p>
-            <p id="rsvpSummaryText" class="text-sm text-sage-600"></p>
-            <div class="flex flex-col sm:flex-row gap-2.5 justify-center pt-2">
-              <button
-                onclick="copyMessengerRsvp()"
-                class="px-4 py-2.5 rounded-xl bg-sage-600 text-white text-xs font-semibold uppercase tracking-wider hover:bg-sage-700 transition-colors"
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <!-- Responsive Video Frame Player (Fits full 9:16 video cleanly without cropping) -->
+            <div class="lg:col-span-7 flex flex-col items-center gap-4">
+              <div
+                id="videoFrameOuter"
+                class="relative w-full max-w-[380px] aspect-[9/16] max-h-[75vh] rounded-3xl p-2 bg-gradient-to-b from-rosegold-light via-rosegold to-sage-dark shadow-2xl transition-all duration-300"
               >
-                Copy RSVP for Facebook Messenger
-              </button>
+                <!-- Inner Screen -->
+                <div class="relative w-full h-full rounded-2xl bg-black overflow-hidden flex flex-col justify-between">
+                  <iframe
+                    id="video-invite-iframe"
+                    src="https://drive.google.com/file/d/1csMpCMKQCUm1jM3E6cyRpejze3H_518C/preview"
+                    class="w-full h-full border-0"
+                    allow="autoplay; fullscreen"
+                    allowfullscreen
+                    title="Kaye & Val Video Invitation">
+                  </iframe>
+                </div>
+              </div>
+
+              <!-- Single Full-Screen Choice Below Video -->
               <a
-                href="https://m.me/"
+                href="https://drive.google.com/file/d/1csMpCMKQCUm1jM3E6cyRpejze3H_518C/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="px-4 py-2.5 rounded-xl border border-rosegold-400 text-rosegold-600 text-xs font-semibold uppercase tracking-wider hover:bg-rosegold-50 transition-colors"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-sage-dark hover:bg-[#52624c] text-white rounded-full text-xs font-medium tracking-wider uppercase shadow-md transition-all"
               >
-                Open Messenger
+                <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                <span>Open Full Screen View</span>
+              </a>
+            </div>
+
+            <!-- Right Column: Formal Invitation Summary & Card Modal Trigger -->
+            <div class="lg:col-span-5 text-center lg:text-left space-y-6">
+              <div class="glass-card-white p-8 rounded-3xl">
+                <p class="text-xs uppercase tracking-[0.25em] text-rosegold font-semibold mb-2">
+                  Baranuelo – Cunanan Nuptials
+                </p>
+                <h3 class="font-serif text-3xl sm:text-4xl text-sage-dark mb-4">
+                  You Are Cordially Invited
+                </h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                  Together with our beloved parents, we warmly invite you to join us in prayer, joy, and celebration as we exchange our sacred vows on <strong>Wednesday, December 9, 2026</strong> in Naga City.
+                </p>
+
+                <button
+                  id="open-card-modal-btn"
+                  class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-cream hover:bg-sage-light/60 text-sage-dark rounded-2xl border border-rosegold/40 hover:border-rosegold shadow-sm transition-all cursor-pointer"
+                >
+                  <i data-lucide="mail" class="w-5 h-5 text-rosegold"></i>
+                  <span class="font-serif text-lg tracking-wide">View Formal Invitation Card</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 3. WEDDING DETAILS SECTION                                          -->
+      <!-- =================================================================== -->
+      <section id="details" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
+          <div class="text-center mb-14">
+            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Event Information</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">Wedding Details</h2>
+            <div class="flex items-center justify-center my-5 gap-3">
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
+              <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Ceremony Card -->
+            <div class="glass-card-white p-8 rounded-3xl flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 bg-sage-light/70 rounded-full flex items-center justify-center mb-6 text-sage-dark">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v4M10 4h4M4 22V10l8-5 8 5v12H4z" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 22v-5a2 2 0 0 0-4 0v5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <span class="text-xs uppercase tracking-widest text-rosegold font-bold">The Marriage Ceremony</span>
+                <h3 class="font-serif text-2xl text-sage-dark mt-1 mb-4">
+                  Basilica of Our Lady of Peñafrancia
+                </h3>
+                <div class="space-y-3 text-slate-600 text-sm mb-6">
+                  <p class="flex items-center gap-2">
+                    <i data-lucide="calendar" class="w-4 h-4 text-rosegold"></i> Wednesday, December 9, 2026
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <i data-lucide="clock" class="w-4 h-4 text-rosegold"></i> 2:00 PM
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-rosegold"></i> Naga City, Camarines Sur, Philippines
+                  </p>
+                </div>
+              </div>
+              <a
+                href="https://maps.google.com/?q=Basilica+of+Our+Lady+of+Penafrancia+Naga+City"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full py-3 bg-cream hover:bg-sage-light/60 text-sage-dark rounded-xl font-medium text-sm transition-colors border border-sage/40"
+              >
+                Get Ceremony Directions <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+
+            <!-- Reception Card -->
+            <div class="glass-card-white p-8 rounded-3xl flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 bg-rosegold-light/50 rounded-full flex items-center justify-center mb-6 text-rosegold">
+                  <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <span class="text-xs uppercase tracking-widest text-rosegold font-bold">The Reception Celebration</span>
+                <h3 class="font-serif text-2xl text-sage-dark mt-1 mb-1">
+                  Queen Rose Hall
+                </h3>
+                <p class="text-sm font-semibold text-slate-700 mb-4">Robertson Hotel</p>
+                <div class="space-y-3 text-slate-600 text-sm mb-6">
+                  <p class="flex items-center gap-2">
+                    <i data-lucide="calendar" class="w-4 h-4 text-rosegold"></i> Wednesday, December 9, 2026
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <i data-lucide="clock" class="w-4 h-4 text-rosegold"></i> 4:30 PM (Following Ceremony)
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-rosegold"></i> J. Miranda Avenue, Naga City, Camarines Sur
+                  </p>
+                </div>
+              </div>
+              <a
+                href="https://maps.google.com/?q=Robertson+Hotel+J+Miranda+Avenue+Naga+City"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full py-3 bg-cream hover:bg-sage-light/60 text-sage-dark rounded-xl font-medium text-sm transition-colors border border-sage/40"
+              >
+                Get Reception Directions <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Live Seat Tracker & Guest List Dashboard -->
-        <div class="lg:col-span-5 space-y-5">
-          <div class="rounded-3xl frosted-card p-6 sm:p-7 rosegold-border shadow-soft">
-            <div class="flex items-center justify-between mb-4">
-              <div>
-                <p class="text-[11px] uppercase tracking-widest text-rosegold-500 font-semibold">Live Guest Tracker</p>
-                <h3 class="font-serif text-2xl font-semibold text-sage-700">Reserved Seats</h3>
-              </div>
-              <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center font-serif text-2xl font-bold text-sage-700" id="totalSeatsBadge">
-                0
-              </div>
-            </div>
-
-            <p class="text-xs text-sage-500 mb-4">
-              Responses submitted on this browser are saved below. You can export the guest list to CSV anytime.
+      <!-- =================================================================== -->
+      <!-- 4. WEDDING ENTOURAGE & PRINCIPAL SPONSORS                           -->
+      <!-- =================================================================== -->
+      <section id="entourage" class="scroll-mt-24 py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto glass-card rounded-3xl p-6 sm:p-12">
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">With Love &amp; Gratitude</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-3">
+              The Wedding Entourage
+            </h2>
+            <p class="text-sm text-sage-600">
+              Surrounded by our beloved parents, sponsors, and dearest friends who walk beside us on this sacred day.
             </p>
+          </div>
 
-            <div id="guestListContainer" class="max-h-60 overflow-y-auto space-y-2.5 pr-1 mb-4">
-              <!-- Populated dynamically -->
+          <!-- Interactive Category Tabs -->
+          <div class="flex flex-wrap justify-center gap-2 mb-10">
+            <button onclick="filterEntourage('all')" data-tab="all" class="entourage-tab active px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-sage-600 text-white shadow-sm transition-all cursor-pointer">
+              All Roles
+            </button>
+            <button onclick="filterEntourage('parents')" data-tab="parents" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+              Parents &amp; Honor
+            </button>
+            <button onclick="filterEntourage('principal')" data-tab="principal" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+              Principal Sponsors
+            </button>
+            <button onclick="filterEntourage('secondary')" data-tab="secondary" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+              Secondary Sponsors
+            </button>
+            <button onclick="filterEntourage('party')" data-tab="party" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+              Bridal Party &amp; Bearers
+            </button>
+          </div>
+
+          <!-- Entourage Grid -->
+          <div class="space-y-8">
+            <!-- Parents & Lead Honor -->
+            <div data-group="parents" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                <div class="space-y-2">
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Parents of the Bride</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800">Romualdo P. Baranuelo</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800">Emily B. Baranuelo</p>
+                </div>
+                <div class="space-y-2">
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Parents of the Groom</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800">Alma P. Cunanan</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800">Val Celso V. Cunanan Sr. (&dagger;)</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800">Alejandro Peteza Jr.</p>
+                </div>
+              </div>
+
+              <div class="h-px bg-rosegold-200/60 my-8"></div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <div>
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Bestman</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Christian John P. Cunanan</p>
+                </div>
+                <div>
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Maid of Honor</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Bendra C. Bañaga</p>
+                </div>
+                <div>
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Matron of Honor</p>
+                  <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Florence Claire B. Ragos</p>
+                </div>
+              </div>
             </div>
 
-            <div class="flex items-center justify-between pt-3 border-t border-sage-100">
-              <button
-                onclick="exportRsvpCsv()"
-                class="text-xs font-semibold text-sage-600 hover:text-rosegold-600 underline underline-offset-4"
-              >
-                Download Guest List (.CSV)
-              </button>
-              <button
-                onclick="clearRsvpData()"
-                class="text-[11px] text-sage-400 hover:text-red-500"
-              >
-                Reset Demo List
-              </button>
+            <!-- Principal Sponsors (Combined without Godmothers/Godfathers titles) -->
+            <div data-group="principal" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border text-center">
+              <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Principal Sponsors</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 max-w-3xl mx-auto">
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Cesar Roberto B. Mariano</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Arleen L. Mariano</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Larry R. Barcinilla Sr.</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Rustica C. Peteza</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Martino A. Piloneo</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Amparo F. Piloneo</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Hon. Kgwd. Jorge Bejamen R. Favenir</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Ophelia Royo</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Ceazar Anthony P. Olaso</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Jeannilyn O. Olaso</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70 flex flex-col justify-center">
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Dra. Magnolia Corazon R. Favenir</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Ms. Ma. Lina V. Cunanan</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Secondary Sponsors -->
+            <div data-group="secondary" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border text-center">
+              <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Secondary Sponsors</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To light our path</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Marites C. De Vera &amp; Norlan E. Pamor</p>
+                </div>
+                <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To clothe us as one</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Jonna E. Alfonso &amp; Jonathan O. Vegas</p>
+                </div>
+                <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To bind us together</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Ma. Theresa Raborar &amp; Ajerico C. Peteza</p>
+                </div>
+                <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To add color to our journey</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Michelle B. Cabrera &amp; Edison B. Cabrera</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Groomsmen, Bridesmaids, Bearers & Flower Girls -->
+            <div data-group="party" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border text-center space-y-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-script text-3xl text-rosegold-500 mb-3">Groomsmen</h4>
+                  <ul class="space-y-1.5 font-serif text-lg font-semibold text-sage-800">
+                    <li>Alex R. Palo</li>
+                    <li>Andrei C. Peteza</li>
+                    <li>Luke Andrei B. Badong</li>
+                    <li>Scott Ebenezer B. Baranuelo</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-script text-3xl text-rosegold-500 mb-3">Bridesmaids</h4>
+                  <ul class="space-y-1.5 font-serif text-lg font-semibold text-sage-800">
+                    <li>Karen C. Raton</li>
+                    <li>Madeline D. Rios</li>
+                    <li>Vanessa M. Violeta</li>
+                    <li>Amirose G. Recepcion</li>
+                    <li>Gailene Mae B. Pilapil</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="h-px bg-rosegold-200/60"></div>
+
+              <!-- Bearers -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-script text-xl sm:text-2xl text-rosegold-500">Banner Bearer</p>
+                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Coby Amir K. Hill</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-script text-xl sm:text-2xl text-rosegold-500">Ring Bearer</p>
+                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Richard Luke O. Olaso</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-script text-xl sm:text-2xl text-rosegold-500">Coin Bearer</p>
+                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Elijah Bennett B. Katindig</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-sage-50/70">
+                  <p class="font-script text-xl sm:text-2xl text-rosegold-500">Bible Bearer</p>
+                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Alexander Sheidrin L. Gozun</p>
+                </div>
+              </div>
+
+              <div class="h-px bg-rosegold-200/60"></div>
+
+              <!-- Little Bride & Flower Girls -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div class="p-4 rounded-2xl bg-rosegold-50/60 border border-rosegold-200/60">
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Little Bride</p>
+                  <p class="font-serif text-xl font-semibold text-sage-800 mt-1">Valerie Claire B. Cunanan</p>
+                </div>
+                <div>
+                  <p class="font-script text-2xl sm:text-3xl text-rosegold-500 mb-2">Flower Girls</p>
+                  <ul class="space-y-1 font-serif text-lg font-semibold text-sage-800">
+                    <li>Gabrielle Yna Louise C. Aspe</li>
+                    <li>Xavielle Skye Ylise C. Aspe</li>
+                    <li>Amara Mary Nathalie K. Hill</li>
+                    <li>Aleila Calla Jae L. Gozun</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- 7. GIFT GUIDE & INSTAPAY QR -->
-  <section id="gifts" class="py-16 sm:py-24 px-4 sm:px-6 reveal">
-    <div class="max-w-2xl mx-auto text-center">
-      <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">A Note on Gifts</span>
-      <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-4">
-        Your Presence Is Our Greatest Gift
-      </h2>
-      <p class="text-sm sm:text-base text-sage-600 leading-relaxed mb-8">
-        Should you wish to give us something more, a monetary gift would be sincerely appreciated as we continue building our future together. For monetary gifts, kindly scan the QR code below.
-      </p>
-
-      <div class="max-w-xs mx-auto rounded-3xl frosted-card p-6 rosegold-border shadow-soft space-y-4">
-        <div class="relative aspect-square w-full rounded-2xl bg-sage-50 border border-dashed border-rosegold-300 flex flex-col items-center justify-center overflow-hidden p-4">
-          <img
-            id="qrPreviewImg"
-            src="https://drive.google.com/thumbnail?id=1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM&sz=w1000"
-            data-fallback-step="0"
-            onerror="handleQrImgError(this)"
-            alt="InstaPay QR Code"
-            class="w-full h-full object-contain rounded-xl"
-          />
-          <div id="qrPlaceholder" class="hidden text-center space-y-2">
-            <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold tracking-wide">
-              instaPay
+      <!-- =================================================================== -->
+      <!-- DRESS CODE SECTION                                                  -->
+      <!-- =================================================================== -->
+      <section id="dresscode" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
+          <div class="text-center mb-14">
+            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Attire Guide</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">Dress Code</h2>
+            <div class="flex items-center justify-center my-5 gap-3">
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
+              <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
             </div>
-            <p class="font-serif text-lg font-semibold text-sage-700">Kaye &amp; Val Gift QR</p>
-            <p class="text-xs text-sage-500">Upload your InstaPay QR screenshot below so guests can scan directly.</p>
+          </div>
+
+          <!-- Color Swatches -->
+          <div class="glass-card-white p-8 rounded-3xl mb-8 text-center">
+            <h3 class="font-serif text-xl text-sage-dark mb-6">Wedding Color Palette</h3>
+            <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #A3B18A;"></div>
+                <span class="text-xs text-slate-700 font-medium">Sage Green</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #66785F;"></div>
+                <span class="text-xs text-slate-700 font-medium">Deep Sage</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #DCE4D2;"></div>
+                <span class="text-xs text-slate-700 font-medium">Soft Sage</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #B76E79;"></div>
+                <span class="text-xs text-slate-700 font-medium">Rose Gold</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #E8C7B8;"></div>
+                <span class="text-xs text-slate-700 font-medium">Champagne</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass-card-white p-8 rounded-3xl">
+              <h4 class="font-serif text-xl text-sage-dark mb-3">Principal Sponsors</h4>
+              <p class="text-slate-600 leading-relaxed text-sm font-light">
+                Formal Attire. Gentlemen in traditional Barong Tagalog or dark suit. Ladies in elegant floor-length gowns featuring Sage Green or Rose Gold tones.
+              </p>
+            </div>
+
+            <div class="glass-card-white p-8 rounded-3xl">
+              <h4 class="font-serif text-xl text-sage-dark mb-3">Guests Attire</h4>
+              <p class="text-slate-600 leading-relaxed text-sm font-light">
+                Formal or Semi-Formal Attire. We kindly request guests to dress in line with our wedding color palette of Sage Green, Soft Green, Champagne, and Rose Gold.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 bg-rosegold-light/40 rounded-2xl border border-rosegold/40 text-center">
+            <p class="text-xs uppercase tracking-widest text-rosegold font-bold mb-2">Kindly Note</p>
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-slate-800">
+              <span class="bg-white px-4 py-2 rounded-full border border-slate-200">&bull; Pure White (Reserved for the Bride)</span>
+              <span class="bg-white px-4 py-2 rounded-full border border-slate-200">&bull; Black (Please refrain from solid black)</span>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="space-y-2">
-          <a
-            id="downloadQrBtn"
-            href="https://drive.google.com/uc?export=download&id=1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl rosegold-gradient text-white text-xs font-semibold uppercase tracking-wider shadow-rosegold hover:opacity-95 transition-all"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-            <span>View / Save QR Code</span>
-          </a>
+      <!-- =================================================================== -->
+      <!-- A NOTE ON GIFTS SECTION (QR CODE)                                   -->
+      <!-- =================================================================== -->
+      <section id="gifts" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto glass-card rounded-3xl p-8 sm:p-14 text-center">
+          <div class="w-14 h-14 bg-rosegold-light/50 rounded-full flex items-center justify-center mx-auto mb-4 text-rosegold">
+            <i data-lucide="gift" class="w-7 h-7"></i>
+          </div>
+          <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">A Note on Gifts</span>
+          <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">Your Presence Is Our Greatest Gift</h2>
+          <div class="flex items-center justify-center my-5 gap-3">
+            <div class="h-[1px] w-12 bg-rosegold/60"></div>
+            <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+            <div class="h-[1px] w-12 bg-rosegold/60"></div>
+          </div>
+
+          <p class="text-slate-700 font-serif text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+            Should you wish to give us something more, a monetary gift would be sincerely appreciated as we continue building our future together. For monetary gifts, kindly scan the QR code below.
+          </p>
+
+          <!-- QR Code Display Card -->
+          <div class="inline-block bg-white p-5 sm:p-6 rounded-3xl shadow-xl border-2 border-rosegold/40">
+            <img 
+              src="https://lh3.googleusercontent.com/d/1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM" 
+              onerror="this.onerror=null;this.src='https://drive.google.com/uc?export=view&id=1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM';"
+              alt="Monetary Gift QR Code" 
+              class="w-64 sm:w-72 h-auto mx-auto rounded-xl object-contain"
+            />
+            <p class="text-xs uppercase tracking-widest text-sage-dark font-semibold mt-4">
+              Scan to Send Gift &bull; Kaye &amp; Val
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- Footer -->
-  <footer class="py-12 px-4 text-center bg-sage-700/95 backdrop-blur-md text-sage-100">
-    <p class="font-script text-4xl text-rosegold-200 mb-2">Kaye &amp; Val</p>
-    <p class="font-serif text-base tracking-widest uppercase">December 09, 2026 • Naga City, Camarines Sur</p>
-    <p class="text-xs text-sage-300 mt-4">Thank you for sharing our special day!</p>
-  </footer>
+      <!-- =================================================================== -->
+      <!-- RSVP FORM SECTION                                                   -->
+      <!-- =================================================================== -->
+      <section id="rsvp" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
+          <div class="text-center mb-10">
+            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Response Requested</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">RSVP</h2>
+            <div class="flex items-center justify-center my-5 gap-3">
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
+              <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+              <div class="h-[1px] w-12 bg-rosegold/60"></div>
+            </div>
+            <p class="text-slate-700 text-sm">Please let us know if you will be celebrating with us.</p>
+          </div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full bg-sage-800 text-white text-xs font-medium shadow-xl opacity-0 pointer-events-none transition-all duration-300">
-    Notification message
+          <div class="glass-card-white p-8 sm:p-10 rounded-3xl">
+            <div id="rsvp-success" class="hidden text-center py-8 space-y-4 animate-fade-in">
+              <i data-lucide="check-circle-2" class="w-16 h-16 text-sage-dark mx-auto"></i>
+              <h3 class="font-serif text-3xl text-sage-dark">Thank You!</h3>
+              <p class="text-slate-600">
+                Your response has been received. We look forward to celebrating our special day with you!
+              </p>
+              <button
+                id="rsvp-reset-btn"
+                class="mt-4 px-6 py-2 bg-sage-dark text-white rounded-full text-sm cursor-pointer"
+              >
+                Submit Another Response
+              </button>
+            </div>
+
+            <form id="rsvp-form" class="space-y-6">
+              <div>
+                <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="rsvp-name"
+                  name="name"
+                  required
+                  placeholder="e.g. Maria Santos"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-sage-dark focus:ring-1 focus:ring-sage-dark outline-none transition"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label id="label-accept" class="flex flex-col items-center justify-center p-4 rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition">
+                  <input type="radio" name="attendance" value="accept" checked class="sr-only" />
+                  <span class="font-serif text-lg font-medium">Joyfully Accepts</span>
+                </label>
+
+                <label id="label-decline" class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition">
+                  <input type="radio" name="attendance" value="decline" class="sr-only" />
+                  <span class="font-serif text-lg font-medium">Regretfully Declines</span>
+                </label>
+              </div>
+
+              <div id="guests-field">
+                <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
+                  Number of Guests
+                </label>
+                <select id="rsvp-guests" name="guests" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none">
+                  <option value="1">1 Person</option>
+                  <option value="2">2 Persons</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
+                  Message for the Couple
+                </label>
+                <textarea
+                  id="rsvp-message"
+                  name="message"
+                  rows="3"
+                  placeholder="Write your wishes for Kaye &amp; Val..."
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                id="rsvp-submit-btn"
+                class="w-full py-4 bg-sage-dark hover:bg-[#52624c] text-white rounded-xl font-medium tracking-wider uppercase shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i data-lucide="send" class="w-4 h-4"></i> Send RSVP Response
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- FOOTER                                                              -->
+      <!-- =================================================================== -->
+      <footer class="py-12 bg-sage-dark/95 text-white text-center mt-10">
+        <div class="max-w-4xl mx-auto px-4">
+          <h3 class="font-serif text-3xl mb-2">Kaye &amp; Val</h3>
+          <p class="text-xs uppercase tracking-widest text-rosegold-light mb-6">
+            December 9, 2026 &bull; Naga City, Camarines Sur
+          </p>
+          <div class="h-[1px] w-16 bg-rosegold mx-auto mb-6"></div>
+          <p class="text-xs text-slate-200 font-light">
+            #KayeFoundHerVal-ue
+          </p>
+        </div>
+      </footer>
+    </main>
   </div>
 
+  <!-- ===================================================================== -->
+  <!-- DIGITAL FORMAL INVITATION CARD MODAL                                  -->
+  <!-- ===================================================================== -->
+  <div id="invitation-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 animate-fade-in">
+    <div class="relative w-full max-w-2xl bg-cream p-8 sm:p-12 rounded-3xl shadow-2xl border-4 border-rosegold-light text-center overflow-y-auto max-h-[90vh]">
+      <button id="close-card-modal-btn" class="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-800 rounded-full hover:bg-slate-200/60 cursor-pointer">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="border border-rosegold/40 p-6 sm:p-10 rounded-2xl relative">
+        <p class="text-xs tracking-[0.25em] uppercase text-sage-dark font-semibold mb-2">
+          Together with their families
+        </p>
+        <p class="text-xs tracking-widest text-slate-500 uppercase mb-6">
+          Request the pleasure of your company as they celebrate their wedding
+        </p>
+
+        <h2 class="font-serif text-4xl sm:text-6xl text-sage-dark mb-1">Kaye &amp; Val</h2>
+        <p class="font-serif italic text-lg text-rosegold mb-6">Baranuelo – Cunanan Nuptials</p>
+
+        <div class="flex items-center justify-center my-5 gap-3">
+          <div class="h-[1px] w-12 bg-rosegold/60"></div>
+          <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+          <div class="h-[1px] w-12 bg-rosegold/60"></div>
+        </div>
+
+        <div class="my-6 space-y-2">
+          <p class="font-serif text-xl font-medium text-slate-800">Wednesday, December 9, 2026</p>
+          <p class="text-base text-sage-dark font-semibold">2:00 PM</p>
+        </div>
+
+        <div class="space-y-4 my-8 text-slate-700">
+          <div>
+            <p class="text-xs uppercase tracking-widest text-rosegold font-bold">Ceremony Venue</p>
+            <p class="font-serif text-lg font-semibold text-slate-800">Basilica of Our Lady of Peñafrancia</p>
+            <p class="text-sm text-slate-600">Naga City, Camarines Sur, Philippines</p>
+          </div>
+          <div class="pt-3">
+            <p class="text-xs uppercase tracking-widest text-rosegold font-bold">Reception Venue</p>
+            <p class="font-serif text-lg font-semibold text-slate-800">Queen Rose Hall</p>
+            <p class="text-sm font-medium text-slate-700">Robertson Hotel</p>
+            <p class="text-sm text-slate-600">J. Miranda Avenue, Naga City, Camarines Sur</p>
+          </div>
+        </div>
+
+        <p class="font-serif italic text-sage-dark text-base mt-8">
+          "Two hearts, one promise, and a lifetime of love."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION JAVASCRIPT                                                -->
+  <!-- ===================================================================== -->
   <script>
-    // ==========================================
-    // 0. FIXED FULL-SCREEN COUPLE PHOTO SLIDESHOW (GOOGLE DRIVE EMBEDDED)
-    // ==========================================
-    const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/folders/1xcqE8P1WQfSjtF4H5VES3AUTPqL7EokG?usp=sharing';
-    const drivePhotoIds = [
-      '1uzOUnIjHZ-s6f1xgOqrsQ1nLzZSBSO8n', // photo1.jpeg
-      '1srxT7GLwDRFpC-1Hz5kvS16cpgK2l0Tr', // photo2.jpeg
-      '1d6hXR0UUxfm_guCo3uxT4Es_1z3w6FZc', // photo3.jpeg
-      '19YVf1biwmi2WppIbTOXoeA6S4cBhisKc', // photo4.jpeg
-      '1HfvyqIZdO1yydXFGAxa-GNQgzEaMtQzO'  // photo5.jpeg
-    ];
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-    const fallbackCoupleArt = [
-      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g1" cx="25%" cy="30%" r="75%"><stop offset="0%" stop-color="#D2DDD0"/><stop offset="55%" stop-color="#8FA693"/><stop offset="100%" stop-color="#4A5D4E"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g1)"/><circle cx="1220" cy="240" r="340" fill="#F0D5D1" fill-opacity="0.32"/><text x="50%" y="48%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="8">KAYE &amp; VAL</text><text x="50%" y="55%" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#FAF7F5" fill-opacity="0.4">December 09, 2026</text></svg>`),
-      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><radialGradient id="g2" cx="75%" cy="35%" r="75%"><stop offset="0%" stop-color="#F8ECEA"/><stop offset="50%" stop-color="#E2B4AE"/><stop offset="100%" stop-color="#B76E79"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g2)"/><circle cx="380" cy="650" r="380" fill="#D2DDD0" fill-opacity="0.35"/><text x="50%" y="48%" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FAF7F5" fill-opacity="0.5" letter-spacing="8">12 • 09 • 2026</text><text x="50%" y="55%" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#FAF7F5" fill-opacity="0.45">Basilica of Our Lady of Peñafrancia</text></svg>`),
-      "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6C8771"/><stop offset="50%" stop-color="#B2C4B0"/><stop offset="100%" stop-color="#CE8E87"/></linearGradient></defs><rect width="1600" height="900" fill="url(#g3)"/><text x="50%" y="50%" text-anchor="middle" font-family="Georgia, serif" font-size="58" fill="#FAF7F5" fill-opacity="0.45" letter-spacing="10">FOREVER BEGINS</text></svg>`)
-    ];
+    // 1. STATIONARY BACKGROUND SLIDESHOW (Crossfade + Slow Zoom every 4.5s)
+    const slides = document.querySelectorAll('#fixed-bg-slideshow .bg-slide');
+    let currentSlide = 0;
 
-    let activeBgPhotos = drivePhotoIds.map(id => `https://drive.google.com/thumbnail?id=${id}&sz=w1920`);
-    let bgSlideIndex = 0;
-    let activeLayer = 0;
-    let bgSlideIntervalMs = 4500;
-    let bgSlideTimer = null;
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 4500);
 
-    function resolveDriveImageUrl(id) {
-      const candidates = [
-        `https://drive.google.com/thumbnail?id=${id}&sz=w1920`,
-        `https://lh3.googleusercontent.com/d/${id}=w1920`,
-        `https://drive.google.com/uc?export=view&id=${id}`
-      ];
-      return new Promise((resolve) => {
-        let idx = 0;
-        function tryNext() {
-          if (idx >= candidates.length) {
-            resolve(null);
-            return;
-          }
-          const url = candidates[idx++];
-          const img = new Image();
-          img.onload = () => resolve(url);
-          img.onerror = () => tryNext();
-          img.src = url;
-        }
-        tryNext();
-      });
-    }
+    // 2. OPEN INVITATION COVER HANDLER
+    document.getElementById('open-invitation-btn').addEventListener('click', () => {
+      const cover = document.getElementById('opening-cover');
+      cover.style.opacity = '0';
+      setTimeout(() => {
+        cover.classList.add('hidden');
+      }, 800);
+      document.getElementById('main-content').classList.remove('hidden');
+    });
 
-    async function preloadDriveCouplePhotos() {
-      const verified = await Promise.all(drivePhotoIds.map(resolveDriveImageUrl));
-      const validUrls = verified.filter(Boolean);
-      if (validUrls.length > 0) {
-        activeBgPhotos = validUrls;
-        bgSlideIndex = 0;
-        applyBgSlide(0);
-      } else {
-        activeBgPhotos = [...fallbackCoupleArt];
-        bgSlideIndex = 0;
-        applyBgSlide(0);
-      }
-    }
-
-    function applyBgSlide(index) {
-      if (!activeBgPhotos.length) return;
-      const nextLayer = activeLayer === 0 ? 1 : 0;
-      const currentEl = document.getElementById(`bg-layer-${activeLayer}`);
-      const nextEl = document.getElementById(`bg-layer-${nextLayer}`);
-      if (!currentEl || !nextEl) return;
-
-      nextEl.style.backgroundImage = `url("${activeBgPhotos[index]}")`;
-      nextEl.classList.add('active');
-      currentEl.classList.remove('active');
-      activeLayer = nextLayer;
-    }
-
-    function advanceBgSlide() {
-      if (activeBgPhotos.length <= 1) return;
-      bgSlideIndex = (bgSlideIndex + 1) % activeBgPhotos.length;
-      applyBgSlide(bgSlideIndex);
-    }
-
-    function startBgSlideshow() {
-      if (bgSlideTimer) clearInterval(bgSlideTimer);
-      const firstEl = document.getElementById('bg-layer-0');
-      if (!firstEl) return;
-      firstEl.style.backgroundImage = `url("${activeBgPhotos[0]}")`;
-      firstEl.classList.add('active');
-      bgSlideTimer = setInterval(advanceBgSlide, bgSlideIntervalMs);
-    }
-
-    startBgSlideshow();
-    preloadDriveCouplePhotos();
-
-    // ==========================================
-    // 1. LIVE COUNTDOWN TIMER (Dec 09, 2026 2:00 PM PHT)
-    // ==========================================
-    const weddingDate = new Date('2026-12-09T14:00:00+08:00').getTime();
-
+    // 3. COUNTDOWN TIMER (Asia/Manila UTC+8: December 9, 2026 2:00 PM)
+    const targetDate = new Date("2026-12-09T14:00:00+08:00").getTime();
     function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
+      const cdGrid = document.getElementById('countdown-grid');
+      const cdPastMsg = document.getElementById('cd-past-msg');
+      const cdDays = document.getElementById('cd-days');
+      const cdHours = document.getElementById('cd-hours');
+      const cdMinutes = document.getElementById('cd-minutes');
+      const cdSeconds = document.getElementById('cd-seconds');
 
+      if (!cdDays || !cdHours || !cdMinutes || !cdSeconds) return;
+
+      const now = new Date().getTime();
+      const diff = targetDate - now;
       if (diff <= 0) {
-        document.getElementById('cd-days').textContent = '00';
-        document.getElementById('cd-hours').textContent = '00';
-        document.getElementById('cd-mins').textContent = '00';
-        document.getElementById('cd-secs').textContent = '00';
+        if (cdGrid) cdGrid.classList.add('hidden');
+        if (cdPastMsg) cdPastMsg.classList.remove('hidden');
         return;
       }
-
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
-      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
-      document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+      cdDays.textContent = String(days).padStart(2, '0');
+      cdHours.textContent = String(hours).padStart(2, '0');
+      cdMinutes.textContent = String(minutes).padStart(2, '0');
+      cdSeconds.textContent = String(seconds).padStart(2, '0');
     }
-    setInterval(updateCountdown, 1000);
     updateCountdown();
+    setInterval(updateCountdown, 1000);
 
-    // ==========================================
-    // 2. INTERACTIVE VIDEO INVITATION STORYBOARD & PLAYER
-    // ==========================================
-    const DRIVE_VIDEO_PREVIEW_URL = 'https://drive.google.com/file/d/1csMpCMKQCUm1jM3E6cyRpejze3H_518C/preview';
+    // 4. MOBILE MENU & FORMAL INVITATION MODAL
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
 
-    function setVideoAspect(mode) {
-      const outer = document.getElementById('videoFrameOuter');
-      if (!outer) return;
+    const invitationModal = document.getElementById('invitation-modal');
+    document.getElementById('open-card-modal-btn').addEventListener('click', () => {
+      invitationModal.classList.remove('hidden');
+    });
+    document.getElementById('close-card-modal-btn').addEventListener('click', () => {
+      invitationModal.classList.add('hidden');
+    });
 
-      outer.classList.remove(
-        'max-w-[380px]',
-        'aspect-[9/16]',
-        'max-h-[75vh]',
-        'max-w-full',
-        'aspect-video',
-        'max-w-[460px]',
-        'aspect-square'
-      );
+    // 4B. ENTOURAGE CATEGORY TABS FILTER
+    function filterEntourage(category) {
+      const tabs = document.querySelectorAll('.entourage-tab');
+      const groups = document.querySelectorAll('.entourage-group');
 
-      if (mode === 'landscape') {
-        outer.classList.add('max-w-full', 'aspect-video');
-      } else if (mode === 'square') {
-        outer.classList.add('max-w-[460px]', 'aspect-square');
-      } else {
-        outer.classList.add('max-w-[380px]', 'aspect-[9/16]', 'max-h-[75vh]');
-      }
-
-      document.querySelectorAll('.aspect-btn').forEach(btn => {
-        if (btn.dataset.aspect === mode) {
-          btn.classList.add('bg-sage-600', 'text-white');
-          btn.classList.remove('text-sage-700', 'hover:bg-sage-100');
+      tabs.forEach(tab => {
+        if (tab.dataset.tab === category) {
+          tab.classList.add('active', 'bg-sage-600', 'text-white', 'shadow-sm');
+          tab.classList.remove('bg-white', 'text-sage-700', 'border', 'border-sage-200');
         } else {
-          btn.classList.remove('bg-sage-600', 'text-white');
-          btn.classList.add('text-sage-700', 'hover:bg-sage-100');
+          tab.classList.remove('active', 'bg-sage-600', 'text-white', 'shadow-sm');
+          tab.classList.add('bg-white', 'text-sage-700', 'border', 'border-sage-200');
+        }
+      });
+
+      groups.forEach(group => {
+        if (category === 'all' || group.dataset.group === category) {
+          group.classList.remove('hidden');
+        } else {
+          group.classList.add('hidden');
         }
       });
     }
+    window.filterEntourage = filterEntourage;
 
-    const slides = [
-      {
-        tag: 'Save The Date',
-        script: 'We are getting married...',
-        title: 'Kaye & Val',
-        subtitle: 'EMILY CLAIRE B. BARANUELO\n&\nVAL CELSO P. CUNANAN JR.',
-        footer: 'Request the honor of your presence'
-      },
-      {
-        tag: 'December 09, 2026',
-        script: 'Wednesday at 2:00 PM',
-        title: 'Basilica of Our Lady of Peñafrancia',
-        subtitle: 'Naga City, Camarines Sur',
-        footer: 'Reception to follow at Queen Rose Hall, Robertson Hotel'
-      },
-      {
-        tag: 'The Entourage',
-        script: 'With Our Loving Families',
-        title: 'Parents & Sponsors',
-        subtitle: 'Bestman: Christian John P. Cunanan\nMaid of Honor: Bendra C. Bañaga\nMatron of Honor: Florence Claire B. Ragos',
-        footer: 'Surrounded by Principal & Secondary Sponsors'
-      },
-      {
-        tag: 'Attire & RSVP',
-        script: 'Semi-Formal Elegance',
-        title: 'Will You Join Us?',
-        subtitle: 'Natural sage, misty teal, champagne & blush rose tones.',
-        footer: 'Kindly RSVP on or before December 1, 2026'
-      },
-      {
-        tag: 'Gift Guide',
-        script: 'Your presence is our greatest gift',
-        title: 'Monetary Blessings',
-        subtitle: 'InstaPay QR available below for those who wish to bless our new chapter.',
-        footer: 'Thank you for sharing our special day!'
-      }
-    ];
+    // 5. RSVP FORM INTERACTIVITY (Ready to connect to your Google Form endpoint)
+    // To connect to Google Forms:
+    // 1. Set GOOGLE_FORM_ACTION_URL to your form's ".../formResponse" URL
+    // 2. Map your Google Form's "entry.XXXXXXX" field IDs inside the submit handler below
+    const GOOGLE_FORM_ACTION_URL = "";
 
-    let currentSlide = 0;
-    let autoplayTimer = null;
-    let isPlaying = false;
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpSuccess = document.getElementById('rsvp-success');
+    const labelAccept = document.getElementById('label-accept');
+    const labelDecline = document.getElementById('label-decline');
+    const guestsField = document.getElementById('guests-field');
 
-    function renderSlide(index) {
-      currentSlide = (index + slides.length) % slides.length;
-      const slide = slides[currentSlide];
-      const container = document.getElementById('slideContent');
+    document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'accept') {
+          labelAccept.className = "flex flex-col items-center justify-center p-4 rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition";
+          labelDecline.className = "flex flex-col items-center justify-center p-4 rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition";
+          guestsField.classList.remove('hidden');
+        } else {
+          labelDecline.className = "flex flex-col items-center justify-center p-4 rounded-xl border bg-rose-50 border-rosegold text-rosegold cursor-pointer transition";
+          labelAccept.className = "flex flex-col items-center justify-center p-4 rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition";
+          guestsField.classList.add('hidden');
+        }
+      });
+    });
 
-      container.innerHTML = `
-        <span class="inline-block px-3 py-1 rounded-full bg-rosegold-100 text-rosegold-600 text-[10px] font-semibold uppercase tracking-[0.2em]">
-          ${slide.tag}
-        </span>
-        <p class="font-script text-3xl text-rosegold-500 pt-1">${slide.script}</p>
-        <h4 class="font-serif text-2xl font-bold text-sage-800 leading-tight">${slide.title}</h4>
-        <p class="text-xs text-sage-700 whitespace-pre-line leading-relaxed font-medium px-2">${slide.subtitle}</p>
-        <div class="pt-2">
-          <span class="inline-block h-px w-10 bg-rosegold-300 mb-2"></span>
-          <p class="text-[11px] italic font-serif text-sage-600">${slide.footer}</p>
-        </div>
-      `;
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-      // Update progress bars
-      for (let i = 0; i < slides.length; i++) {
-        const bar = document.getElementById(`prog-${i}`);
-        if (bar) {
-          bar.style.width = i <= currentSlide ? '100%' : '0%';
+      if (GOOGLE_FORM_ACTION_URL) {
+        const formData = new FormData();
+        // Replace entry IDs below with your Google Form field entry IDs:
+        // formData.append('entry.111111111', document.getElementById('rsvp-name').value);
+        // formData.append('entry.222222222', document.querySelector('input[name="attendance"]:checked').value);
+        // formData.append('entry.333333333', document.getElementById('rsvp-guests').value);
+        // formData.append('entry.444444444', document.getElementById('rsvp-message').value);
+        try {
+          await fetch(GOOGLE_FORM_ACTION_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+          });
+        } catch (err) {
+          console.warn('RSVP submission error:', err);
         }
       }
-    }
 
-    function nextSlide() {
-      renderSlide(currentSlide + 1);
-    }
+      rsvpForm.classList.add('hidden');
+      rsvpSuccess.classList.remove('hidden');
+    });
 
-    function prevSlide() {
-      renderSlide(currentSlide - 1);
-    }
-
-    function goToSlide(idx) {
-      unloadCustomVideo();
-      renderSlide(idx);
-    }
-
-    function startAutoplay() {
-      stopAutoplay();
-      autoplayTimer = setInterval(nextSlide, 4200);
-      isPlaying = true;
-      document.getElementById('playPauseBtn').textContent = 'Pause Story';
-    }
-
-    function stopAutoplay() {
-      if (autoplayTimer) clearInterval(autoplayTimer);
-      isPlaying = false;
-      document.getElementById('playPauseBtn').textContent = 'Play Story';
-    }
-
-    function toggleAutoplay() {
-      if (isPlaying) stopAutoplay();
-      else startAutoplay();
-    }
-
-    function restoreDriveVideo() {
-      stopAutoplay();
-      const videoEl = document.getElementById('attachedVideoPlayer');
-      const iframeEl = document.getElementById('gdriveVideoFrame');
-      const storyboardEl = document.getElementById('storyboardView');
-      const backBtn = document.getElementById('backToStoryboardBtn');
-
-      videoEl.pause();
-      videoEl.classList.add('hidden');
-      iframeEl.src = DRIVE_VIDEO_PREVIEW_URL;
-      iframeEl.classList.remove('hidden');
-      storyboardEl.classList.add('hidden');
-      backBtn.classList.remove('hidden');
-      showToast('Official Google Drive video loaded!');
-    }
-
-    function unloadCustomVideo() {
-      const videoEl = document.getElementById('attachedVideoPlayer');
-      const iframeEl = document.getElementById('gdriveVideoFrame');
-      const storyboardEl = document.getElementById('storyboardView');
-      const backBtn = document.getElementById('backToStoryboardBtn');
-
-      videoEl.pause();
-      videoEl.classList.add('hidden');
-      iframeEl.classList.add('hidden');
-      storyboardEl.classList.remove('hidden');
-      backBtn.classList.add('hidden');
-      startAutoplay();
-    }
-
-    renderSlide(0);
-    stopAutoplay();
-
-    // ==========================================
-    // 5. QR FALLBACK & UTILITIES
-    // ==========================================
-    function handleQrImgError(img) {
-      const step = parseInt(img.dataset.fallbackStep || '0', 10);
-      const qrId = '1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM';
-      const fallbacks = [
-        `https://lh3.googleusercontent.com/d/${qrId}=w1000`,
-        `https://drive.google.com/uc?export=view&id=${qrId}`
-      ];
-      if (step < fallbacks.length) {
-        img.dataset.fallbackStep = String(step + 1);
-        img.src = fallbacks[step];
-      } else {
-        img.classList.add('hidden');
-        document.getElementById('qrPlaceholder').classList.remove('hidden');
-      }
-    }
-
-    function copyTextToClipboard(text) {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.classList.remove('opacity-0');
-      setTimeout(() => {
-        toast.classList.add('opacity-0');
-      }, 2800);
-    }
-
-    // Scroll reveal observer
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.getElementById('rsvp-reset-btn').addEventListener('click', () => {
+      rsvpForm.reset();
+      labelAccept.className = "flex flex-col items-center justify-center p-4 rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition";
+      labelDecline.className = "flex flex-col items-center justify-center p-4 rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition";
+      guestsField.classList.remove('hidden');
+      rsvpSuccess.classList.add('hidden');
+      rsvpForm.classList.remove('hidden');
+    });
   </script>
 </body>
 </html>
