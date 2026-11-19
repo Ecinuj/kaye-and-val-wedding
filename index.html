@@ -844,98 +844,185 @@
         </div>
       </section>
 
-      <!-- =================================================================== -->
-      <!-- RSVP FORM SECTION                                                   -->
-      <!-- =================================================================== -->
-      <section id="rsvp" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-14">
-          <div class="text-center mb-8 sm:mb-10">
-            <span class="text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-rosegold font-semibold">Response Requested</span>
-            <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">RSVP</h2>
-            <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
-              <div class="h-[1px] w-12 bg-rosegold/60"></div>
-              <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
-              <div class="h-[1px] w-12 bg-rosegold/60"></div>
-            </div>
-            <p class="text-slate-700 text-xs sm:text-sm">Please let us know if you will be celebrating with us.</p>
-          </div>
+    <!-- =================================================================== -->
+<!-- RSVP FORM SECTION                                                   -->
+<!-- =================================================================== -->
+<section id="rsvp" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-14">
+    <div class="text-center mb-8 sm:mb-10">
+      <span class="text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-rosegold font-semibold">Response Requested</span>
+      <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">RSVP</h2>
+      <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
+        <div class="h-[1px] w-12 bg-rosegold/60"></div>
+        <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
+        <div class="h-[1px] w-12 bg-rosegold/60"></div>
+      </div>
+      <p class="text-slate-700 text-xs sm:text-sm">Please let us know if you will be celebrating with us.</p>
+    </div>
 
-          <div class="glass-card-white p-5 sm:p-10 rounded-2xl sm:rounded-3xl">
-            <div id="rsvp-success" class="hidden text-center py-8 space-y-4 animate-fade-in">
-              <i data-lucide="check-circle-2" class="w-14 h-14 sm:w-16 sm:h-16 text-sage-dark mx-auto"></i>
-              <h3 class="font-serif text-2xl sm:text-3xl text-sage-dark">Thank You!</h3>
-              <p class="text-slate-600 text-sm sm:text-base">
-                Your response has been received. We look forward to celebrating our special day with you!
-              </p>
-              <button
-                id="rsvp-reset-btn"
-                class="mt-4 px-6 py-3 min-h-[44px] bg-sage-dark text-white rounded-full text-xs sm:text-sm cursor-pointer"
-              >
-                Submit Another Response
-              </button>
-            </div>
+    <div class="glass-card-white p-5 sm:p-10 rounded-2xl sm:rounded-3xl">
+      <!-- Success Message -->
+      <div id="rsvp-success" class="hidden text-center py-8 space-y-4 animate-fade-in">
+        <i data-lucide="check-circle-2" class="w-14 h-14 sm:w-16 sm:h-16 text-sage-dark mx-auto"></i>
+        <h3 class="font-serif text-2xl sm:text-3xl text-sage-dark">Thank You!</h3>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Your response has been recorded in our guest list. We look forward to celebrating our special day with you!
+        </p>
+        <button
+          type="button"
+          id="rsvp-reset-btn"
+          class="mt-4 px-6 py-3 min-h-[44px] bg-sage-dark text-white rounded-full text-xs sm:text-sm cursor-pointer"
+        >
+          Submit Another Response
+        </button>
+      </div>
 
-            <form id="rsvp-form" class="space-y-5 sm:space-y-6">
-              <div>
-                <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="rsvp-name"
-                  name="name"
-                  required
-                  placeholder="e.g. Maria Santos"
-                  class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark focus:ring-1 focus:ring-sage-dark outline-none transition"
-                />
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <label id="label-accept" class="flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition">
-                  <input type="radio" name="attendance" value="accept" checked class="sr-only" />
-                  <span class="font-serif text-base sm:text-lg font-medium">Joyfully Accepts</span>
-                </label>
-
-                <label id="label-decline" class="flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition">
-                  <input type="radio" name="attendance" value="decline" class="sr-only" />
-                  <span class="font-serif text-base sm:text-lg font-medium">Regretfully Declines</span>
-                </label>
-              </div>
-
-              <div id="guests-field">
-                <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
-                  Number of Guests
-                </label>
-                <select id="rsvp-guests" name="guests" class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none">
-                  <option value="1">1 Person</option>
-                  <option value="2">2 Persons</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
-                  Message for the Couple
-                </label>
-                <textarea
-                  id="rsvp-message"
-                  name="message"
-                  rows="3"
-                  placeholder="Write your wishes for Kaye &amp; Val..."
-                  class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                id="rsvp-submit-btn"
-                class="w-full py-4 min-h-[50px] bg-sage-dark hover:bg-[#52624c] text-white rounded-xl text-xs sm:text-sm font-medium tracking-wider uppercase shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <i data-lucide="send" class="w-4 h-4"></i> Send RSVP Response
-              </button>
-            </form>
-          </div>
+      <!-- RSVP Form -->
+      <form id="rsvp-form" class="space-y-5 sm:space-y-6">
+        <div>
+          <label for="rsvp-name" class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
+            Full Name *
+          </label>
+          <input
+            type="text"
+            id="rsvp-name"
+            name="name"
+            required
+            placeholder="e.g. Maria Santos"
+            class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark focus:ring-1 focus:ring-sage-dark outline-none transition"
+          />
         </div>
-      </section>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <label id="label-accept" class="flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition">
+            <input type="radio" name="attendance" value="Joyfully Accepts" checked class="sr-only" />
+            <span class="font-serif text-base sm:text-lg font-medium">Joyfully Accepts</span>
+          </label>
+
+          <label id="label-decline" class="flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition">
+            <input type="radio" name="attendance" value="Regretfully Declines" class="sr-only" />
+            <span class="font-serif text-base sm:text-lg font-medium">Regretfully Declines</span>
+          </label>
+        </div>
+
+        <div id="guests-field">
+          <label for="rsvp-guests" class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
+            Number of Guests
+          </label>
+          <select id="rsvp-guests" name="guests" class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none">
+            <option value="1">1 Person</option>
+            <option value="2">2 Persons</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="rsvp-message" class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
+            Message for the Couple
+          </label>
+          <textarea
+            id="rsvp-message"
+            name="message"
+            rows="3"
+            placeholder="Write your wishes for Kaye &amp; Val..."
+            class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          id="rsvp-submit-btn"
+          class="w-full py-4 min-h-[50px] bg-sage-dark hover:bg-[#52624c] text-white rounded-xl text-xs sm:text-sm font-medium tracking-wider uppercase shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <i data-lucide="send" class="w-4 h-4"></i> Send RSVP Response
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- RSVP GOOGLE SHEETS CONNECTION SCRIPT                                -->
+<!-- =================================================================== -->
+<script>
+  (function () {
+    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzP0_q-dOT30TP7Mteb9kjwFyDFHKF9PNLBYKQ_nNHRUpYk0gA3dr71wLmN-PgEduUb/exec';
+
+    const form = document.getElementById('rsvp-form');
+    const successBox = document.getElementById('rsvp-success');
+    const submitBtn = document.getElementById('rsvp-submit-btn');
+    const resetBtn = document.getElementById('rsvp-reset-btn');
+    const guestsField = document.getElementById('guests-field');
+    const labelAccept = document.getElementById('label-accept');
+    const labelDecline = document.getElementById('label-decline');
+    const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+
+    // Toggle radio button styling & hide "Number of Guests" if declining
+    attendanceRadios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        if (radio.value === 'Joyfully Accepts' && radio.checked) {
+          labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition';
+          labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
+          guestsField.classList.remove('hidden');
+        } else if (radio.value === 'Regretfully Declines' && radio.checked) {
+          labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-rose-50 border-rosegold text-rosegold cursor-pointer transition';
+          labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
+          guestsField.classList.add('hidden');
+        }
+      });
+    });
+
+    // Send form submission to Google Sheets
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending Response...';
+
+      const name = document.getElementById('rsvp-name').value.trim();
+      const attendance = document.querySelector('input[name="attendance"]:checked').value;
+      const guests = attendance === 'Joyfully Accepts' ? document.getElementById('rsvp-guests').value : '0';
+      const message = document.getElementById('rsvp-message').value.trim();
+
+      const payload = {
+        timestamp: new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' }),
+        name: name,
+        attendance: attendance,
+        guests: guests,
+        message: message
+      };
+
+      try {
+        await fetch(GOOGLE_SHEETS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        if (window.lucide) window.lucide.createIcons();
+      } catch (err) {
+        alert('There was a network issue sending your RSVP. Please try again.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+        if (window.lucide) window.lucide.createIcons();
+      }
+    });
+
+    // Reset form to submit another response
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition';
+      labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
+      guestsField.classList.remove('hidden');
+      successBox.classList.add('hidden');
+      form.classList.remove('hidden');
+    });
+  })();
+</script>
 
       <!-- =================================================================== -->
       <!-- FOOTER                                                              -->
