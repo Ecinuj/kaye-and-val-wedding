@@ -844,7 +844,7 @@
         </div>
       </section>
 
-    <!-- =================================================================== -->
+<!-- =================================================================== -->
 <!-- RSVP FORM SECTION                                                   -->
 <!-- =================================================================== -->
 <section id="rsvp" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
@@ -861,19 +861,19 @@
     </div>
 
     <div class="glass-card-white p-5 sm:p-10 rounded-2xl sm:rounded-3xl">
-      <!-- Success Message -->
+      <!-- Success / Saved State -->
       <div id="rsvp-success" class="hidden text-center py-8 space-y-4 animate-fade-in">
         <i data-lucide="check-circle-2" class="w-14 h-14 sm:w-16 sm:h-16 text-sage-dark mx-auto"></i>
         <h3 class="font-serif text-2xl sm:text-3xl text-sage-dark">Thank You!</h3>
-        <p class="text-slate-600 text-sm sm:text-base">
+        <p id="rsvp-saved-summary" class="text-slate-600 text-sm sm:text-base">
           Your response has been recorded in our guest list. We look forward to celebrating our special day with you!
         </p>
         <button
           type="button"
-          id="rsvp-reset-btn"
-          class="mt-4 px-6 py-3 min-h-[44px] bg-sage-dark text-white rounded-full text-xs sm:text-sm cursor-pointer"
+          id="rsvp-edit-btn"
+          class="mt-4 px-6 py-3 min-h-[44px] border border-sage-dark text-sage-dark hover:bg-sage-dark hover:text-white rounded-full text-xs sm:text-sm font-medium transition cursor-pointer"
         >
-          Submit Another Response
+          Edit My Response
         </button>
       </div>
 
@@ -909,13 +909,13 @@
           <label for="rsvp-guests" class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
             Number of Guests
           </label>
-         <select id="rsvp-guests" name="guests" class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none">
-  <option value="1">1 Person</option>
-  <option value="2">2 Persons</option>
-  <option value="3">3 Persons</option>
-  <option value="4">4 Persons</option>
-  <option value="5">5 Persons</option>
-</select>
+          <select id="rsvp-guests" name="guests" class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none">
+            <option value="1">1 Person</option>
+            <option value="2">2 Persons</option>
+            <option value="3">3 Persons</option>
+            <option value="4">4 Persons</option>
+            <option value="5">5 Persons</option>
+          </select>
         </div>
 
         <div>
@@ -944,43 +944,75 @@
 </section>
 
 <!-- =================================================================== -->
-<!-- RSVP GOOGLE SHEETS CONNECTION SCRIPT                                -->
+<!-- RSVP SINGLE-SUBMISSION & EDIT SCRIPT (VERSION 2 DEPLOYMENT)         -->
 <!-- =================================================================== -->
 <script>
   (function () {
     const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzP0_q-dOT30TP7Mteb9kjwFyDFHKF9PNLBYKQ_nNHRUpYk0gA3dr71wLmN-PgEduUb/exec';
+    const RSVP_STORAGE_KEY = 'kaye_val_guest_rsvp_v2';
 
     const form = document.getElementById('rsvp-form');
     const successBox = document.getElementById('rsvp-success');
+    const savedSummary = document.getElementById('rsvp-saved-summary');
     const submitBtn = document.getElementById('rsvp-submit-btn');
-    const resetBtn = document.getElementById('rsvp-reset-btn');
+    const editBtn = document.getElementById('rsvp-edit-btn');
     const guestsField = document.getElementById('guests-field');
     const labelAccept = document.getElementById('label-accept');
     const labelDecline = document.getElementById('label-decline');
     const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
 
-    // Toggle radio button styling & hide "Number of Guests" if declining
+    function updateRadioStyles(selectedValue) {
+      if (selectedValue === 'Joyfully Accepts') {
+        labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition';
+        labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
+        guestsField.classList.remove('hidden');
+      } else {
+        labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-rose-50 border-rosegold text-rosegold cursor-pointer transition';
+        labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
+        guestsField.classList.add('hidden');
+      }
+    }
+
     attendanceRadios.forEach((radio) => {
       radio.addEventListener('change', () => {
-        if (radio.value === 'Joyfully Accepts' && radio.checked) {
-          labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition';
-          labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
-          guestsField.classList.remove('hidden');
-        } else if (radio.value === 'Regretfully Declines' && radio.checked) {
-          labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-rose-50 border-rosegold text-rosegold cursor-pointer transition';
-          labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
-          guestsField.classList.add('hidden');
-        }
+        if (radio.checked) updateRadioStyles(radio.value);
       });
     });
 
-    // Send form submission to Google Sheets
+    function showSubmittedState(record) {
+      const guestText = record.attendance === 'Joyfully Accepts'
+        ? ` (${record.guests} ${record.guests === '1' ? 'Person' : 'Persons'})`
+        : '';
+      savedSummary.innerHTML = `Thank you, <strong>${record.name}</strong>! Your RSVP (<strong>${record.attendance}${guestText}</strong>) is saved. You may update your response below if your plans change.`;
+      form.classList.add('hidden');
+      successBox.classList.remove('hidden');
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    // Check on page load if this guest already submitted an RSVP
+    const existingData = localStorage.getItem(RSVP_STORAGE_KEY);
+    if (existingData) {
+      try {
+        const parsed = JSON.parse(existingData);
+        if (parsed && parsed.name) {
+          showSubmittedState(parsed);
+        }
+      } catch (e) {}
+    }
+
+    // Submit or Update RSVP
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const originalHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Sending Response...';
+      submitBtn.innerHTML = 'Saving Response...';
+
+      // Reuse existing submissionId if editing, or generate a new one
+      let submissionId = 'rsvp_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+      try {
+        const prev = JSON.parse(localStorage.getItem(RSVP_STORAGE_KEY));
+        if (prev && prev.submissionId) submissionId = prev.submissionId;
+      } catch (err) {}
 
       const name = document.getElementById('rsvp-name').value.trim();
       const attendance = document.querySelector('input[name="attendance"]:checked').value;
@@ -988,6 +1020,7 @@
       const message = document.getElementById('rsvp-message').value.trim();
 
       const payload = {
+        submissionId: submissionId,
         timestamp: new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' }),
         name: name,
         attendance: attendance,
@@ -1003,26 +1036,39 @@
           body: JSON.stringify(payload)
         });
 
-        form.classList.add('hidden');
-        successBox.classList.remove('hidden');
-        if (window.lucide) window.lucide.createIcons();
+        localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify(payload));
+        showSubmittedState(payload);
       } catch (err) {
         alert('There was a network issue sending your RSVP. Please try again.');
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = originalHTML;
+        submitBtn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> Send RSVP Response';
         if (window.lucide) window.lucide.createIcons();
       }
     });
 
-    // Reset form to submit another response
-    resetBtn.addEventListener('click', () => {
-      form.reset();
-      labelAccept.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition';
-      labelDecline.className = 'flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition';
-      guestsField.classList.remove('hidden');
+    // Pre-fill form when guest clicks "Edit My Response"
+    editBtn.addEventListener('click', () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem(RSVP_STORAGE_KEY));
+        if (saved) {
+          document.getElementById('rsvp-name').value = saved.name || '';
+          const radioToSelect = document.querySelector(`input[name="attendance"][value="${saved.attendance}"]`);
+          if (radioToSelect) {
+            radioToSelect.checked = true;
+            updateRadioStyles(saved.attendance);
+          }
+          if (saved.guests && saved.guests !== '0') {
+            document.getElementById('rsvp-guests').value = saved.guests;
+          }
+          document.getElementById('rsvp-message').value = saved.message || '';
+          submitBtn.innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update RSVP Response';
+        }
+      } catch (e) {}
+
       successBox.classList.add('hidden');
       form.classList.remove('hidden');
+      if (window.lucide) window.lucide.createIcons();
     });
   })();
 </script>
