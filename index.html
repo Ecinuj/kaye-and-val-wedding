@@ -1,4 +1,10 @@
-<!-- Google Fonts: Cormorant Garamond, Great Vibes & Montserrat -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Kaye &amp; Val | Baranuelo – Cunanan Nuptials</title>
+  <!-- Google Fonts: Cormorant Garamond, Great Vibes & Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -52,6 +58,35 @@
        so mobile and desktop browsers lock the image container firmly to the viewport */
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAF8F2;
+      color: #334133;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    #fixed-bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100lvh;
+      min-height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Hide scrollbars on horizontal mobile tab strip while preserving touch swipe */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     body {
       margin: 0;
@@ -148,7 +183,7 @@
   <!-- ===================================================================== -->
   <!-- 1. CINEMATIC FULL-SCREEN OPENING COVER SCREEN                         -->
   <!-- ===================================================================== -->
-  <div id="opening-cover" class="fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000">
+  <div id="opening-cover" class="fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 min-h-[100dvh] px-4 py-8">
     <div class="absolute inset-0 w-full h-full">
       <img 
         src="https://lh3.googleusercontent.com/d/1uzOUnIjHZ-s6f1xgOqrsQ1nLzZSBSO8n" 
@@ -156,12 +191,12 @@
         alt="Kaye & Val Prenup Cover" 
         class="w-full h-full object-cover object-center"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/65"></div>
     </div>
 
-    <div class="relative z-10 text-center px-6 max-w-2xl mx-auto flex flex-col items-center animate-fade-in text-white">
-      <div class="mb-4">
-        <svg class="w-12 h-12 text-rosegold-light mx-auto animate-pulse" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+    <div class="relative z-10 text-center px-4 sm:px-6 max-w-2xl mx-auto flex flex-col items-center animate-fade-in text-white">
+      <div class="mb-3 sm:mb-4">
+        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-rosegold-light mx-auto animate-pulse" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M50 90 Q 50 50 80 10" stroke-linecap="round" />
           <path d="M50 75 Q 30 65 20 60 Q 30 55 50 75" fill="currentColor" fill-opacity="0.2" />
           <path d="M55 60 Q 75 50 85 45 Q 75 40 55 60" fill="currentColor" fill-opacity="0.2" />
@@ -169,27 +204,27 @@
           <path d="M63 30 Q 80 20 88 15 Q 78 12 63 30" fill="currentColor" fill-opacity="0.2" />
         </svg>
       </div>
-      <p class="text-xs sm:text-sm tracking-[0.3em] uppercase text-rosegold-light font-light mb-2">
+      <p class="text-[11px] sm:text-sm tracking-[0.25em] sm:tracking-[0.3em] uppercase text-rosegold-light font-light mb-1.5 sm:mb-2">
         Together with their families
       </p>
-      <h1 class="font-serif text-5xl md:text-7xl font-normal tracking-wide text-white mb-2 drop-shadow-md">
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-normal tracking-wide text-white mb-1.5 sm:mb-2 drop-shadow-md">
         Kaye &amp; Val
       </h1>
-      <p class="font-serif italic text-xl md:text-2xl text-rosegold-light font-light mb-6">
+      <p class="font-serif italic text-lg sm:text-xl md:text-2xl text-rosegold-light font-light mb-4 sm:mb-6">
         Baranuelo – Cunanan Nuptials
       </p>
 
-      <div class="h-[1px] w-24 bg-rosegold/80 mb-6"></div>
+      <div class="h-[1px] w-20 sm:w-24 bg-rosegold/80 mb-4 sm:mb-6"></div>
 
-      <p class="text-sm sm:text-base tracking-widest text-slate-200 uppercase mb-8 font-light">
+      <p class="text-xs sm:text-base tracking-widest text-slate-200 uppercase mb-6 sm:mb-8 font-light">
         Wednesday, December 9, 2026 &bull; Naga City
       </p>
 
       <button
         id="open-invitation-btn"
-        class="group relative inline-flex items-center gap-3 px-8 py-4 bg-sage-dark/90 hover:bg-sage-dark text-white rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl border border-rosegold/50 hover:border-rosegold cursor-pointer"
+        class="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 sm:px-8 sm:py-4 min-h-[48px] bg-sage-dark/90 hover:bg-sage-dark active:scale-95 text-white rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl border border-rosegold/50 hover:border-rosegold cursor-pointer"
       >
-        <span class="font-serif tracking-wider text-lg">Open Invitation</span>
+        <span class="font-serif tracking-wider text-base sm:text-lg">Open Invitation</span>
         <i data-lucide="heart" class="w-5 h-5 text-rosegold-light group-hover:scale-125 transition-transform duration-300"></i>
       </button>
     </div>
@@ -201,11 +236,11 @@
   <div id="main-content" class="hidden">
 
     <!-- STICKY NAVIGATION HEADER -->
-    <header class="sticky top-0 z-40 bg-cream/95 border-b border-sage/30 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="#home" class="font-serif text-2xl font-semibold tracking-wide text-sage-dark flex items-center gap-2">
+    <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-sage/30 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+        <a href="#home" class="font-serif text-xl sm:text-2xl font-semibold tracking-wide text-sage-dark flex items-center gap-2">
           <span>Kaye &amp; Val</span>
-          <span class="text-xs text-rosegold font-sans font-normal tracking-widest hidden md:inline">| 12.09.26</span>
+          <span class="text-xs text-rosegold font-sans font-normal tracking-widest">| 12.09.26</span>
         </a>
 
         <!-- Desktop Navigation Links -->
@@ -221,22 +256,22 @@
         </nav>
 
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-sage-dark hover:bg-sage-light/40 transition-colors" aria-label="Toggle menu">
+        <button id="mobile-menu-btn" class="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-sage-dark hover:bg-sage-light/40 transition-colors" aria-label="Toggle menu">
           <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
 
       <!-- Mobile Menu Dropdown -->
-      <div id="mobile-menu" class="hidden lg:hidden bg-cream border-b border-sage/30 px-6 py-6 shadow-xl">
-        <nav class="flex flex-col gap-3 text-center">
-          <a href="#home" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Home</a>
-          <a href="#story" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Our Story</a>
-          <a href="#video-invite" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Video &amp; Digital Invitation</a>
-          <a href="#details" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Wedding Details</a>
-          <a href="#entourage" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">The Entourage</a>
-          <a href="#dresscode" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">Dress Code</a>
-          <a href="#gifts" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5 border-b border-slate-100">A Note on Gifts</a>
-          <a href="#rsvp" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-1.5">RSVP</a>
+      <div id="mobile-menu" class="hidden lg:hidden bg-cream/98 border-b border-sage/30 px-5 py-4 shadow-xl max-h-[80vh] overflow-y-auto">
+        <nav class="flex flex-col gap-1 text-center">
+          <a href="#home" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5 border-b border-slate-100">Home</a>
+          <a href="#story" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5 border-b border-slate-100">Our Story</a>
+          <a href="#video-invite" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5 border-b border-slate-100">Video &amp; Digital Invitation</a>
+          <a href="#details" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5 border-b border-slate-100">Wedding Details</a>
+          <a href="#entourage" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5 border-b border-slate-100">The Entourage</a>
+          <a href="#dresscode" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5 border-b border-slate-100">Dress Code</a>
+          <a href="#gifts" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5 border-b border-slate-100">A Note on Gifts</a>
+          <a href="#rsvp" class="mobile-nav-link text-base font-serif tracking-wider text-sage-dark hover:text-rosegold py-2.5">RSVP</a>
         </nav>
       </div>
     </header>
@@ -245,60 +280,60 @@
       <!-- =================================================================== -->
       <!-- 1. HERO SECTION                                                     -->
       <!-- =================================================================== -->
-      <section id="home" class="scroll-mt-24 min-h-[92vh] flex items-center justify-center py-16 px-4">
-        <div class="max-w-4xl mx-auto text-center px-6 py-12 glass-card rounded-3xl">
-          <span class="text-xs tracking-[0.35em] text-rosegold uppercase font-semibold">
+      <section id="home" class="scroll-mt-20 sm:scroll-mt-24 min-h-[88dvh] flex items-center justify-center py-10 sm:py-16 px-3 sm:px-4">
+        <div class="w-full max-w-4xl mx-auto text-center px-4 sm:px-8 py-8 sm:py-12 glass-card rounded-2xl sm:rounded-3xl">
+          <span class="text-[11px] sm:text-xs tracking-[0.25em] sm:tracking-[0.35em] text-rosegold uppercase font-semibold">
             Baranuelo – Cunanan Nuptials
           </span>
           
-          <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl text-sage-dark my-4 tracking-wide font-normal">
+          <h1 class="font-serif text-4xl sm:text-7xl lg:text-8xl text-sage-dark my-3 sm:my-4 tracking-wide font-normal">
             Kaye &amp; Val
           </h1>
 
           <!-- Rose Gold Divider -->
-          <div class="flex items-center justify-center my-6 gap-3 opacity-90">
-            <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-rosegold"></div>
+          <div class="flex items-center justify-center my-4 sm:my-6 gap-2.5 sm:gap-3 opacity-90">
+            <div class="h-[1px] w-10 sm:w-12 bg-gradient-to-r from-transparent to-rosegold"></div>
             <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
             <i data-lucide="sparkles" class="w-4 h-4 text-rosegold"></i>
             <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
-            <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-rosegold"></div>
+            <div class="h-[1px] w-10 sm:w-12 bg-gradient-to-l from-transparent to-rosegold"></div>
           </div>
 
-          <p class="font-serif italic text-lg sm:text-2xl text-slate-700 max-w-2xl mx-auto mb-8">
+          <p class="font-serif italic text-base sm:text-2xl text-slate-700 max-w-2xl mx-auto mb-6 sm:mb-8 px-1">
             "Two hearts, one promise, and a lifetime of love."
           </p>
 
           <!-- Countdown Timer Display -->
-          <div class="my-8 py-6 px-4 bg-white/85 rounded-2xl border border-sage/30 max-w-2xl mx-auto shadow-inner">
-            <p class="text-xs uppercase tracking-widest text-sage-dark font-semibold mb-4">
-              Counting Down To Our Big Day &bull; December 9, 2026
+          <div class="my-6 sm:my-8 py-5 px-3 sm:py-6 sm:px-4 bg-white/85 rounded-2xl border border-sage/30 max-w-2xl mx-auto shadow-inner">
+            <p class="text-[10px] sm:text-xs uppercase tracking-widest text-sage-dark font-semibold mb-3 sm:mb-4">
+              Counting Down To Our Big Day &bull; Dec 9, 2026
             </p>
-            <div id="countdown-grid" class="grid grid-cols-4 gap-2 sm:gap-6 text-center">
-              <div class="flex flex-col items-center">
-                <span id="cd-days" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
-                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Days</span>
+            <div id="countdown-grid" class="grid grid-cols-4 gap-1.5 sm:gap-6 text-center">
+              <div class="flex flex-col items-center bg-cream/70 sm:bg-transparent py-2 sm:py-0 rounded-xl">
+                <span id="cd-days" class="font-serif text-2xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[9px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-rosegold mt-1">Days</span>
               </div>
-              <div class="flex flex-col items-center">
-                <span id="cd-hours" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
-                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Hours</span>
+              <div class="flex flex-col items-center bg-cream/70 sm:bg-transparent py-2 sm:py-0 rounded-xl">
+                <span id="cd-hours" class="font-serif text-2xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[9px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-rosegold mt-1">Hours</span>
               </div>
-              <div class="flex flex-col items-center">
-                <span id="cd-minutes" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
-                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Minutes</span>
+              <div class="flex flex-col items-center bg-cream/70 sm:bg-transparent py-2 sm:py-0 rounded-xl">
+                <span id="cd-minutes" class="font-serif text-2xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[9px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-rosegold mt-1">Mins</span>
               </div>
-              <div class="flex flex-col items-center">
-                <span id="cd-seconds" class="font-serif text-3xl sm:text-5xl font-medium text-sage-dark">00</span>
-                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-rosegold mt-1">Seconds</span>
+              <div class="flex flex-col items-center bg-cream/70 sm:bg-transparent py-2 sm:py-0 rounded-xl">
+                <span id="cd-seconds" class="font-serif text-2xl sm:text-5xl font-medium text-sage-dark">00</span>
+                <span class="text-[9px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-rosegold mt-1">Secs</span>
               </div>
             </div>
-            <p id="cd-past-msg" class="hidden font-serif text-2xl text-rosegold italic">Today, we begin our forever.</p>
+            <p id="cd-past-msg" class="hidden font-serif text-xl sm:text-2xl text-rosegold italic">Today, we begin our forever.</p>
           </div>
 
-          <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
-            <a href="#video-invite" class="px-6 py-3 bg-sage-dark hover:bg-[#52624c] text-white rounded-full text-sm font-medium tracking-wider uppercase shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-6 max-w-md sm:max-w-none mx-auto">
+            <a href="#video-invite" class="w-full sm:w-auto justify-center px-6 py-3.5 bg-sage-dark hover:bg-[#52624c] text-white rounded-full text-xs sm:text-sm font-medium tracking-wider uppercase shadow-md hover:shadow-lg transition-all flex items-center gap-2">
               <i data-lucide="play-circle" class="w-4 h-4 text-rosegold-light"></i> Watch Video Invitation
             </a>
-            <a href="#rsvp" class="px-6 py-3 bg-rosegold hover:bg-[#a05a65] text-white rounded-full text-sm font-medium tracking-wider uppercase shadow-md hover:shadow-lg transition-all">
+            <a href="#rsvp" class="w-full sm:w-auto justify-center px-6 py-3.5 bg-rosegold hover:bg-[#a05a65] text-white rounded-full text-xs sm:text-sm font-medium tracking-wider uppercase shadow-md hover:shadow-lg transition-all flex items-center">
               Confirm RSVP
             </a>
           </div>
@@ -308,20 +343,20 @@
       <!-- =================================================================== -->
       <!-- 2. OUR STORY SECTION                                                -->
       <!-- =================================================================== -->
-      <section id="story" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-6xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
-          <div class="text-center mb-14">
-            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Our Journey</span>
-            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">Our Love Story</h2>
-            <div class="flex items-center justify-center my-5 gap-3">
+      <section id="story" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-14">
+          <div class="text-center mb-10 sm:mb-14">
+            <span class="text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-rosegold font-semibold">Our Journey</span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">Our Love Story</h2>
+            <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
               <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-10 items-center">
-            <div class="relative group rounded-2xl overflow-hidden shadow-xl aspect-[4/5]">
+          <div class="grid md:grid-cols-2 gap-6 sm:gap-10 items-center">
+            <div class="relative group rounded-2xl overflow-hidden shadow-xl aspect-[4/5] max-h-[460px] sm:max-h-none mx-auto w-full">
               <img 
                 src="https://lh3.googleusercontent.com/d/19YVf1biwmi2WppIbTOXoeA6S4cBhisKc" 
                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80';"
@@ -330,22 +365,22 @@
               />
             </div>
 
-            <div class="space-y-6 text-charcoal">
-              <div class="bg-white/90 p-8 rounded-2xl shadow-sm border border-sage/25">
-                <h3 class="font-serif text-2xl text-sage-dark mb-3">Where Our Story Began</h3>
-                <p class="text-slate-600 leading-relaxed font-light">
+            <div class="space-y-4 sm:space-y-6 text-charcoal">
+              <div class="bg-white/90 p-5 sm:p-8 rounded-2xl shadow-sm border border-sage/25">
+                <h3 class="font-serif text-xl sm:text-2xl text-sage-dark mb-2 sm:mb-3">Where Our Story Began</h3>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-light">
                   Every love story is beautiful, but ours is our absolute favorite. From our quiet first conversations to realizing we had found a lifelong home in each other, every moment led us here.
                 </p>
               </div>
 
-              <div class="bg-white/90 p-8 rounded-2xl shadow-sm border border-sage/25">
-                <h3 class="font-serif text-2xl text-sage-dark mb-3">The Next Chapter</h3>
-                <p class="text-slate-600 leading-relaxed font-light">
+              <div class="bg-white/90 p-5 sm:p-8 rounded-2xl shadow-sm border border-sage/25">
+                <h3 class="font-serif text-xl sm:text-2xl text-sage-dark mb-2 sm:mb-3">The Next Chapter</h3>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-light">
                   As we prepare to exchange vows at the historic Basilica of Our Lady of Peñafrancia in Naga City, we look forward to a lifetime filled with shared adventures, boundless laughter, and unfailing support.
                 </p>
               </div>
               
-              <div class="p-6 bg-sage-light/60 rounded-2xl border border-sage/30 italic text-slate-800 font-serif text-lg">
+              <div class="p-5 sm:p-6 bg-sage-light/60 rounded-2xl border border-sage/30 italic text-slate-800 font-serif text-base sm:text-lg">
                 "From this day forward, you shall not walk alone. My heart will be your shelter, and my arms will be your home."
               </div>
             </div>
@@ -356,24 +391,24 @@
       <!-- =================================================================== -->
       <!-- 2B. ATTACHED VIDEO INVITATION SECTION (9:16 PORTRAIT FRAME)         -->
       <!-- =================================================================== -->
-      <section id="video-invite" class="scroll-mt-24 py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
-          <div class="text-center max-w-2xl mx-auto mb-12">
+      <section id="video-invite" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-24 px-3 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-14">
+          <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
             <span class="text-xs uppercase tracking-[0.25em] text-rosegold font-semibold">Official Save The Date</span>
-            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-dark mt-1 mb-3">
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-dark mt-1 mb-2 sm:mb-3">
               Our Video Invitation
             </h2>
-            <p class="text-sm sm:text-base text-slate-700">
+            <p class="text-xs sm:text-base text-slate-700">
               Watch our official wedding video invitation below, or read our formal invitation card.
             </p>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <!-- Responsive Video Frame Player (Fits full 9:16 video cleanly without cropping) -->
+            <!-- Responsive Video Frame Player (Fits full 9:16 video cleanly on iOS & Android) -->
             <div class="lg:col-span-7 flex flex-col items-center gap-4">
               <div
                 id="videoFrameOuter"
-                class="relative w-full max-w-[380px] aspect-[9/16] max-h-[75vh] rounded-3xl p-2 bg-gradient-to-b from-rosegold-light via-rosegold to-sage-dark shadow-2xl transition-all duration-300"
+                class="relative w-full max-w-[300px] sm:max-w-[380px] aspect-[9/16] max-h-[68dvh] sm:max-h-[75vh] rounded-3xl p-1.5 sm:p-2 bg-gradient-to-b from-rosegold-light via-rosegold to-sage-dark shadow-2xl transition-all duration-300"
               >
                 <!-- Inner Screen -->
                 <div class="relative w-full h-full rounded-2xl bg-black overflow-hidden flex flex-col justify-between">
@@ -393,7 +428,7 @@
                 href="https://drive.google.com/file/d/1csMpCMKQCUm1jM3E6cyRpejze3H_518C/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-sage-dark hover:bg-[#52624c] text-white rounded-full text-xs font-medium tracking-wider uppercase shadow-md transition-all"
+                class="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-sage-dark hover:bg-[#52624c] text-white rounded-full text-xs font-medium tracking-wider uppercase shadow-md transition-all"
               >
                 <i data-lucide="maximize-2" class="w-4 h-4"></i>
                 <span>Open Full Screen View</span>
@@ -402,23 +437,23 @@
 
             <!-- Right Column: Formal Invitation Summary & Card Modal Trigger -->
             <div class="lg:col-span-5 text-center lg:text-left space-y-6">
-              <div class="glass-card-white p-8 rounded-3xl">
+              <div class="glass-card-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl">
                 <p class="text-xs uppercase tracking-[0.25em] text-rosegold font-semibold mb-2">
                   Baranuelo – Cunanan Nuptials
                 </p>
-                <h3 class="font-serif text-3xl sm:text-4xl text-sage-dark mb-4">
+                <h3 class="font-serif text-2xl sm:text-4xl text-sage-dark mb-3 sm:mb-4">
                   You Are Cordially Invited
                 </h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
                   Together with our beloved parents, we warmly invite you to join us in prayer, joy, and celebration as we exchange our sacred vows on <strong>Wednesday, December 9, 2026</strong> in Naga City.
                 </p>
 
                 <button
                   id="open-card-modal-btn"
-                  class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-cream hover:bg-sage-light/60 text-sage-dark rounded-2xl border border-rosegold/40 hover:border-rosegold shadow-sm transition-all cursor-pointer"
+                  class="w-full inline-flex items-center justify-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-3.5 sm:py-4 min-h-[48px] bg-cream hover:bg-sage-light/60 text-sage-dark rounded-2xl border border-rosegold/40 hover:border-rosegold shadow-sm transition-all cursor-pointer"
                 >
-                  <i data-lucide="mail" class="w-5 h-5 text-rosegold"></i>
-                  <span class="font-serif text-lg tracking-wide">View Formal Invitation Card</span>
+                  <i data-lucide="mail" class="w-5 h-5 text-rosegold shrink-0"></i>
+                  <span class="font-serif text-base sm:text-lg tracking-wide">View Formal Invitation Card</span>
                 </button>
               </div>
             </div>
@@ -429,41 +464,41 @@
       <!-- =================================================================== -->
       <!-- 3. WEDDING DETAILS SECTION                                          -->
       <!-- =================================================================== -->
-      <section id="details" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-6xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
-          <div class="text-center mb-14">
-            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Event Information</span>
-            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">Wedding Details</h2>
-            <div class="flex items-center justify-center my-5 gap-3">
+      <section id="details" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-14">
+          <div class="text-center mb-10 sm:mb-14">
+            <span class="text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-rosegold font-semibold">Event Information</span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">Wedding Details</h2>
+            <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
               <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-8">
+          <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
             <!-- Ceremony Card -->
-            <div class="glass-card-white p-8 rounded-3xl flex flex-col justify-between">
+            <div class="glass-card-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between">
               <div>
-                <div class="w-12 h-12 bg-sage-light/70 rounded-full flex items-center justify-center mb-6 text-sage-dark">
-                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 bg-sage-light/70 rounded-full flex items-center justify-center mb-4 sm:mb-6 text-sage-dark">
+                  <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 2v4M10 4h4M4 22V10l8-5 8 5v12H4z" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M12 22v-5a2 2 0 0 0-4 0v5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <span class="text-xs uppercase tracking-widest text-rosegold font-bold">The Marriage Ceremony</span>
-                <h3 class="font-serif text-2xl text-sage-dark mt-1 mb-4">
+                <span class="text-[11px] sm:text-xs uppercase tracking-widest text-rosegold font-bold">The Marriage Ceremony</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-sage-dark mt-1 mb-3 sm:mb-4">
                   Basilica of Our Lady of Peñafrancia
                 </h3>
-                <div class="space-y-3 text-slate-600 text-sm mb-6">
+                <div class="space-y-2.5 sm:space-y-3 text-slate-600 text-xs sm:text-sm mb-6">
                   <p class="flex items-center gap-2">
-                    <i data-lucide="calendar" class="w-4 h-4 text-rosegold"></i> Wednesday, December 9, 2026
+                    <i data-lucide="calendar" class="w-4 h-4 text-rosegold shrink-0"></i> <span>Wednesday, December 9, 2026</span>
                   </p>
                   <p class="flex items-center gap-2">
-                    <i data-lucide="clock" class="w-4 h-4 text-rosegold"></i> 2:00 PM
+                    <i data-lucide="clock" class="w-4 h-4 text-rosegold shrink-0"></i> <span>2:00 PM</span>
                   </p>
                   <p class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-rosegold"></i> Naga City, Camarines Sur, Philippines
+                    <i data-lucide="map-pin" class="w-4 h-4 text-rosegold shrink-0"></i> <span>Naga City, Camarines Sur, Philippines</span>
                   </p>
                 </div>
               </div>
@@ -471,32 +506,32 @@
                 href="https://maps.google.com/?q=Basilica+of+Our+Lady+of+Penafrancia+Naga+City"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 w-full py-3 bg-cream hover:bg-sage-light/60 text-sage-dark rounded-xl font-medium text-sm transition-colors border border-sage/40"
+                class="inline-flex items-center justify-center gap-2 w-full py-3 min-h-[44px] bg-cream hover:bg-sage-light/60 text-sage-dark rounded-xl font-medium text-xs sm:text-sm transition-colors border border-sage/40"
               >
                 Get Ceremony Directions <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
             </div>
 
             <!-- Reception Card -->
-            <div class="glass-card-white p-8 rounded-3xl flex flex-col justify-between">
+            <div class="glass-card-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between">
               <div>
-                <div class="w-12 h-12 bg-rosegold-light/50 rounded-full flex items-center justify-center mb-6 text-rosegold">
-                  <i data-lucide="sparkles" class="w-6 h-6"></i>
+                <div class="w-11 h-11 sm:w-12 sm:h-12 bg-rosegold-light/50 rounded-full flex items-center justify-center mb-4 sm:mb-6 text-rosegold">
+                  <i data-lucide="sparkles" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </div>
-                <span class="text-xs uppercase tracking-widest text-rosegold font-bold">The Reception Celebration</span>
-                <h3 class="font-serif text-2xl text-sage-dark mt-1 mb-1">
+                <span class="text-[11px] sm:text-xs uppercase tracking-widest text-rosegold font-bold">The Reception Celebration</span>
+                <h3 class="font-serif text-xl sm:text-2xl text-sage-dark mt-1 mb-1">
                   Queen Rose Hall
                 </h3>
-                <p class="text-sm font-semibold text-slate-700 mb-4">Robertson Hotel</p>
-                <div class="space-y-3 text-slate-600 text-sm mb-6">
+                <p class="text-xs sm:text-sm font-semibold text-slate-700 mb-3 sm:mb-4">Robertson Hotel</p>
+                <div class="space-y-2.5 sm:space-y-3 text-slate-600 text-xs sm:text-sm mb-6">
                   <p class="flex items-center gap-2">
-                    <i data-lucide="calendar" class="w-4 h-4 text-rosegold"></i> Wednesday, December 9, 2026
+                    <i data-lucide="calendar" class="w-4 h-4 text-rosegold shrink-0"></i> <span>Wednesday, December 9, 2026</span>
                   </p>
                   <p class="flex items-center gap-2">
-                    <i data-lucide="clock" class="w-4 h-4 text-rosegold"></i> 4:30 PM (Following Ceremony)
+                    <i data-lucide="clock" class="w-4 h-4 text-rosegold shrink-0"></i> <span>4:30 PM (Following Ceremony)</span>
                   </p>
                   <p class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-rosegold"></i> J. Miranda Avenue, Naga City, Camarines Sur
+                    <i data-lucide="map-pin" class="w-4 h-4 text-rosegold shrink-0"></i> <span>J. Miranda Avenue, Naga City, Camarines Sur</span>
                   </p>
                 </div>
               </div>
@@ -504,7 +539,7 @@
                 href="https://maps.google.com/?q=Robertson+Hotel+J+Miranda+Avenue+Naga+City"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 w-full py-3 bg-cream hover:bg-sage-light/60 text-sage-dark rounded-xl font-medium text-sm transition-colors border border-sage/40"
+                class="inline-flex items-center justify-center gap-2 w-full py-3 min-h-[44px] bg-cream hover:bg-sage-light/60 text-sage-dark rounded-xl font-medium text-xs sm:text-sm transition-colors border border-sage/40"
               >
                 Get Reception Directions <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -516,133 +551,133 @@
       <!-- =================================================================== -->
       <!-- 4. WEDDING ENTOURAGE & PRINCIPAL SPONSORS                           -->
       <!-- =================================================================== -->
-      <section id="entourage" class="scroll-mt-24 py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto glass-card rounded-3xl p-6 sm:p-12">
-          <div class="text-center max-w-2xl mx-auto mb-10">
+      <section id="entourage" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-24 px-3 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-12">
+          <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
             <span class="text-xs uppercase tracking-[0.25em] text-rosegold-500 font-semibold">With Love &amp; Gratitude</span>
-            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-3">
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-sage-700 mt-1 mb-2 sm:mb-3">
               The Wedding Entourage
             </h2>
-            <p class="text-sm text-sage-600">
+            <p class="text-xs sm:text-sm text-sage-600">
               Surrounded by our beloved parents, sponsors, and dearest friends who walk beside us on this sacred day.
             </p>
           </div>
 
-          <!-- Interactive Category Tabs -->
-          <div class="flex flex-wrap justify-center gap-2 mb-10">
-            <button onclick="filterEntourage('all')" data-tab="all" class="entourage-tab active px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-sage-600 text-white shadow-sm transition-all cursor-pointer">
+          <!-- Interactive Category Tabs (Swipeable on narrow iPhone/Android screens) -->
+          <div class="flex overflow-x-auto no-scrollbar sm:flex-wrap justify-start sm:justify-center gap-2 pb-2 mb-8 sm:mb-10 px-1">
+            <button onclick="filterEntourage('all')" data-tab="all" class="entourage-tab active shrink-0 px-4 py-2.5 min-h-[40px] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-sage-600 text-white shadow-sm transition-all cursor-pointer">
               All Roles
             </button>
-            <button onclick="filterEntourage('parents')" data-tab="parents" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+            <button onclick="filterEntourage('parents')" data-tab="parents" class="entourage-tab shrink-0 px-4 py-2.5 min-h-[40px] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
               Parents &amp; Honor
             </button>
-            <button onclick="filterEntourage('principal')" data-tab="principal" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+            <button onclick="filterEntourage('principal')" data-tab="principal" class="entourage-tab shrink-0 px-4 py-2.5 min-h-[40px] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
               Principal Sponsors
             </button>
-            <button onclick="filterEntourage('secondary')" data-tab="secondary" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+            <button onclick="filterEntourage('secondary')" data-tab="secondary" class="entourage-tab shrink-0 px-4 py-2.5 min-h-[40px] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
               Secondary Sponsors
             </button>
-            <button onclick="filterEntourage('party')" data-tab="party" class="entourage-tab px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
+            <button onclick="filterEntourage('party')" data-tab="party" class="entourage-tab shrink-0 px-4 py-2.5 min-h-[40px] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-white text-sage-700 border border-sage-200 hover:border-rosegold-400 transition-all cursor-pointer">
               Bridal Party &amp; Bearers
             </button>
           </div>
 
           <!-- Entourage Grid -->
-          <div class="space-y-8">
+          <div class="space-y-6 sm:space-y-8">
             <!-- Parents & Lead Honor -->
-            <div data-group="parents" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-                <div class="space-y-2">
+            <div data-group="parents" class="entourage-group rounded-2xl sm:rounded-3xl glass-card-white p-5 sm:p-10 rosegold-border">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-center">
+                <div class="space-y-1.5 sm:space-y-2">
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Parents of the Bride</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800">Romualdo P. Baranuelo</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800">Emily B. Baranuelo</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Romualdo P. Baranuelo</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Emily B. Baranuelo</p>
                 </div>
-                <div class="space-y-2">
+                <div class="space-y-1.5 sm:space-y-2">
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Parents of the Groom</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800">Alma P. Cunanan</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800">Val Celso V. Cunanan Sr. (&dagger;)</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800">Alejandro Peteza Jr.</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Alma P. Cunanan</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Val Celso V. Cunanan Sr. (&dagger;)</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Alejandro Peteza Jr.</p>
                 </div>
               </div>
 
-              <div class="h-px bg-rosegold-200/60 my-8"></div>
+              <div class="h-px bg-rosegold-200/60 my-6 sm:my-8"></div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 text-center">
                 <div>
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Bestman</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Christian John P. Cunanan</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Christian John P. Cunanan</p>
                 </div>
                 <div>
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Maid of Honor</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Bendra C. Bañaga</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Bendra C. Bañaga</p>
                 </div>
                 <div>
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Matron of Honor</p>
-                  <p class="font-serif text-lg font-semibold text-sage-800 mt-1">Florence Claire B. Ragos</p>
+                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Florence Claire B. Ragos</p>
                 </div>
               </div>
             </div>
 
-            <!-- Principal Sponsors (Combined without Godmothers/Godfathers titles) -->
-            <div data-group="principal" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border text-center">
-              <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Principal Sponsors</h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 max-w-3xl mx-auto">
+            <!-- Principal Sponsors -->
+            <div data-group="principal" class="entourage-group rounded-2xl sm:rounded-3xl glass-card-white p-5 sm:p-10 rosegold-border text-center">
+              <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-5 sm:mb-6">Principal Sponsors</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 sm:gap-y-4 gap-x-8 max-w-3xl mx-auto">
                 <div class="p-3 rounded-2xl bg-sage-50/70">
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Cesar Roberto B. Mariano</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Arleen L. Mariano</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800">Mr. Cesar Roberto B. Mariano</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-700">Mrs. Arleen L. Mariano</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70">
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Larry R. Barcinilla Sr.</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Rustica C. Peteza</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800">Mr. Larry R. Barcinilla Sr.</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-700">Mrs. Rustica C. Peteza</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70">
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Martino A. Piloneo</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Amparo F. Piloneo</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800">Mr. Martino A. Piloneo</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-700">Mrs. Amparo F. Piloneo</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70">
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Hon. Kgwd. Jorge Bejamen R. Favenir</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Ophelia Royo</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800">Hon. Kgwd. Jorge Bejamen R. Favenir</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-700">Mrs. Ophelia Royo</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70">
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Mr. Ceazar Anthony P. Olaso</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Mrs. Jeannilyn O. Olaso</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800">Mr. Ceazar Anthony P. Olaso</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-700">Mrs. Jeannilyn O. Olaso</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70 flex flex-col justify-center">
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800">Dra. Magnolia Corazon R. Favenir</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-700">Ms. Ma. Lina V. Cunanan</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800">Dra. Magnolia Corazon R. Favenir</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-700">Ms. Ma. Lina V. Cunanan</p>
                 </div>
               </div>
             </div>
 
             <!-- Secondary Sponsors -->
-            <div data-group="secondary" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border text-center">
-              <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-6">Secondary Sponsors</h3>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div data-group="secondary" class="entourage-group rounded-2xl sm:rounded-3xl glass-card-white p-5 sm:p-10 rosegold-border text-center">
+              <h3 class="font-script text-3xl sm:text-4xl text-rosegold-500 mb-5 sm:mb-6">Secondary Sponsors</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
                 <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To light our path</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Marites C. De Vera &amp; Norlan E. Pamor</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800 mt-1">Marites C. De Vera &amp; Norlan E. Pamor</p>
                 </div>
                 <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To clothe us as one</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Jonna E. Alfonso &amp; Jonathan O. Vegas</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800 mt-1">Jonna E. Alfonso &amp; Jonathan O. Vegas</p>
                 </div>
                 <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To bind us together</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Ma. Theresa Raborar &amp; Ajerico C. Peteza</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800 mt-1">Ma. Theresa Raborar &amp; Ajerico C. Peteza</p>
                 </div>
                 <div class="p-4 rounded-2xl border border-sage-100 bg-champagne/60">
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">To add color to our journey</p>
-                  <p class="font-serif text-base sm:text-lg font-semibold text-sage-800 mt-1">Michelle B. Cabrera &amp; Edison B. Cabrera</p>
+                  <p class="font-serif text-sm sm:text-lg font-semibold text-sage-800 mt-1">Michelle B. Cabrera &amp; Edison B. Cabrera</p>
                 </div>
               </div>
             </div>
 
             <!-- Groomsmen, Bridesmaids, Bearers & Flower Girls -->
-            <div data-group="party" class="entourage-group rounded-3xl glass-card-white p-6 sm:p-10 rosegold-border text-center space-y-8">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div data-group="party" class="entourage-group rounded-2xl sm:rounded-3xl glass-card-white p-5 sm:p-10 rosegold-border text-center space-y-6 sm:space-y-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div>
-                  <h4 class="font-script text-3xl text-rosegold-500 mb-3">Groomsmen</h4>
-                  <ul class="space-y-1.5 font-serif text-lg font-semibold text-sage-800">
+                  <h4 class="font-script text-2xl sm:text-3xl text-rosegold-500 mb-2 sm:mb-3">Groomsmen</h4>
+                  <ul class="space-y-1.5 font-serif text-base sm:text-lg font-semibold text-sage-800">
                     <li>Alex R. Palo</li>
                     <li>Andrei C. Peteza</li>
                     <li>Luke Andrei B. Badong</li>
@@ -650,8 +685,8 @@
                   </ul>
                 </div>
                 <div>
-                  <h4 class="font-script text-3xl text-rosegold-500 mb-3">Bridesmaids</h4>
-                  <ul class="space-y-1.5 font-serif text-lg font-semibold text-sage-800">
+                  <h4 class="font-script text-2xl sm:text-3xl text-rosegold-500 mb-2 sm:mb-3">Bridesmaids</h4>
+                  <ul class="space-y-1.5 font-serif text-base sm:text-lg font-semibold text-sage-800">
                     <li>Karen C. Raton</li>
                     <li>Madeline D. Rios</li>
                     <li>Vanessa M. Violeta</li>
@@ -664,22 +699,22 @@
               <div class="h-px bg-rosegold-200/60"></div>
 
               <!-- Bearers -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
                 <div class="p-3 rounded-2xl bg-sage-50/70">
                   <p class="font-script text-xl sm:text-2xl text-rosegold-500">Banner Bearer</p>
-                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Coby Amir K. Hill</p>
+                  <p class="font-serif text-sm sm:text-base font-semibold text-sage-800 mt-1">Coby Amir K. Hill</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70">
                   <p class="font-script text-xl sm:text-2xl text-rosegold-500">Ring Bearer</p>
-                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Richard Luke O. Olaso</p>
+                  <p class="font-serif text-sm sm:text-base font-semibold text-sage-800 mt-1">Richard Luke O. Olaso</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70">
                   <p class="font-script text-xl sm:text-2xl text-rosegold-500">Coin Bearer</p>
-                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Elijah Bennett B. Katindig</p>
+                  <p class="font-serif text-sm sm:text-base font-semibold text-sage-800 mt-1">Elijah Bennett B. Katindig</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-sage-50/70">
                   <p class="font-script text-xl sm:text-2xl text-rosegold-500">Bible Bearer</p>
-                  <p class="font-serif text-base font-semibold text-sage-800 mt-1">Alexander Sheidrin L. Gozun</p>
+                  <p class="font-serif text-sm sm:text-base font-semibold text-sage-800 mt-1">Alexander Sheidrin L. Gozun</p>
                 </div>
               </div>
 
@@ -689,11 +724,11 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 <div class="p-4 rounded-2xl bg-rosegold-50/60 border border-rosegold-200/60">
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500">Little Bride</p>
-                  <p class="font-serif text-xl font-semibold text-sage-800 mt-1">Valerie Claire B. Cunanan</p>
+                  <p class="font-serif text-lg sm:text-xl font-semibold text-sage-800 mt-1">Valerie Claire B. Cunanan</p>
                 </div>
                 <div>
                   <p class="font-script text-2xl sm:text-3xl text-rosegold-500 mb-2">Flower Girls</p>
-                  <ul class="space-y-1 font-serif text-lg font-semibold text-sage-800">
+                  <ul class="space-y-1 font-serif text-base sm:text-lg font-semibold text-sage-800">
                     <li>Gabrielle Yna Louise C. Aspe</li>
                     <li>Xavielle Skye Ylise C. Aspe</li>
                     <li>Amara Mary Nathalie K. Hill</li>
@@ -709,12 +744,12 @@
       <!-- =================================================================== -->
       <!-- DRESS CODE SECTION                                                  -->
       <!-- =================================================================== -->
-      <section id="dresscode" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
-          <div class="text-center mb-14">
-            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Attire Guide</span>
-            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">Dress Code</h2>
-            <div class="flex items-center justify-center my-5 gap-3">
+      <section id="dresscode" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-14">
+          <div class="text-center mb-10 sm:mb-14">
+            <span class="text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-rosegold font-semibold">Attire Guide</span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">Dress Code</h2>
+            <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
               <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
@@ -722,51 +757,51 @@
           </div>
 
           <!-- Color Swatches -->
-          <div class="glass-card-white p-8 rounded-3xl mb-8 text-center">
-            <h3 class="font-serif text-xl text-sage-dark mb-6">Wedding Color Palette</h3>
-            <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+          <div class="glass-card-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl mb-6 sm:mb-8 text-center">
+            <h3 class="font-serif text-lg sm:text-xl text-sage-dark mb-5 sm:mb-6">Wedding Color Palette</h3>
+            <div class="grid grid-cols-3 sm:flex sm:flex-wrap justify-center gap-4 sm:gap-8">
               <div class="flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #A3B18A;"></div>
-                <span class="text-xs text-slate-700 font-medium">Sage Green</span>
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #A3B18A;"></div>
+                <span class="text-[11px] sm:text-xs text-slate-700 font-medium">Sage Green</span>
               </div>
               <div class="flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #66785F;"></div>
-                <span class="text-xs text-slate-700 font-medium">Deep Sage</span>
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #66785F;"></div>
+                <span class="text-[11px] sm:text-xs text-slate-700 font-medium">Deep Sage</span>
               </div>
               <div class="flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #DCE4D2;"></div>
-                <span class="text-xs text-slate-700 font-medium">Soft Sage</span>
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #DCE4D2;"></div>
+                <span class="text-[11px] sm:text-xs text-slate-700 font-medium">Soft Sage</span>
               </div>
               <div class="flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #B76E79;"></div>
-                <span class="text-xs text-slate-700 font-medium">Rose Gold</span>
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #B76E79;"></div>
+                <span class="text-[11px] sm:text-xs text-slate-700 font-medium">Rose Gold</span>
               </div>
               <div class="flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #E8C7B8;"></div>
-                <span class="text-xs text-slate-700 font-medium">Champagne</span>
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-md border-2 border-white ring-2 ring-slate-200 mb-2" style="background-color: #E8C7B8;"></div>
+                <span class="text-[11px] sm:text-xs text-slate-700 font-medium">Champagne</span>
               </div>
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="glass-card-white p-8 rounded-3xl">
-              <h4 class="font-serif text-xl text-sage-dark mb-3">Principal Sponsors</h4>
-              <p class="text-slate-600 leading-relaxed text-sm font-light">
+          <div class="grid md:grid-cols-2 gap-5 sm:gap-8">
+            <div class="glass-card-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl">
+              <h4 class="font-serif text-lg sm:text-xl text-sage-dark mb-2 sm:mb-3">Principal Sponsors</h4>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm font-light">
                 Formal Attire. Gentlemen in traditional Barong Tagalog or dark suit. Ladies in elegant floor-length gowns featuring Sage Green or Rose Gold tones.
               </p>
             </div>
 
-            <div class="glass-card-white p-8 rounded-3xl">
-              <h4 class="font-serif text-xl text-sage-dark mb-3">Guests Attire</h4>
-              <p class="text-slate-600 leading-relaxed text-sm font-light">
+            <div class="glass-card-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl">
+              <h4 class="font-serif text-lg sm:text-xl text-sage-dark mb-2 sm:mb-3">Guests Attire</h4>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm font-light">
                 Formal or Semi-Formal Attire. We kindly request guests to dress in line with our wedding color palette of Sage Green, Soft Green, Champagne, and Rose Gold.
               </p>
             </div>
           </div>
 
-          <div class="mt-8 p-6 bg-rosegold-light/40 rounded-2xl border border-rosegold/40 text-center">
+          <div class="mt-6 sm:mt-8 p-5 sm:p-6 bg-rosegold-light/40 rounded-2xl border border-rosegold/40 text-center">
             <p class="text-xs uppercase tracking-widest text-rosegold font-bold mb-2">Kindly Note</p>
-            <div class="flex flex-wrap justify-center gap-4 text-xs text-slate-800">
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-2.5 sm:gap-4 text-xs text-slate-800">
               <span class="bg-white px-4 py-2 rounded-full border border-slate-200">&bull; Pure White (Reserved for the Bride)</span>
               <span class="bg-white px-4 py-2 rounded-full border border-slate-200">&bull; Black (Please refrain from solid black)</span>
             </div>
@@ -777,32 +812,32 @@
       <!-- =================================================================== -->
       <!-- A NOTE ON GIFTS SECTION (QR CODE)                                   -->
       <!-- =================================================================== -->
-      <section id="gifts" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto glass-card rounded-3xl p-8 sm:p-14 text-center">
-          <div class="w-14 h-14 bg-rosegold-light/50 rounded-full flex items-center justify-center mx-auto mb-4 text-rosegold">
-            <i data-lucide="gift" class="w-7 h-7"></i>
+      <section id="gifts" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-14 text-center">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-rosegold-light/50 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-rosegold">
+            <i data-lucide="gift" class="w-6 h-6 sm:w-7 sm:h-7"></i>
           </div>
-          <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">A Note on Gifts</span>
-          <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">Your Presence Is Our Greatest Gift</h2>
-          <div class="flex items-center justify-center my-5 gap-3">
+          <span class="text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-rosegold font-semibold">A Note on Gifts</span>
+          <h2 class="font-serif text-2xl sm:text-5xl text-sage-dark mt-2">Your Presence Is Our Greatest Gift</h2>
+          <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
             <div class="h-[1px] w-12 bg-rosegold/60"></div>
             <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
             <div class="h-[1px] w-12 bg-rosegold/60"></div>
           </div>
 
-          <p class="text-slate-700 font-serif text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+          <p class="text-slate-700 font-serif text-base sm:text-xl leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-8">
             Should you wish to give us something more, a monetary gift would be sincerely appreciated as we continue building our future together. For monetary gifts, kindly scan the QR code below.
           </p>
 
           <!-- QR Code Display Card -->
-          <div class="inline-block bg-white p-5 sm:p-6 rounded-3xl shadow-xl border-2 border-rosegold/40">
+          <div class="inline-block max-w-full bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl border-2 border-rosegold/40">
             <img 
               src="https://lh3.googleusercontent.com/d/1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM" 
               onerror="this.onerror=null;this.src='https://drive.google.com/uc?export=view&id=1ArraUv4vqlVvFmx66iSYWsj-o7zki1XM';"
               alt="Monetary Gift QR Code" 
-              class="w-64 sm:w-72 h-auto mx-auto rounded-xl object-contain"
+              class="w-56 sm:w-72 max-w-full h-auto mx-auto rounded-xl object-contain"
             />
-            <p class="text-xs uppercase tracking-widest text-sage-dark font-semibold mt-4">
+            <p class="text-[11px] sm:text-xs uppercase tracking-widest text-sage-dark font-semibold mt-3 sm:mt-4">
               Scan to Send Gift &bull; Kaye &amp; Val
             </p>
           </div>
@@ -812,35 +847,35 @@
       <!-- =================================================================== -->
       <!-- RSVP FORM SECTION                                                   -->
       <!-- =================================================================== -->
-      <section id="rsvp" class="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto glass-card rounded-3xl p-8 sm:p-14">
-          <div class="text-center mb-10">
-            <span class="text-xs uppercase tracking-[0.3em] text-rosegold font-semibold">Response Requested</span>
-            <h2 class="font-serif text-4xl sm:text-5xl text-sage-dark mt-2">RSVP</h2>
-            <div class="flex items-center justify-center my-5 gap-3">
+      <section id="rsvp" class="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-20 px-3 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-14">
+          <div class="text-center mb-8 sm:mb-10">
+            <span class="text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-rosegold font-semibold">Response Requested</span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-sage-dark mt-2">RSVP</h2>
+            <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
               <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
               <div class="h-[1px] w-12 bg-rosegold/60"></div>
             </div>
-            <p class="text-slate-700 text-sm">Please let us know if you will be celebrating with us.</p>
+            <p class="text-slate-700 text-xs sm:text-sm">Please let us know if you will be celebrating with us.</p>
           </div>
 
-          <div class="glass-card-white p-8 sm:p-10 rounded-3xl">
+          <div class="glass-card-white p-5 sm:p-10 rounded-2xl sm:rounded-3xl">
             <div id="rsvp-success" class="hidden text-center py-8 space-y-4 animate-fade-in">
-              <i data-lucide="check-circle-2" class="w-16 h-16 text-sage-dark mx-auto"></i>
-              <h3 class="font-serif text-3xl text-sage-dark">Thank You!</h3>
-              <p class="text-slate-600">
+              <i data-lucide="check-circle-2" class="w-14 h-14 sm:w-16 sm:h-16 text-sage-dark mx-auto"></i>
+              <h3 class="font-serif text-2xl sm:text-3xl text-sage-dark">Thank You!</h3>
+              <p class="text-slate-600 text-sm sm:text-base">
                 Your response has been received. We look forward to celebrating our special day with you!
               </p>
               <button
                 id="rsvp-reset-btn"
-                class="mt-4 px-6 py-2 bg-sage-dark text-white rounded-full text-sm cursor-pointer"
+                class="mt-4 px-6 py-3 min-h-[44px] bg-sage-dark text-white rounded-full text-xs sm:text-sm cursor-pointer"
               >
                 Submit Another Response
               </button>
             </div>
 
-            <form id="rsvp-form" class="space-y-6">
+            <form id="rsvp-form" class="space-y-5 sm:space-y-6">
               <div>
                 <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
                   Full Name *
@@ -851,19 +886,19 @@
                   name="name"
                   required
                   placeholder="e.g. Maria Santos"
-                  class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-sage-dark focus:ring-1 focus:ring-sage-dark outline-none transition"
+                  class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark focus:ring-1 focus:ring-sage-dark outline-none transition"
                 />
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <label id="label-accept" class="flex flex-col items-center justify-center p-4 rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <label id="label-accept" class="flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border bg-sage-light/50 border-sage-dark text-sage-dark cursor-pointer transition">
                   <input type="radio" name="attendance" value="accept" checked class="sr-only" />
-                  <span class="font-serif text-lg font-medium">Joyfully Accepts</span>
+                  <span class="font-serif text-base sm:text-lg font-medium">Joyfully Accepts</span>
                 </label>
 
-                <label id="label-decline" class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition">
+                <label id="label-decline" class="flex flex-col items-center justify-center p-3.5 sm:p-4 min-h-[52px] rounded-xl border border-slate-200 text-slate-600 bg-white cursor-pointer transition">
                   <input type="radio" name="attendance" value="decline" class="sr-only" />
-                  <span class="font-serif text-lg font-medium">Regretfully Declines</span>
+                  <span class="font-serif text-base sm:text-lg font-medium">Regretfully Declines</span>
                 </label>
               </div>
 
@@ -871,7 +906,7 @@
                 <label class="block text-xs uppercase tracking-wider text-sage-dark font-semibold mb-2">
                   Number of Guests
                 </label>
-                <select id="rsvp-guests" name="guests" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none">
+                <select id="rsvp-guests" name="guests" class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none">
                   <option value="1">1 Person</option>
                   <option value="2">2 Persons</option>
                 </select>
@@ -886,14 +921,14 @@
                   name="message"
                   rows="3"
                   placeholder="Write your wishes for Kaye &amp; Val..."
-                  class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none"
+                  class="w-full px-4 py-3 text-base rounded-xl border border-slate-200 bg-white focus:border-sage-dark outline-none"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 id="rsvp-submit-btn"
-                class="w-full py-4 bg-sage-dark hover:bg-[#52624c] text-white rounded-xl font-medium tracking-wider uppercase shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                class="w-full py-4 min-h-[50px] bg-sage-dark hover:bg-[#52624c] text-white rounded-xl text-xs sm:text-sm font-medium tracking-wider uppercase shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <i data-lucide="send" class="w-4 h-4"></i> Send RSVP Response
               </button>
@@ -905,13 +940,13 @@
       <!-- =================================================================== -->
       <!-- FOOTER                                                              -->
       <!-- =================================================================== -->
-      <footer class="py-12 bg-sage-dark/95 text-white text-center mt-10">
+      <footer class="py-10 sm:py-12 bg-sage-dark/95 text-white text-center mt-8 sm:mt-10 pb-[calc(2.5rem+env(safe-area-inset-bottom))]">
         <div class="max-w-4xl mx-auto px-4">
-          <h3 class="font-serif text-3xl mb-2">Kaye &amp; Val</h3>
-          <p class="text-xs uppercase tracking-widest text-rosegold-light mb-6">
+          <h3 class="font-serif text-2xl sm:text-3xl mb-2">Kaye &amp; Val</h3>
+          <p class="text-[11px] sm:text-xs uppercase tracking-widest text-rosegold-light mb-5 sm:mb-6">
             December 9, 2026 &bull; Naga City, Camarines Sur
           </p>
-          <div class="h-[1px] w-16 bg-rosegold mx-auto mb-6"></div>
+          <div class="h-[1px] w-16 bg-rosegold mx-auto mb-5 sm:mb-6"></div>
           <p class="text-xs text-slate-200 font-light">
             #KayeFoundHerVal-ue
           </p>
@@ -923,49 +958,49 @@
   <!-- ===================================================================== -->
   <!-- DIGITAL FORMAL INVITATION CARD MODAL                                  -->
   <!-- ===================================================================== -->
-  <div id="invitation-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 animate-fade-in">
-    <div class="relative w-full max-w-2xl bg-cream p-8 sm:p-12 rounded-3xl shadow-2xl border-4 border-rosegold-light text-center overflow-y-auto max-h-[90vh]">
-      <button id="close-card-modal-btn" class="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-800 rounded-full hover:bg-slate-200/60 cursor-pointer">
-        <i data-lucide="x" class="w-6 h-6"></i>
+  <div id="invitation-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 animate-fade-in">
+    <div class="relative w-full max-w-2xl bg-cream p-4 sm:p-12 rounded-2xl sm:rounded-3xl shadow-2xl border-4 border-rosegold-light text-center overflow-y-auto max-h-[88dvh]">
+      <button id="close-card-modal-btn" class="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-500 hover:text-slate-800 rounded-full hover:bg-slate-200/60 cursor-pointer z-10">
+        <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
       </button>
 
-      <div class="border border-rosegold/40 p-6 sm:p-10 rounded-2xl relative">
-        <p class="text-xs tracking-[0.25em] uppercase text-sage-dark font-semibold mb-2">
+      <div class="border border-rosegold/40 p-5 sm:p-10 rounded-xl sm:rounded-2xl relative">
+        <p class="text-[11px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase text-sage-dark font-semibold mb-2">
           Together with their families
         </p>
-        <p class="text-xs tracking-widest text-slate-500 uppercase mb-6">
+        <p class="text-[11px] sm:text-xs tracking-widest text-slate-500 uppercase mb-5 sm:mb-6">
           Request the pleasure of your company as they celebrate their wedding
         </p>
 
-        <h2 class="font-serif text-4xl sm:text-6xl text-sage-dark mb-1">Kaye &amp; Val</h2>
-        <p class="font-serif italic text-lg text-rosegold mb-6">Baranuelo – Cunanan Nuptials</p>
+        <h2 class="font-serif text-3xl sm:text-6xl text-sage-dark mb-1">Kaye &amp; Val</h2>
+        <p class="font-serif italic text-base sm:text-lg text-rosegold mb-5 sm:mb-6">Baranuelo – Cunanan Nuptials</p>
 
-        <div class="flex items-center justify-center my-5 gap-3">
+        <div class="flex items-center justify-center my-4 sm:my-5 gap-3">
           <div class="h-[1px] w-12 bg-rosegold/60"></div>
           <div class="w-2 h-2 rounded-full bg-rosegold rotate-45"></div>
           <div class="h-[1px] w-12 bg-rosegold/60"></div>
         </div>
 
-        <div class="my-6 space-y-2">
-          <p class="font-serif text-xl font-medium text-slate-800">Wednesday, December 9, 2026</p>
-          <p class="text-base text-sage-dark font-semibold">2:00 PM</p>
+        <div class="my-5 sm:my-6 space-y-1.5 sm:space-y-2">
+          <p class="font-serif text-lg sm:text-xl font-medium text-slate-800">Wednesday, December 9, 2026</p>
+          <p class="text-sm sm:text-base text-sage-dark font-semibold">2:00 PM</p>
         </div>
 
-        <div class="space-y-4 my-8 text-slate-700">
+        <div class="space-y-4 my-6 sm:my-8 text-slate-700">
           <div>
-            <p class="text-xs uppercase tracking-widest text-rosegold font-bold">Ceremony Venue</p>
-            <p class="font-serif text-lg font-semibold text-slate-800">Basilica of Our Lady of Peñafrancia</p>
-            <p class="text-sm text-slate-600">Naga City, Camarines Sur, Philippines</p>
+            <p class="text-[11px] sm:text-xs uppercase tracking-widest text-rosegold font-bold">Ceremony Venue</p>
+            <p class="font-serif text-base sm:text-lg font-semibold text-slate-800">Basilica of Our Lady of Peñafrancia</p>
+            <p class="text-xs sm:text-sm text-slate-600">Naga City, Camarines Sur, Philippines</p>
           </div>
-          <div class="pt-3">
-            <p class="text-xs uppercase tracking-widest text-rosegold font-bold">Reception Venue</p>
-            <p class="font-serif text-lg font-semibold text-slate-800">Queen Rose Hall</p>
-            <p class="text-sm font-medium text-slate-700">Robertson Hotel</p>
-            <p class="text-sm text-slate-600">J. Miranda Avenue, Naga City, Camarines Sur</p>
+          <div class="pt-2 sm:pt-3">
+            <p class="text-[11px] sm:text-xs uppercase tracking-widest text-rosegold font-bold">Reception Venue</p>
+            <p class="font-serif text-base sm:text-lg font-semibold text-slate-800">Queen Rose Hall</p>
+            <p class="text-xs sm:text-sm font-medium text-slate-700">Robertson Hotel</p>
+            <p class="text-xs sm:text-sm text-slate-600">J. Miranda Avenue, Naga City, Camarines Sur</p>
           </div>
         </div>
 
-        <p class="font-serif italic text-sage-dark text-base mt-8">
+        <p class="font-serif italic text-sage-dark text-sm sm:text-base mt-6 sm:mt-8">
           "Two hearts, one promise, and a lifetime of love."
         </p>
       </div>
